@@ -23,17 +23,18 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
   setLeagueId = (): void => {
-    this.fetchApiData.sleeperGet(`/league/${this.leagueIdInput}`).subscribe((res) => {
-      console.log(res);
-      localStorage.setItem('leagueId', this.leagueIdInput);
-      this.router.navigate(['league-dashboard']);
-    }, res => {
-      console.log(res);
-      console.log(this.leagueIdInput);
-      this.snackBar.open('Not a valid League ID', 'OK', {
-        duration: 1000
+    this.fetchApiData.sleeperGet(`/league/${this.leagueIdInput}`)
+      .subscribe({
+        next: () => {
+          localStorage.setItem('leagueId', this.leagueIdInput);
+          this.router.navigate(['league-dashboard']);
+        },
+        error: () => {
+          this.snackBar.open('Not a valid League ID', 'OK', { duration: 1000 })
+        },
       })
-    });
   }
 }
