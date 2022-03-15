@@ -13,17 +13,12 @@ $sleeperstats-theme: mat.define-light-theme((
   )
 ));
 
-$orange: #F57E00;
-$blue: #3A86FF;
-$black: #191E1F;
-$pink: #FF69EB;
-
 @include mat.all-component-themes($sleeperstats-theme);
 
 html, body { height: 100%; }
 body { 
   margin: 0; 
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: $black;
+  background-color: #191E1F;
   color: white;
  }
