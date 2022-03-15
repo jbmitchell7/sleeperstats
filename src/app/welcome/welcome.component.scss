@@ -1,0 +1,42 @@
+@import '../../styles.scss';
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.welcome-form {
+    width: fit-content;
+}
+
+.league-id-input {
+    color: $black;
+    background-color: white; 
+}
+
+.computer-instructions, .app-instructions, .instructions-header {
+    align-self: flex-start;
+}
+
+.instructions-header {
+    margin-top: 80px;
+}
+
+.computer-instructions {
+    margin-bottom: 20px;
+}
+
+.app-instructions {
+    margin-bottom: 30px;
+}
+
+.sleeper-link {
+    color: $blue;
+}
+
+.sleeper-link:visited {
+    color: $pink;
+}

@@ -1,0 +1,37 @@
+<div ngClass="welcome-container">
+    <h1>Welcome to Sleeper Fantasy Focus: Your Home for Advanced Fantasy Stats</h1>
+    <h2>Begin by finding the ID to your Sleeper Fantasy League</h2>
+    <h3 ngClass="instructions-header">To find you league ID either:</h3>
+    <p ngClass="computer-instructions">
+        <span style="font-weight: bold;">On a Computer:</span> Go to
+        <span>
+            <a href="https://sleeper.app" ngClass="sleeper-link">sleeper.app</a>
+        </span>
+        and find the league you want. Copy the number in the URL that comes after
+        https://sleeper.app/leagues/ and paste it below
+    </p>
+    <p ngClass="app-instructions">
+        <span style="font-weight: bold;">On the Sleeper App:</span>
+        Go to your League page ->
+        tap the settings gear by League Settings ->
+        tap on General -> scroll to the bottom and tap
+        Copy League ID -> paste the league id into the form below
+    </p>
+    <mat-card ngClass="welcome-form">
+        <mat-card-header>
+            <mat-card-title>Enter Your League ID Here</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form ngClass="league-id-input">
+                <mat-form-field>
+                    <input matInput placeholder="League ID" type="text" [(ngModel)]="leagueIdInput" name="ID">
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="setLeagueId()" ngClass="view-league-btn" color="primary">
+                View My League
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
