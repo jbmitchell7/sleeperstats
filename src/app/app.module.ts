@@ -10,8 +10,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { RouterModule, Routes } from '@angular/router';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,8 +55,10 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatCardModule,
-    NgxChartsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
