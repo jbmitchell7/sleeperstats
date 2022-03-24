@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EChartsOption } from 'echarts';
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-graph',
@@ -23,56 +23,48 @@ export class GraphComponent implements OnInit {
   league = localStorage.getItem('leagueId');
   rosters: any = [];
   users: any = [];
-  chartData: any = [];
-
-  chartOption: EChartsOption = {
-    title: {
-      text: "Points Scored/Potential Points",
-      left: 'center',
-      top: 0
-    },
-    xAxis: {
-      type: 'value',
-      min: (value) => { return value.min - 50 },
-      max: (value) => { return value.max + 50 },
-    },
-    yAxis: {
-      type: 'value',
-      min: (value) => { return value.min - 50 },
-      max: (value) => { return value.max + 50 },
-    },
-    series: [
-      {
-        data: this.chartData,
-        type: 'scatter',
-        markLine: {
-          lineStyle: {
-            type: 'solid'
-          },
-          data: [
-            [
-              {
-                coord: [0, 1500],
-                symbol: 'none'
-              },
-              {
-                coord: [1700, 1500],
-                symbol: 'none'
-              }
-            ]
-          ]
-        }
-      },
-    ],
-  };
+  usernames: any = [];
+  loadData: boolean = false;
 
   //gets user display names
+
+  public scatterChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    scales: {
+      x: {
+      },
+      y: {
+      }
+    }
+  };
+
+  public scatterChartData: ChartData<'scatter'> = {
+    labels: this.usernames,
+    datasets: [
+      {
+        data: [],
+        label: 'Points Scored vs Potential Points Scored',
+        pointRadius: 10,
+      },
+    ]
+  };
+  public scatterChartType: ChartType = 'scatter';
+
+  // events
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
 
   getUser = (userid: string): void => {
     this.fetchApiData.sleeperGet(`/user/${userid}`)
       .subscribe({
         next: res => {
           this.users.push(res);
+          this.usernames.push(res.username);
         },
         error: () => {
           this.snackBar.open('Could not get league data. Come back again later', 'OK', {
@@ -91,9 +83,12 @@ export class GraphComponent implements OnInit {
         next: res => {
           this.rosters = res;
           this.rosters.forEach((element: any) => {
-            //this.getUser(element.owner_id);
-            this.chartData.push([element.settings.fpts, element.settings.ppts]);
+            this.getUser(element.owner_id);
+            this.scatterChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts });
           });
+          this.loadData = true;
+          console.log(this.rosters);
+          console.log(this.usernames);
         },
         error: () => {
           this.snackBar.open('Could not get league data. Come back again later', 'OK', {

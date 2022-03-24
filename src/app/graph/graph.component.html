@@ -1,3 +1,4 @@
-<div ngClass="graph-container">
-    <div echarts [options]="chartOption" class="demo-chart"></div>
+<div ngClass="demo-chart" *ngIf="loadData">
+    <canvas baseChart [data]="scatterChartData" [options]="scatterChartOptions" [type]="scatterChartType">
+    </canvas>
 </div>

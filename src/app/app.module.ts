@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { NgxEchartsModule } from 'ngx-echarts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,10 +55,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatCardModule,
+    NgChartsModule,
     RouterModule.forRoot(appRoutes),
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    })
   ],
   providers: [],
   bootstrap: [AppComponent]
