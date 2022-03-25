@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import { Roster } from '../data/roster';
+import { LeaguePageData } from '../league/league.component';
 
 @Component({
   selector: 'app-graph',
@@ -11,8 +11,7 @@ export class GraphComponent implements OnInit {
   constructor(
   ) { }
 
-  @Input() rosterData: any;
-  @Input() userData: any;
+  @Input() leaguePageData: any;
 
   ngOnInit(): void {
     this.updateRosterData();
@@ -50,9 +49,15 @@ export class GraphComponent implements OnInit {
 
   //roster data is what holds a team's total points
 
+  // updateRosterData = (): void => {
+  //   this.rosterData.forEach((element: Roster) => {
+  //     this.bubbleChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts, r: element.settings.wins * 2 });
+  //   });
+  // }
+
   updateRosterData = (): void => {
-    this.rosterData.forEach((element: Roster) => {
-      this.bubbleChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts, r: element.settings.wins * 2 });
+    this.leaguePageData.forEach((element: LeaguePageData) => {
+      this.bubbleChartData.datasets[0].data.push({ x: element.points, y: element.max_points, r: element.wins * 2 });
     });
   }
 }

@@ -5,6 +5,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Roster } from '../data/roster';
 import { User } from '../data/user';
 
+export interface LeaguePageData {
+  username: string;
+  points: number;
+  max_points: number;
+  points_against: number;
+  wins: number;
+  losses: number;
+}
+
 @Component({
   selector: 'app-league',
   templateUrl: './league.component.html',
@@ -23,37 +32,17 @@ export class LeagueComponent implements OnInit {
 
   league = localStorage.getItem('leagueId');
   rosters: Roster[] = [];
-  users: User[] = [];
-  usernames: string[] = [];
   loadData: boolean = false;
-
-  getUser = (userid: string): void => {
-    this.fetchApiData.sleeperGet(`/user/${userid}`)
-      .subscribe({
-        next: res => {
-          this.users.push(res);
-          this.usernames.push(res.username);
-        },
-        error: () => {
-          this.snackBar.open('Could not get league data. Come back again later', 'OK', {
-            duration: 1000
-          });
-          this.router.navigate(['welcome']);
-        },
-      })
-  }
-
-  //roster data is what holds a team's total points
+  loadRosters: boolean = false;
+  leaguePageData: LeaguePageData[] = [];
 
   getRosters = (): void => {
     this.fetchApiData.sleeperGet(`/league/${this.league}/rosters`)
       .subscribe({
         next: res => {
           this.rosters = res;
-          this.rosters.forEach((element: Roster) => {
-            this.getUser(element.owner_id);
-          });
-          this.loadData = true
+          this.loadRosters = true;
+          this.setLeagueData();
         },
         error: () => {
           this.snackBar.open('Could not get league data. Come back again later', 'OK', {
@@ -63,5 +52,34 @@ export class LeagueComponent implements OnInit {
           this.router.navigate(['welcome']);
         },
       })
+  }
+
+  setLeagueData = (): void => {
+    if (this.loadRosters) {
+      this.rosters.forEach((roster: Roster) => {
+        let id: string = roster.owner_id;
+        let name: string;
+        this.fetchApiData.sleeperGet(`/user/${id}`)
+          .subscribe({
+            next: (res: User) => {
+              name = res.display_name;
+              this.leaguePageData.push(
+                {
+                  username: name,
+                  points: roster.settings.fpts,
+                  max_points: roster.settings.ppts,
+                  points_against: roster.settings.fpts_against,
+                  wins: roster.settings.wins,
+                  losses: roster.settings.losses
+                }
+              );
+            },
+            error: () => {
+              console.log('error filling standings data');
+            },
+          })
+      })
+      this.loadData = true;
+    }
   }
 }

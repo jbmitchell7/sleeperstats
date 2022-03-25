@@ -1,9 +1,4 @@
-<div ngClass="league-container">
-    <div>
-        <ul>
-            <li *ngFor="let username of usernames">{{username}}</li>
-        </ul>
-    </div>
-    <app-graph [rosterData]="rosters" [userData]="users" *ngIf="loadData"></app-graph>
-    <app-standings [rosterData]="rosters" [userData]="users" *ngIf="loadData"></app-standings>
+<div ngClass="league-container" *ngIf="loadData">
+    <app-graph [leaguePageData]="leaguePageData"></app-graph>
+    <app-standings [leaguePageData]="leaguePageData"></app-standings>
 </div>
