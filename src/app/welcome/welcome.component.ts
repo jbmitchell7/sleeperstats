@@ -10,8 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class WelcomeComponent implements OnInit {
 
-  status: any = {};
-
   @Input() leagueIdInput = ''
 
   constructor(

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { Roster } from '../data/roster';
 
 @Component({
   selector: 'app-graph',
@@ -50,7 +51,7 @@ export class GraphComponent implements OnInit {
   //roster data is what holds a team's total points
 
   updateRosterData = (): void => {
-    this.rosterData.forEach((element: any) => {
+    this.rosterData.forEach((element: Roster) => {
       this.bubbleChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts, r: element.settings.wins * 2 });
     });
   }

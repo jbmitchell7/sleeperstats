@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Roster } from '../data/roster';
+import { User } from '../data/user';
 
 @Component({
   selector: 'app-league',
@@ -20,9 +22,9 @@ export class LeagueComponent implements OnInit {
   }
 
   league = localStorage.getItem('leagueId');
-  rosters: any = [];
-  users: any = [];
-  usernames: any = [];
+  rosters: Roster[] = [];
+  users: User[] = [];
+  usernames: string[] = [];
   loadData: boolean = false;
 
   getUser = (userid: string): void => {
@@ -48,7 +50,7 @@ export class LeagueComponent implements OnInit {
       .subscribe({
         next: res => {
           this.rosters = res;
-          this.rosters.forEach((element: any) => {
+          this.rosters.forEach((element: Roster) => {
             this.getUser(element.owner_id);
           });
           this.loadData = true

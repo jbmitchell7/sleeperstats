@@ -1,0 +1,127 @@
+export interface League {
+    total_rosters: number;
+    status: string;
+    sport: string;
+    shard: number;
+    settings: LeagueSettings
+    season_type: string;
+    season: string;
+    scoring_settings: Scoring;
+    roster_positions: string[];
+    previous_league_id: string;
+    name: string;
+    metadata: LeagueMetadata;
+    loser_bracket_id: number,
+    league_id: string,
+    last_read_id: null,
+    last_pinned_message_id: null,
+    last_message_time: number,
+    last_message_text_map: null,
+    last_message_id: string,
+    last_message_attachment: null,
+    last_author_is_bot: boolean,
+    last_author_id: string,
+    last_author_display_name: string,
+    last_author_avatar: string,
+    group_id: null,
+    draft_id: string,
+    company_id: null,
+    bracket_id: number,
+    avatar: null
+}
+
+export interface LeagueSettings {
+    max_keepers: number;
+    draft_rounds: number;
+    trade_review_days: number;
+    squads: number;
+    reserve_allow_dnr: number;
+    capacity_override: number;
+    pick_trading: number;
+    disable_trades: number;
+    taxi_years: number;
+    taxi_allow_vets: number;
+    best_ball: number;
+    last_report: number;
+    disable_adds: number;
+    waiver_type: number;
+    bench_lock: number;
+    reserve_allow_sus: number;
+    type: number;
+    reserve_allow_cov: number;
+    waiver_clear_days: number;
+    daily_waivers_last_ran: number;
+    waiver_day_of_week: number;
+    start_week: number;
+    playoff_teams: number;
+    num_teams: number;
+    reserve_slots: number;
+    playoff_round_type: number;
+    daily_waivers_hour: number;
+    waiver_budget: number;
+    reserve_allow_out: number;
+    offseason_adds: number;
+    last_scored_leg: number;
+    playoff_seed_type: number;
+    daily_waivers: number;
+    playoff_week_start: number;
+    daily_waivers_days: number;
+    league_average_match: number;
+    leg: number;
+    trade_deadline: number;
+    reserve_allow_doubtful: number;
+    taxi_deadline: number;
+    reserve_allow_na: number;
+    taxi_slots: number;
+    playoff_type: number
+}
+
+export interface Scoring {
+    pass_2pt: number;
+    pass_int: number;
+    fgmiss: number;
+    rec_yd: number;
+    xpmiss: number;
+    fgm_30_39: number;
+    blk_kick: number;
+    pts_allow_7_13: number;
+    ff: number;
+    fgm_20_29: number;
+    fgm_40_49: number;
+    pts_allow_1_6: number;
+    st_fum_rec: number;
+    def_st_ff: number;
+    st_ff: number;
+    bonus_rec_te: number;
+    pts_allow_28_34: number;
+    fgm_50p: number;
+    fum_rec: number;
+    def_td: number;
+    fgm_0_19: number;
+    int: number;
+    pts_allow_0: number;
+    pts_allow_21_27: number;
+    rec_2pt: number;
+    rec: number;
+    xpm: number;
+    st_td: number;
+    def_st_fum_rec: number;
+    def_st_td: number;
+    sack: number;
+    fum_rec_td: number;
+    rush_2pt: number;
+    rec_td: number;
+    pts_allow_35p: number;
+    pts_allow_14_20: number;
+    rush_yd: number;
+    pass_yd: number;
+    pass_td: number;
+    rush_td: number;
+    fum_lost: number;
+    fum: number;
+    safe: number;
+}
+
+export interface LeagueMetadata {
+    continued: string;
+}
