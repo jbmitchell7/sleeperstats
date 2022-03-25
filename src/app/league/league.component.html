@@ -1,1 +1,8 @@
-<app-graph></app-graph>
+<div>
+    <div>
+        <ul>
+            <li *ngFor="let username of usernames">{{username}}</li>
+        </ul>
+    </div>
+    <graph-component [rosterData]="rosters" [userData]="users" *ngIf="loadData"></graph-component>
+</div>
