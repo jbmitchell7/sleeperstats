@@ -14,9 +14,11 @@ export class GraphComponent implements OnInit {
   @Input() leaguePageData: any;
 
   ngOnInit(): void {
-    this.updateRosterData();
+    this.updateChartData();
     this.setLabels();
   }
+
+  public bubbleChartType: ChartType = 'bubble';
 
   public bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -30,23 +32,29 @@ export class GraphComponent implements OnInit {
 
   chartLabels: string[] = [];
 
-  setLabels = (): void => {
-    this.leaguePageData.forEach((team: LeaguePageData) => {
-      this.chartLabels.push(team.username);
-    }
-    )
-  }
-
   public bubbleChartData: ChartData<'bubble'> = {
     labels: this.chartLabels,
     datasets: [
       {
         data: [],
         label: 'Points Scored vs Potential Points Scored',
+        backgroundColor: [
+            'red',
+            'green',
+            'blue',
+            'purple',
+            'yellow',
+            'brown',
+            'magenta',
+            'cyan',
+            'orange',
+            'pink'
+        ],
+        hoverBackgroundColor: 'black',
+        hoverBorderColor: 'black'
       },
-    ]
+    ],
   };
-  public bubbleChartType: ChartType = 'bubble';
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -57,17 +65,15 @@ export class GraphComponent implements OnInit {
     console.log(event, active);
   }
 
-  //roster data is what holds a team's total points
+  setLabels = (): void => {
+    this.leaguePageData.forEach((team: LeaguePageData) => {
+        this.chartLabels.push(team.username);
+    })
+  }
 
-  // updateRosterData = (): void => {
-  //   this.rosterData.forEach((element: Roster) => {
-  //     this.bubbleChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts, r: element.settings.wins * 2 });
-  //   });
-  // }
-
-  updateRosterData = (): void => {
+  updateChartData = (): void => {
     this.leaguePageData.forEach((element: LeaguePageData) => {
-      this.bubbleChartData.datasets[0].data.push({ x: element.points, y: element.max_points, r: element.wins * 2 });
+      this.bubbleChartData.datasets[0].data.push({ x: element.points, y: element.max_points, r: element.wins * (16 / (element.wins + element.losses)) });
     });
   }
 }
