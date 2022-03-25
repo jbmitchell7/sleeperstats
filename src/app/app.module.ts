@@ -9,20 +9,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './user/user.component';
-import { SportStateComponent } from './sport-state/sport-state.component';
-import { RosterComponent } from './roster/roster.component';
-import { PlayersComponent } from './players/players.component';
+
 import { LeagueComponent } from './league/league.component';
 import { GraphComponent } from './graph/graph.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { StandingsComponent } from './standings/standings.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -33,13 +31,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    SportStateComponent,
-    RosterComponent,
-    PlayersComponent,
     LeagueComponent,
     GraphComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    StandingsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +50,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatCardModule,
+    MatTableModule,
     NgChartsModule,
     RouterModule.forRoot(appRoutes),
   ],

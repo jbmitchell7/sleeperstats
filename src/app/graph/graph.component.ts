@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 
 @Component({
-  selector: 'graph-component',
+  selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
@@ -17,27 +17,26 @@ export class GraphComponent implements OnInit {
     this.updateRosterData();
   }
 
-  public scatterChartOptions: ChartConfiguration['options'] = {
+  public bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
       x: {
       },
       y: {
       }
-    }
+    },
   };
 
-  public scatterChartData: ChartData<'scatter'> = {
+  public bubbleChartData: ChartData<'bubble'> = {
     //labels: this.usernames,
     datasets: [
       {
         data: [],
         label: 'Points Scored vs Potential Points Scored',
-        pointRadius: 10,
       },
     ]
   };
-  public scatterChartType: ChartType = 'scatter';
+  public bubbleChartType: ChartType = 'bubble';
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -52,7 +51,7 @@ export class GraphComponent implements OnInit {
 
   updateRosterData = (): void => {
     this.rosterData.forEach((element: any) => {
-      this.scatterChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts });
+      this.bubbleChartData.datasets[0].data.push({ x: element.settings.fpts, y: element.settings.ppts, r: element.settings.wins * 2 });
     });
   }
 }
