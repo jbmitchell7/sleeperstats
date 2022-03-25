@@ -15,6 +15,7 @@ export class GraphComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateRosterData();
+    this.setLabels();
   }
 
   public bubbleChartOptions: ChartConfiguration['options'] = {
@@ -27,8 +28,17 @@ export class GraphComponent implements OnInit {
     },
   };
 
+  chartLabels: string[] = [];
+
+  setLabels = (): void => {
+    this.leaguePageData.forEach((team: LeaguePageData) => {
+      this.chartLabels.push(team.username);
+    }
+    )
+  }
+
   public bubbleChartData: ChartData<'bubble'> = {
-    //labels: this.usernames,
+    labels: this.chartLabels,
     datasets: [
       {
         data: [],

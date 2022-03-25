@@ -73,13 +73,22 @@ export class LeagueComponent implements OnInit {
                   losses: roster.settings.losses
                 }
               );
+              //checks that all rosters have been pushed to leaguePageData
+              if (this.leaguePageData.length == this.rosters.length) {
+                //sorts standings by wins then points
+                this.leaguePageData.sort(
+                  (a, b) => (a.wins < b.wins) ? 1 : (a.wins == b.wins) ?
+                    ((a.points < b.points) ? 1 : -1) : -1
+                )
+                //sets table and graph visibility
+                this.loadData = true;
+              }
             },
             error: () => {
               console.log('error filling standings data');
             },
           })
       })
-      this.loadData = true;
     }
   }
 }
