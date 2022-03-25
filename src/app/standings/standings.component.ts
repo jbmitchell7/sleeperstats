@@ -19,10 +19,12 @@ export class StandingsComponent implements OnInit {
 
   tableData: LeaguePageData[] = [];
   dataLoaded: boolean = false;
+  year: any = ''
 
   setTableData = (): void => {
     this.tableData = this.leaguePageData;
     this.dataLoaded = true;
+    this.year = localStorage.getItem('leagueYear');
   }
 
 
