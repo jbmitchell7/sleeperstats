@@ -17,6 +17,7 @@ export class StandingsComponent implements OnInit {
 
   @Input() leaguePageData: any;
 
+  leagueName = localStorage.getItem('leagueName');
   tableData: LeaguePageData[] = [];
   dataLoaded: boolean = false;
   year: any = ''

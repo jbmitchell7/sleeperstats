@@ -22,17 +22,17 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   setLeagueId = (): void => {
     this.fetchApiData.sleeperGet(`/league/${this.leagueIdInput}`)
       .subscribe({
         next: (res: League) => {
-          if (res.status != 'in_season' && res.status != 'post_season') {
-              localStorage.setItem('leagueId', res.previous_league_id);
+          console.log(res);
+          if (res.status != 'in_season' && res.status != 'post_season' && res.status != 'complete') {
+            localStorage.setItem('leagueId', res.previous_league_id);
           } else {
-              localStorage.setItem('leagueId', this.leagueIdInput);
+            localStorage.setItem('leagueId', this.leagueIdInput);
           }
+          localStorage.setItem('leagueName', res.name);
           localStorage.setItem('leagueYear', res.season);
           this.router.navigate(['league-dashboard']);
         },
