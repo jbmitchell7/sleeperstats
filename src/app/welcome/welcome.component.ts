@@ -33,7 +33,6 @@ export class WelcomeComponent implements OnInit {
             localStorage.setItem('leagueId', this.leagueIdInput);
           }
           localStorage.setItem('leagueName', res.name);
-          localStorage.setItem('leagueYear', res.season);
           this.router.navigate(['league-dashboard']);
         },
         error: () => {

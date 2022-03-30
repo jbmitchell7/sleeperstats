@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Roster } from '../data/roster';
 import { User } from '../data/user';
+import { League } from '../data/league';
 
 export interface LeaguePageData {
   username: string;
@@ -28,6 +29,7 @@ export class LeagueComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRosters();
+    this.getLeagueInfo();
   }
 
   league = localStorage.getItem('leagueId');
@@ -45,12 +47,27 @@ export class LeagueComponent implements OnInit {
           this.setLeagueData();
         },
         error: () => {
-          this.snackBar.open('Could not get league data. Come back again later', 'OK', {
+          this.snackBar.open('Could not get roster data. Come back again later', 'OK', {
             duration: 1000
           });
           localStorage.setItem('leagueId', "");
           this.router.navigate(['welcome']);
         },
+      })
+  }
+
+  getLeagueInfo = (): void => {
+    const id = localStorage.getItem('leagueId')
+    this.fetchApiData.sleeperGet(`/league/${id}`)
+      .subscribe({
+        next: (res: League) => {
+          localStorage.setItem('leagueYear', res.season);
+        },
+        error: () => {
+          this.snackBar.open('Could not get league data.', 'OK', {
+            duration: 1000
+          });
+        }
       })
   }
 

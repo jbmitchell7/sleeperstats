@@ -69,7 +69,7 @@ export class GraphComponent implements OnInit {
       y: {
         title: {
           display: true,
-          text: 'Percentage of Max Points',
+          text: 'Wins',
         }
       }
     }
@@ -134,8 +134,9 @@ export class GraphComponent implements OnInit {
       this.bubbleChartData.datasets[0].data.push(
         {
           x: element.max_points,
-          y: (element.points / element.max_points) * 100,
-          r: 2 + element.wins * (14 / (element.wins + element.losses)),
+          y: element.wins,
+          r: (element.points / element.max_points != 1) ?
+            90 * (1 / (100 - ((element.points / element.max_points) * 100))) : 10,
         }
       );
     });
