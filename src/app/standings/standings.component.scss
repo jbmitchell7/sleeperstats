@@ -17,3 +17,21 @@
     background-color: $orange;
     color: white;
 }
+
+@media (max-width: 1300px) {
+    .standings-container {
+        width: 70vw;
+    }
+    .standings-table {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .standings-container {
+        width: 90vw;
+    }
+    .standings-table {
+        width: 90vw;
+    }
+}

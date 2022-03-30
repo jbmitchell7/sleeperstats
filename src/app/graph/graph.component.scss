@@ -17,3 +17,12 @@
     display: block;
     background-color: white;
   }
+
+  @media (max-width: 850px) {
+    .points-chart {
+      width: 90vw;
+    }
+    .chart-container {
+      padding: 20px 0 20px 0;
+    }
+  }

@@ -1,6 +1,6 @@
 <div *ngIf="dataLoaded" ngClass="standings-container">
     <h1>{{leagueName}} Standings {{year}}</h1>
-    <table mat-table [dataSource]="tableData" class=" mat-elevation-z8" ngClass="standings-table">
+    <table mat-table [dataSource]="tableData" ngClass="mat-elevation-z8 standings-table">
 
         <ng-container matColumnDef="username">
             <th mat-header-cell *matHeaderCellDef ngClass="table-header"> Player </th>
