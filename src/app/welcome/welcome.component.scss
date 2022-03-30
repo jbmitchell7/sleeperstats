@@ -14,23 +14,22 @@
 
 .league-id-input {
     color: $black;
-    background-color: white; 
+    background-color: white;
 }
 
-.computer-instructions, .app-instructions, .instructions-header {
-    align-self: flex-start;
+.instructions-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.computer-instructions, .app-instructions {
+    margin: 20px;
 }
 
 .instructions-header {
     margin-top: 80px;
-}
-
-.computer-instructions {
-    margin-bottom: 20px;
-}
-
-.app-instructions {
-    margin-bottom: 30px;
+    margin-left: 20px;
 }
 
 .sleeper-link {
@@ -39,4 +38,30 @@
 
 .sleeper-link:visited {
     color: $pink;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-note {
+    position: absolute;
+    bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+    .instructions-container {
+        flex-direction: column;
+    }
+    .welcome-container {
+        margin: 10px;
+    }
+    .bottom-note {
+        margin-top: 40px;
+        position: relative;
+    }
 }
