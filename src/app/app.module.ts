@@ -13,10 +13,10 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { LeagueComponent } from './league/league.component';
 import { GraphComponent } from './graph/graph.component';
 import { WelcomeComponent } from './welcome/welcome.component';

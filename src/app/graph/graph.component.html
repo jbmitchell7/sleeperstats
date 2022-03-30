@@ -1,8 +1,9 @@
 <div ngClass="graph-container">
-    <h2>Points Scored vs Max Points. Dot size indicates number of wins.</h2>
+    <h2>Max Points vs Percentage of Max Points</h2>
+    <p>Better teams are further right and better managers are further up</p>
+    <p>Dot size is proportional to the number of wins</p>
     <div ngClass="points-chart">
-        <canvas baseChart [data]="bubbleChartData" [options]="bubbleChartOptions" [type]="bubbleChartType"
-            [legend]="true">
+        <canvas baseChart [data]="bubbleChartData" [options]="bubbleChartOptions" [type]="bubbleChartType">
         </canvas>
     </div>
 </div>
