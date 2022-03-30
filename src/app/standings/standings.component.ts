@@ -7,6 +7,20 @@ import { LeaguePageData } from '../league/league.component';
   styleUrls: ['./standings.component.scss']
 })
 export class StandingsComponent implements OnInit {
+  leagueName = localStorage.getItem('leagueName');
+  tableData: LeaguePageData[] = [];
+  dataLoaded: boolean = false;
+  year: any = '';
+  displayedColumns: string[] = [
+    'username',
+    'points',
+    'max-points',
+    'points-against',
+    'wins',
+    'losses'
+  ];
+
+  @Input() leaguePageData: any;
 
   constructor(
   ) { }
@@ -15,19 +29,10 @@ export class StandingsComponent implements OnInit {
     this.setTableData();
   }
 
-  @Input() leaguePageData: any;
-
-  leagueName = localStorage.getItem('leagueName');
-  tableData: LeaguePageData[] = [];
-  dataLoaded: boolean = false;
-  year: any = ''
-
   setTableData = (): void => {
     this.tableData = this.leaguePageData;
     this.dataLoaded = true;
     this.year = localStorage.getItem('leagueYear');
   }
 
-
-  displayedColumns: string[] = ['username', 'points', 'max-points', 'points-against', 'wins', 'losses'];
 }

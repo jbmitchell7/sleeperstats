@@ -33,6 +33,7 @@ export class LeagueComponent implements OnInit {
   }
 
   league = localStorage.getItem('leagueId');
+  avatars: string[] = [];
   rosters: Roster[] = [];
   loadData: boolean = false;
   loadRosters: boolean = false;
@@ -44,7 +45,7 @@ export class LeagueComponent implements OnInit {
         next: res => {
           this.rosters = res;
           this.loadRosters = true;
-          this.setLeagueData();
+          this.setRosterData();
         },
         error: () => {
           this.snackBar.open('Could not get roster data. Come back again later', 'OK', {
@@ -56,22 +57,7 @@ export class LeagueComponent implements OnInit {
       })
   }
 
-  getLeagueInfo = (): void => {
-    const id = localStorage.getItem('leagueId')
-    this.fetchApiData.sleeperGet(`/league/${id}`)
-      .subscribe({
-        next: (res: League) => {
-          localStorage.setItem('leagueYear', res.season);
-        },
-        error: () => {
-          this.snackBar.open('Could not get league data.', 'OK', {
-            duration: 1000
-          });
-        }
-      })
-  }
-
-  setLeagueData = (): void => {
+  setRosterData = (): void => {
     if (this.loadRosters) {
       this.rosters.forEach((roster: Roster) => {
         let id: string = roster.owner_id;
@@ -107,5 +93,20 @@ export class LeagueComponent implements OnInit {
           })
       })
     }
+  }
+
+  getLeagueInfo = (): void => {
+    const id = localStorage.getItem('leagueId');
+    this.fetchApiData.sleeperGet(`/league/${id}`)
+      .subscribe({
+        next: (res: League) => {
+          localStorage.setItem('leagueYear', res.season);
+        },
+        error: () => {
+          this.snackBar.open('Could not get league data.', 'OK', {
+            duration: 1000
+          });
+        }
+      })
   }
 }

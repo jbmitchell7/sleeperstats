@@ -5,9 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
@@ -47,8 +45,6 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatIconModule,
-    MatDialogModule,
     MatCardModule,
     MatTableModule,
     NgChartsModule,
