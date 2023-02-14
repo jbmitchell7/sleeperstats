@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { League } from '../data/league';
+import { League } from '../interfaces/league';
 
 @Component({
   selector: 'app-welcome',
@@ -26,7 +26,6 @@ export class WelcomeComponent implements OnInit {
     this.fetchApiData.sleeperGet(`/league/${this.leagueIdInput}`)
       .subscribe({
         next: (res: League) => {
-          console.log(res);
           if (res.status != 'in_season' && res.status != 'post_season' && res.status != 'complete') {
             localStorage.setItem('leagueId', res.previous_league_id);
           } else {
