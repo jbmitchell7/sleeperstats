@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { League } from '../interfaces/league';
+import { League } from '../../interfaces/league';
 
 @Component({
   selector: 'app-welcome',

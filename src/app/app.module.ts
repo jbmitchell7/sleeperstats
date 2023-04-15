@@ -15,10 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LeagueComponent } from './league/league.component';
-import { GraphComponent } from './graph/graph.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { StandingsComponent } from './standings/standings.component';
+import { LeagueComponent } from './components/league/league.component';
+import { GraphComponent } from './components/graph/graph.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { StandingsComponent } from './components/standings/standings.component';
 import { StoreModule } from '@ngrx/store';
 
 const appRoutes: Routes = [
