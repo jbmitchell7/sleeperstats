@@ -10,9 +10,9 @@ const apiUrl = 'https://api.sleeper.app/v1';
 })
 export class FetchApiDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
-  private handleError = (error: HttpErrorResponse): any => {
+  #handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
@@ -24,13 +24,13 @@ export class FetchApiDataService {
       'Something bad happened; please try again later.');
   }
 
-  private extractResponseData = (res: any): any => {
+  #extractResponseData(res: any): any {
     const body = res;
     return body || {};
   }
 
-  sleeperGet = (url: String): Observable<any> => {
+  sleeperGet(url: String): Observable<any> {
     return this.http.get(`${apiUrl}/${url}`)
-      .pipe(map(this.extractResponseData), catchError(this.handleError))
+      .pipe(map(this.#extractResponseData), catchError(this.#handleError))
   }
 }

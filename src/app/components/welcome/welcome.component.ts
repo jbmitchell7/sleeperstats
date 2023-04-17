@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FetchApiDataService } from '../../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,20 +9,16 @@ import { League } from '../../interfaces/league';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit {
-
+export class WelcomeComponent {
   @Input() leagueIdInput = ''
 
   constructor(
-    public fetchApiData: FetchApiDataService,
-    public router: Router,
-    public snackBar: MatSnackBar
+    private readonly fetchApiData: FetchApiDataService,
+    private readonly router: Router,
+    private readonly snackBar: MatSnackBar
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  setLeagueId = (): void => {
+  setLeagueId(): void {
     this.fetchApiData.sleeperGet(`/league/${this.leagueIdInput}`)
       .subscribe({
         next: (res: League) => {

@@ -7,6 +7,7 @@ import { LeaguePageData } from '../league/league.component';
   styleUrls: ['./standings.component.scss']
 })
 export class StandingsComponent implements OnInit {
+  @Input() leaguePageData: any;
   leagueName = localStorage.getItem('leagueName');
   tableData: LeaguePageData[] = [];
   dataLoaded: boolean = false;
@@ -20,16 +21,11 @@ export class StandingsComponent implements OnInit {
     'losses'
   ];
 
-  @Input() leaguePageData: any;
-
-  constructor(
-  ) { }
-
   ngOnInit(): void {
-    this.setTableData();
+    this.#setTableData();
   }
 
-  setTableData = (): void => {
+  #setTableData(): void {
     this.tableData = this.leaguePageData;
     this.dataLoaded = true;
     this.year = localStorage.getItem('leagueYear');

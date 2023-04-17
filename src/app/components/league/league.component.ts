@@ -21,17 +21,6 @@ export interface LeaguePageData {
   styleUrls: ['./league.component.scss']
 })
 export class LeagueComponent implements OnInit {
-  constructor(
-    public fetchApiData: FetchApiDataService,
-    public snackBar: MatSnackBar,
-    public router: Router,
-  ) { }
-
-  ngOnInit(): void {
-    this.getRosters();
-    this.getLeagueInfo();
-  }
-
   league = localStorage.getItem('leagueId');
   avatars: string[] = [];
   rosters: Roster[] = [];
@@ -39,13 +28,24 @@ export class LeagueComponent implements OnInit {
   loadRosters: boolean = false;
   leaguePageData: LeaguePageData[] = [];
 
-  getRosters = (): void => {
+  constructor(
+    private readonly fetchApiData: FetchApiDataService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    this.#getRosters();
+    this.#getLeagueInfo();
+  }
+
+  #getRosters(): void {
     this.fetchApiData.sleeperGet(`/league/${this.league}/rosters`)
       .subscribe({
         next: res => {
           this.rosters = res;
           this.loadRosters = true;
-          this.setRosterData();
+          this.#setRosterData();
         },
         error: () => {
           this.snackBar.open('Could not get roster data. Come back again later', 'OK', {
@@ -57,7 +57,7 @@ export class LeagueComponent implements OnInit {
       })
   }
 
-  setRosterData = (): void => {
+  #setRosterData(): void {
     if (this.loadRosters) {
       this.rosters.forEach((roster: Roster) => {
         let id: string = roster.owner_id;
@@ -95,7 +95,7 @@ export class LeagueComponent implements OnInit {
     }
   }
 
-  getLeagueInfo = (): void => {
+  #getLeagueInfo(): void {
     const id = localStorage.getItem('leagueId');
     this.fetchApiData.sleeperGet(`/league/${id}`)
       .subscribe({

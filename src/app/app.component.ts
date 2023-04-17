@@ -7,11 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    public router: Router,
-  ) { }
+  constructor(private readonly router: Router) {}
 
-  resetLeague = (): void => {
+  resetLeague(): void {
     localStorage.setItem('leagueId', "");
     this.router.navigate(['welcome']);
   }

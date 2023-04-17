@@ -11,19 +11,10 @@ Chart.register(ChartAnnotation);
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
-  constructor(
-  ) { }
-
   @Input() leaguePageData: any;
-
-  ngOnInit(): void {
-    this.updateChartData();
-    this.setLabels();
-  }
-
-  public bubbleChartType: ChartType = 'bubble';
-
-  public bubbleChartOptions: ChartConfiguration['options'] = {
+  bubbleChartType: ChartType = 'bubble';
+  chartLabels: any[] = [];
+  bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     plugins: {
       legend: {
@@ -74,10 +65,7 @@ export class GraphComponent implements OnInit {
       }
     }
   };
-
-  chartLabels: any[] = [];
-
-  public bubbleChartData: ChartData<'bubble'> = {
+  bubbleChartData: ChartData<'bubble'> = {
     labels: this.chartLabels,
     datasets: [
       {
@@ -107,16 +95,12 @@ export class GraphComponent implements OnInit {
     ],
   };
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+  ngOnInit(): void {
+    this.#updateChartData();
+    this.#setLabels();
   }
 
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  setLabels = (): void => {
+  #setLabels(): void {
     this.leaguePageData.forEach((team: LeaguePageData) => {
       this.chartLabels.push(
         {
@@ -129,7 +113,7 @@ export class GraphComponent implements OnInit {
     })
   }
 
-  updateChartData = (): void => {
+  #updateChartData(): void {
     this.leaguePageData.forEach((element: LeaguePageData) => {
       this.bubbleChartData.datasets[0].data.push(
         {
@@ -141,4 +125,13 @@ export class GraphComponent implements OnInit {
       );
     });
   }
+
+  // example event methods
+  // chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  //   console.log(event, active);
+  // }
+
+  // chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+  //   console.log(event, active);
+  // }
 }
