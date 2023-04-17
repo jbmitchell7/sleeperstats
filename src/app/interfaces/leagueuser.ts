@@ -11,7 +11,6 @@ export interface LeagueUser {
 
 export interface LeagueUserMetadata {
     team_name: string;
-    mention_pn: string;
     mascot_message_emotion_leg_4: string;
     mascot_item_type_id_leg_9: string;
     mascot_item_type_id_leg_8: string;
@@ -28,5 +27,4 @@ export interface LeagueUserMetadata {
     mascot_item_type_id_leg_12: string;
     mascot_item_type_id_leg_11: string;
     mascot_item_type_id_leg_10: string;
-    allow_pn: string
 }

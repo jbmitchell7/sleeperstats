@@ -1,25 +1,40 @@
 import { createReducer, on } from "@ngrx/store";
 import { Roster } from "src/app/interfaces/roster";
-import { setRosters } from "./league.actions";
+import { getLeagueRequest, getLeagueSuccess } from "./league.actions";
+import { League } from "src/app/interfaces/league";
 
-export interface RosterState  {
-    rosters: Roster[],
-    isLoading: boolean,
-    isLoaded: boolean
+export interface DataInterface {
+  isLoading: boolean,
+  isLoaded: boolean,
+  errorMessage: string
 }
 
-export const initialRosterState: RosterState = {
-    rosters: [],
+export interface RosterState extends DataInterface {
+  rosters?: Roster[]
+}
+
+export interface LeagueState extends DataInterface {
+  league?: League
+}
+
+export const initialLeagueState: LeagueState = {
+  isLoading: false,
+  isLoaded: false,
+  errorMessage: ''
+}
+
+export const leagueReducer = createReducer(
+  initialLeagueState,
+  on(getLeagueRequest, (state) => ({
+    ...state,
+    isLoading: true,
+    isLoaded: false,
+  })),
+  on(getLeagueSuccess, (state, result) => ({
+    league: result.league,
     isLoading: false,
-    isLoaded: false
-}
-
-export const rostersReducer = createReducer(
-    initialRosterState,
-    on(setRosters, (state, result) =>  ({
-        rosters: result.rosters,
-        isLoading: false,
-        isLoaded: true
-    })),
+    isLoaded: true,
+    errorMessage: ''
+  })),
 )
 

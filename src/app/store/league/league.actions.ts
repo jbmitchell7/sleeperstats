@@ -1,4 +1,8 @@
 import { createAction, props } from "@ngrx/store";
-import { Roster } from "src/app/interfaces/roster";
+import { League } from "src/app/interfaces/league";
 
-export const setRosters = createAction('[Roster] Set Rosters', props<{rosters: Roster[]}>());
+export const getLeagueRequest = createAction('[League] getLeagueRequest', props<{leagueId: string}>());
+
+export const getLeagueSuccess = createAction('[League] getLeagueSuccess', props<{league: League}>());
+
+export const getLeagueFailure = createAction('[League] getLeagueFailure', props<{error: string}>());

@@ -2,7 +2,6 @@ export interface League {
     total_rosters: number;
     status: string;
     sport: string;
-    shard: number;
     settings: LeagueSettings
     season_type: string;
     season: string;
@@ -13,16 +12,6 @@ export interface League {
     metadata: LeagueMetadata;
     loser_bracket_id: number,
     league_id: string,
-    last_read_id: null,
-    last_pinned_message_id: null,
-    last_message_time: number,
-    last_message_text_map: null,
-    last_message_id: string,
-    last_message_attachment: null,
-    last_author_is_bot: boolean,
-    last_author_id: string,
-    last_author_display_name: string,
-    last_author_avatar: string,
     group_id: null,
     draft_id: string,
     company_id: null,
@@ -33,47 +22,18 @@ export interface League {
 export interface LeagueSettings {
     max_keepers: number;
     draft_rounds: number;
-    trade_review_days: number;
-    squads: number;
-    reserve_allow_dnr: number;
-    capacity_override: number;
-    pick_trading: number;
-    disable_trades: number;
     taxi_years: number;
-    taxi_allow_vets: number;
-    best_ball: number;
-    last_report: number;
-    disable_adds: number;
-    waiver_type: number;
-    bench_lock: number;
-    reserve_allow_sus: number;
-    type: number;
-    reserve_allow_cov: number;
     waiver_clear_days: number;
-    daily_waivers_last_ran: number;
     waiver_day_of_week: number;
     start_week: number;
     playoff_teams: number;
-    num_teams: number;
     reserve_slots: number;
-    playoff_round_type: number;
     daily_waivers_hour: number;
     waiver_budget: number;
-    reserve_allow_out: number;
     offseason_adds: number;
-    last_scored_leg: number;
-    playoff_seed_type: number;
-    daily_waivers: number;
     playoff_week_start: number;
-    daily_waivers_days: number;
-    league_average_match: number;
-    leg: number;
     trade_deadline: number;
-    reserve_allow_doubtful: number;
-    taxi_deadline: number;
-    reserve_allow_na: number;
     taxi_slots: number;
-    playoff_type: number
 }
 
 export interface Scoring {
@@ -123,5 +83,6 @@ export interface Scoring {
 }
 
 export interface LeagueMetadata {
-    continued: string;
+    latest_league_winner_roster_id: string;
+    keeper_deadline: string;
 }

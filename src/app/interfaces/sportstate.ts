@@ -3,9 +3,6 @@ export interface SportState {
     season_type: string;
     season_start_date: string;
     season: string;
-    promo_types: string[];
-    promo_start_date: string;
-    promo_end_date: string;
     previous_season_start_date: string;
     previous_season: string;
     leg: number;
