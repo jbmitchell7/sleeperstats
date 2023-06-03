@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../../api/fetch-api-data.service';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, inject } from '@angular/core';
 import { Roster } from '../../interfaces/roster';
-import { User } from '../../interfaces/user';
-import { League } from '../../interfaces/league';
+import { Store } from '@ngrx/store';
+import { filter, take, tap } from 'rxjs';
+import { selectApp } from 'src/app/store/selectors';
+import { SubSink } from 'subsink';
+import { LeagueUser } from 'src/app/interfaces/leagueuser';
+import { League } from 'src/app/interfaces/league';
 
 export interface LeaguePageData {
   username: string;
@@ -18,95 +19,66 @@ export interface LeaguePageData {
 @Component({
   selector: 'app-league',
   templateUrl: './league.component.html',
-  styleUrls: ['./league.component.scss']
+  styleUrls: ['./league.component.scss'],
 })
 export class LeagueComponent implements OnInit {
-  league = localStorage.getItem('leagueId');
-  avatars: string[] = [];
+  isLoading = false;
   rosters: Roster[] = [];
-  loadData: boolean = false;
-  loadRosters: boolean = false;
+  players: LeagueUser[] = [];
+  league!: League;
   leaguePageData: LeaguePageData[] = [];
-
-  constructor(
-    private readonly fetchApiData: FetchApiDataService,
-    private readonly snackBar: MatSnackBar,
-    private readonly router: Router,
-  ) {}
+  #subs = new SubSink();
+  readonly #store = inject(Store);
 
   ngOnInit(): void {
-    this.#getRosters();
-    this.#getLeagueInfo();
-  }
-
-  #getRosters(): void {
-    this.fetchApiData.sleeperGet(`/league/${this.league}/rosters`)
-      .subscribe({
-        next: res => {
-          this.rosters = res;
-          this.loadRosters = true;
+    const sub1 = this.#store
+      .select(selectApp)
+      .pipe(
+        filter(
+          (r) => !!r.rosterData.rosters.length && !!r.playersData.players.length
+        ),
+        take(1),
+        tap((res) => {
+          this.league = res.leagueData.league;
+          this.rosters = res.rosterData.rosters;
+          this.players = res.playersData.players;
           this.#setRosterData();
-        },
-        error: () => {
-          this.snackBar.open('Could not get roster data. Come back again later', 'OK', {
-            duration: 1000
-          });
-          localStorage.setItem('leagueId', "");
-          this.router.navigate(['welcome']);
-        },
-      })
+          console.log(this.leaguePageData);
+        })
+      )
+      .subscribe();
+    this.#subs.add(sub1);
   }
 
   #setRosterData(): void {
-    if (this.loadRosters) {
-      this.rosters.forEach((roster: Roster) => {
-        let id: string = roster.owner_id;
-        let name: string;
-        this.fetchApiData.sleeperGet(`/user/${id}`)
-          .subscribe({
-            next: (res: User) => {
-              name = res.display_name;
-              this.leaguePageData.push(
-                {
-                  username: name,
-                  points: roster.settings.fpts,
-                  max_points: roster.settings.ppts,
-                  points_against: roster.settings.fpts_against,
-                  wins: roster.settings.wins,
-                  losses: roster.settings.losses
-                }
-              );
-              //checks that all rosters have been pushed to leaguePageData
-              if (this.leaguePageData.length == this.rosters.length) {
-                //sorts standings by wins then points
-                this.leaguePageData.sort(
-                  (a, b) => (a.wins < b.wins) ? 1 : (a.wins == b.wins) ?
-                    ((a.points < b.points) ? 1 : -1) : -1
-                )
-                //sets table and graph visibility
-                this.loadData = true;
-              }
-            },
-            error: () => {
-              console.log('error filling standings data');
-            },
-          })
-      })
-    }
-  }
+    this.isLoading = true;
+    this.rosters.forEach((roster: Roster) => {
+      const player = this.players.find((p) => p.user_id === roster.owner_id);
+      if (!!player) {
+        this.leaguePageData.push({
+          username: player.display_name,
+          points: roster.settings.fpts,
+          max_points: roster.settings.ppts,
+          points_against: roster.settings.fpts_against,
+          wins: roster.settings.wins,
+          losses: roster.settings.losses,
+        });
+      }
+    });
 
-  #getLeagueInfo(): void {
-    const id = localStorage.getItem('leagueId');
-    this.fetchApiData.sleeperGet(`/league/${id}`)
-      .subscribe({
-        next: (res: League) => {
-          localStorage.setItem('leagueYear', res.season);
-        },
-        error: () => {
-          this.snackBar.open('Could not get league data.', 'OK', {
-            duration: 1000
-          });
-        }
-      })
+    if (this.leaguePageData.length === this.rosters.length) {
+      //sorts standings by wins then points
+      this.leaguePageData.sort((a, b) =>
+        a.wins < b.wins
+          ? 1
+          : a.wins == b.wins
+          ? a.points < b.points
+            ? 1
+            : -1
+          : -1
+      );
+      this.isLoading = false;
+      //sets table and graph visibility
+    }
   }
 }

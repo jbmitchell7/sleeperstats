@@ -1,4 +1,10 @@
-<div ngClass="league-container" *ngIf="loadData">
-    <app-standings [leaguePageData]="leaguePageData"></app-standings>
-    <app-graph [leaguePageData]="leaguePageData"></app-graph>
+<h1 *ngIf="isLoading">LOADING...</h1>
+
+<div ngClass="league-container" *ngIf="!isLoading">
+  <app-standings
+    [leaguePageData]="leaguePageData"
+    [leagueName]="league.name"
+    [leagueYear]="league.season"
+  ></app-standings>
+  <app-graph [leaguePageData]="leaguePageData"></app-graph>
 </div>

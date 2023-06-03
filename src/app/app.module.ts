@@ -23,13 +23,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { leagueReducer } from './store/league/league.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { LeagueEffects } from './store/league/league.effects';
+import { rostersReducer } from './store/rosters/rosters.reducers';
+import { GlobalEffects } from './store/global.effects';
+import { playersReducer } from './store/players/players.reducers';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'league-dashboard', component: LeagueComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
-]
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ const appRoutes: Routes = [
     LeagueComponent,
     GraphComponent,
     WelcomeComponent,
-    StandingsComponent
+    StandingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,11 +56,15 @@ const appRoutes: Routes = [
     MatTableModule,
     NgChartsModule,
     RouterModule.forRoot(appRoutes),
-    StoreModule.forRoot({ league: leagueReducer}),
-    EffectsModule.forRoot([LeagueEffects]),
+    StoreModule.forRoot({
+      leagueData: leagueReducer,
+      rosterData: rostersReducer,
+      playersData: playersReducer,
+    }),
+    EffectsModule.forRoot([GlobalEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

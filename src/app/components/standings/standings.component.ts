@@ -4,21 +4,21 @@ import { LeaguePageData } from '../league/league.component';
 @Component({
   selector: 'app-standings',
   templateUrl: './standings.component.html',
-  styleUrls: ['./standings.component.scss']
+  styleUrls: ['./standings.component.scss'],
 })
 export class StandingsComponent implements OnInit {
-  @Input() leaguePageData: any;
-  leagueName = localStorage.getItem('leagueName');
+  @Input() leaguePageData!: any;
+  @Input() leagueYear!: string;
+  @Input() leagueName!: string;
   tableData: LeaguePageData[] = [];
   dataLoaded: boolean = false;
-  year: any = '';
   displayedColumns: string[] = [
     'username',
     'points',
     'max-points',
     'points-against',
     'wins',
-    'losses'
+    'losses',
   ];
 
   ngOnInit(): void {
@@ -28,7 +28,5 @@ export class StandingsComponent implements OnInit {
   #setTableData(): void {
     this.tableData = this.leaguePageData;
     this.dataLoaded = true;
-    this.year = localStorage.getItem('leagueYear');
   }
-
 }
