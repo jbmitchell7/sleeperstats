@@ -35,7 +35,10 @@ export class LeagueComponent implements OnInit {
       .select(selectApp)
       .pipe(
         filter(
-          (r) => !!r.rosterData.rosters.length && !!r.playersData.players.length
+          (r) =>
+            !!r.rosterData.rosters.length &&
+            !!r.playersData.players.length &&
+            !!r.leagueData.league
         ),
         take(1),
         tap((res) => {
@@ -43,7 +46,6 @@ export class LeagueComponent implements OnInit {
           this.rosters = res.rosterData.rosters;
           this.players = res.playersData.players;
           this.#setRosterData();
-          console.log(this.leaguePageData);
         })
       )
       .subscribe();
