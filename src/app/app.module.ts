@@ -27,12 +27,6 @@ import { rostersReducer } from './store/rosters/rosters.reducers';
 import { GlobalEffects } from './store/global.effects';
 import { playersReducer } from './store/players/players.reducers';
 
-const appRoutes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
-  { path: 'league-dashboard', component: LeagueComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +49,6 @@ const appRoutes: Routes = [
     MatCardModule,
     MatTableModule,
     NgChartsModule,
-    RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({
       leagueData: leagueReducer,
       rosterData: rostersReducer,
