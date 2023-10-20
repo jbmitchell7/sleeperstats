@@ -29,9 +29,11 @@ export class StandingsComponent implements OnInit {
       defaultColDef: {
         width: SMALL_COL_WIDTH,
         sortable: true,
+        sortingOrder: ['desc', 'asc'],
       },
       columnDefs: this.#getColDefs(),
       rowData: this.leaguePageData,
+      animateRows: true,
     };
     this.gridHeight = this.leaguePageData.length * 50 - 10;
     this.dataLoaded = true;
@@ -39,7 +41,12 @@ export class StandingsComponent implements OnInit {
 
   #getColDefs(): ColDef[] {
     return [
-      { field: 'username', headerName: 'Manager', width: LARGE_COL_WIDTH },
+      {
+        field: 'username',
+        headerName: 'Manager',
+        width: LARGE_COL_WIDTH,
+        sortable: false,
+      },
       { field: 'wins', sort: 'desc' },
       { field: 'losses' },
       { field: 'points', headerName: 'PF' },
