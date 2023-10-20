@@ -8,8 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts';
 import { AgGridModule } from 'ag-grid-angular';
+import { AgChartsAngularModule } from 'ag-charts-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +47,7 @@ import { playersReducer } from './store/players/players.reducers';
     MatSnackBarModule,
     MatCardModule,
     AgGridModule,
-    NgChartsModule,
+    AgChartsAngularModule,
     StoreModule.forRoot({
       leagueData: leagueReducer,
       rosterData: rostersReducer,

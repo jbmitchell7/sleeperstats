@@ -14,7 +14,7 @@ import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
   styleUrls: ['./league.component.scss'],
 })
 export class LeagueComponent implements OnInit {
-  isLoading = false;
+  isLoading = true;
   rosters: Roster[] = [];
   players: LeagueUser[] = [];
   league!: League;

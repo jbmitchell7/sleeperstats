@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import * as ChartAnnotation from 'chartjs-plugin-annotation';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { AgChartOptions } from 'ag-charts-community';
 
-Chart.register(ChartAnnotation);
+const SUBTITLE_TEXT =
+  'Better teams are further right and more successful teams are further up \n Better managers have larger dots - dot size is proportional to the percentage of max points the team has scored';
 
 @Component({
   selector: 'app-graph',
@@ -11,125 +11,63 @@ Chart.register(ChartAnnotation);
   styleUrls: ['./graph.component.scss'],
 })
 export class GraphComponent implements OnInit {
-  @Input() leaguePageData: any;
-  bubbleChartType: ChartType = 'bubble';
-  chartLabels: any[] = [];
-  bubbleChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        callbacks: {
-          label: (item: any): string => {
-            let team = this.chartLabels[item.dataIndex];
-            return `${team.name} || ${team.record} || ${team.points} || ${team.maxPoints}`;
-          },
-        },
-      },
-      annotation: {
-        annotations: {
-          percentMedian: {
-            type: 'line',
-            yMin: 90,
-            yMax: 90,
-            display: true,
-            borderColor: 'black',
-            borderWidth: 2,
-            //label: 'Median Percent'
-          },
-          pointsMedian: {
-            type: 'line',
-            xMin: 1800,
-            xMax: 1800,
-            borderColor: 'black',
-            borderWidth: 2,
-            //label: 'Median Max Points'
-          },
-        },
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: 'Max Points',
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Wins',
-        },
-      },
-    },
-  };
-  bubbleChartData: ChartData<'bubble'> = {
-    labels: this.chartLabels,
-    datasets: [
-      {
-        data: [],
-        label: 'League Title Here',
-        backgroundColor: [
-          'red',
-          'green',
-          'blue',
-          'purple',
-          'yellow',
-          'brown',
-          'magenta',
-          'cyan',
-          'orange',
-          'pink',
-          'black',
-          'gray',
-          'indigo',
-          'lime',
-          'olive',
-          'teal',
-        ],
-        hoverBackgroundColor: 'black',
-        hoverBorderColor: 'black',
-      },
-    ],
-  };
+  @Input() leaguePageData!: LeaguePageData[];
+  chartOptions!: AgChartOptions;
 
   ngOnInit(): void {
-    this.#updateChartData();
-    this.#setLabels();
+    this.#initChart();
   }
 
-  #setLabels(): void {
-    this.leaguePageData.forEach((team: LeaguePageData) => {
-      this.chartLabels.push({
-        name: team.username,
-        record: `Record: ${team.wins}-${team.losses}`,
-        points: `Points Scored: ${team.points}`,
-        maxPoints: `Max Points: ${team.maxPoints}`,
-      });
-    });
+  #initChart(): void {
+    this.chartOptions = {
+      autoSize: true,
+      title: {
+        text: 'Max Points vs Wins',
+      },
+      subtitle: {
+        text: SUBTITLE_TEXT,
+        spacing: 40,
+      },
+      axes: [
+        {
+          type: 'number',
+          position: 'bottom',
+        },
+        {
+          type: 'number',
+          max: this.#getYMax(),
+          position: 'left',
+        },
+      ],
+      series: [
+        {
+          tooltip: {
+            renderer: (params: any) => {
+              return {
+                title: params.datum.username,
+              };
+            },
+          },
+          type: 'scatter',
+          data: this.leaguePageData,
+          xKey: 'maxPoints',
+          xName: 'Max Points',
+          yKey: 'wins',
+          yName: 'Wins',
+          sizeKey: 'points',
+          sizeName: 'Points',
+          marker: {
+            size: 6,
+            maxSize: 30,
+            fill: '#3f51b5',
+            stroke: '#000',
+          },
+        },
+      ],
+    };
   }
 
-  #updateChartData(): void {
-    this.leaguePageData.forEach((element: LeaguePageData) => {
-      this.bubbleChartData.datasets[0].data.push({
-        x: element.maxPoints,
-        y: element.wins,
-        r:
-          element.points / element.maxPoints != 1
-            ? 90 * (1 / (100 - (element.points / element.maxPoints) * 100))
-            : 10,
-      });
-    });
+  #getYMax(): number {
+    return Math.max(...this.leaguePageData.map((team) => team.wins)) + 1;
   }
-
-  // example event methods
-  // chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  //   console.log(event, active);
-  // }
-
-  // chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-  //   console.log(event, active);
-  // }
 }
