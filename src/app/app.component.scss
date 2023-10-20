@@ -1,14 +1,11 @@
-$orange: #F57E00;
-$blue: #3A86FF;
-$black: #191E1F;
-$pink: #FF69EB;
+$orange: #f57e00;
+$blue: #3a86ff;
+$black: #191e1f;
+$pink: #ff69eb;
 
 .navigation {
-    margin-bottom: 60px;
-    background-color: $orange;
-    color: white;
-}
-
-.spacer {
-    flex: 1 1 auto;
+  margin-bottom: 60px;
+  background-color: $orange;
+  color: white;
+  height: 100px;
 }

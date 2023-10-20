@@ -1,17 +1,15 @@
-<div ngClass="welcome-container">
+<div class="welcome-container">
   <h1>Begin by finding the ID to your Sleeper Fantasy League*</h1>
   <div>
-    <h2 ngClass="instructions-header">To find you league ID either:</h2>
-    <div ngClass="instructions-container">
-      <span ngClass="computer-instructions">
+    <h2 class="instructions-header">To find you league ID either:</h2>
+    <div class="instructions-container">
+      <span class="computer-instructions">
         <span style="font-weight: bold">On a Computer:</span>
         <ol>
           <li>
             Go to
             <span>
-              <a href="https://sleeper.app" ngClass="sleeper-link"
-                >sleeper.app</a
-              >
+              <a href="https://sleeper.app" class="sleeper-link">sleeper.app</a>
             </span>
             and find the league you want.
           </li>
@@ -22,7 +20,7 @@
           <li>Paste it below</li>
         </ol>
       </span>
-      <span ngClass="app-instructions">
+      <span class="app-instructions">
         <span style="font-weight: bold">On the Sleeper App:</span>
         <ol>
           <li>Go to your League page</li>
@@ -34,9 +32,9 @@
       </span>
     </div>
   </div>
-  <div ngClass="welcome-form">
+  <div class="welcome-form">
     <div>
-      <form ngClass="league-id-input">
+      <form class="league-id-input">
         <input
           matInput
           placeholder="League ID"
@@ -46,14 +44,14 @@
         />
       </form>
     </div>
-    <div ngClass="btn-container">
-      <button (click)="setLeagueId()" ngClass="view-league-btn" color="primary">
+    <div class="btn-container">
+      <button (click)="setLeagueId()" class="view-league-btn" color="primary">
         View My League
       </button>
     </div>
   </div>
 </div>
-<footer ngClass="bottom-note">
+<footer class="bottom-note">
   *note: SFF works for all Sleeper fantasy leagues, but it does not work for
   March Madness, Squads, or any other event that doesn't involve a draft or
   rosters.

@@ -1,0 +1,71 @@
+@import "../../app.component.scss";
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.welcome-form {
+  width: fit-content;
+}
+
+.league-id-input {
+  color: $black;
+  background-color: white;
+}
+
+.instructions-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.computer-instructions,
+.app-instructions {
+  margin: 20px;
+}
+
+.instructions-header {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+
+.sleeper-link {
+  color: $blue;
+}
+
+.sleeper-link:visited {
+  color: $pink;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-note {
+  position: absolute;
+  bottom: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+  .instructions-container {
+    flex-direction: column;
+  }
+  .welcome-container {
+    margin: 10px;
+  }
+  .bottom-note {
+    margin-top: 40px;
+    position: relative;
+  }
+  .instructions-header {
+    margin-top: 30px;
+  }
+}

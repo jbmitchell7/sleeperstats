@@ -7,6 +7,10 @@ import { SubSink } from 'subsink';
 import { LeagueUser } from '../../interfaces/leagueuser';
 import { League } from '../../interfaces/league';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
+import { clearLeagueData } from 'src/app/store/league/league.actions';
+import { clearPlayersData } from 'src/app/store/players/players.actions';
+import { clearRosterData } from 'src/app/store/rosters/rosters.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-league',
@@ -14,13 +18,15 @@ import { LeaguePageData } from '../../interfaces/leaguePageData';
   styleUrls: ['./league.component.scss'],
 })
 export class LeagueComponent implements OnInit {
+  readonly #subs = new SubSink();
+  readonly #store = inject(Store);
+  readonly #router = inject(Router);
+
   isLoading = true;
   rosters: Roster[] = [];
   players: LeagueUser[] = [];
   league!: League;
   leaguePageData: LeaguePageData[] = [];
-  #subs = new SubSink();
-  readonly #store = inject(Store);
 
   ngOnInit(): void {
     const sub1 = this.#store
@@ -42,6 +48,14 @@ export class LeagueComponent implements OnInit {
       )
       .subscribe();
     this.#subs.add(sub1);
+  }
+
+  resetLeague(): void {
+    this.#store.dispatch(clearLeagueData());
+    this.#store.dispatch(clearRosterData());
+    this.#store.dispatch(clearPlayersData());
+    localStorage.setItem('LEAGUE_ID', '');
+    this.#router.navigate(['welcome']);
   }
 
   #setRosterData(): void {

@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LeagueComponent } from './components/league/league.component';
+import { LeagueComponent } from './pages/league/league.component';
 import { GraphComponent } from './components/graph/graph.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { StandingsComponent } from './components/standings/standings.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
