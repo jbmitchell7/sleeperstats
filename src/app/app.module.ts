@@ -9,7 +9,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

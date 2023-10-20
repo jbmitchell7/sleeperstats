@@ -29,6 +29,7 @@ export class WelcomeComponent {
         }
         this.#store.dispatch(leagueEntryRequest({ leagueId: id }));
         this.#router.navigate(['league-dashboard']);
+        localStorage.setItem('LEAGUE_ID', id);
       },
       error: () => {
         id = '';
