@@ -6,15 +6,7 @@ import { selectApp } from 'src/app/store/selectors';
 import { SubSink } from 'subsink';
 import { LeagueUser } from 'src/app/interfaces/leagueuser';
 import { League } from 'src/app/interfaces/league';
-
-export interface LeaguePageData {
-  username: string;
-  points: number;
-  max_points: number;
-  points_against: number;
-  wins: number;
-  losses: number;
-}
+import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 
 @Component({
   selector: 'app-league',
@@ -60,27 +52,13 @@ export class LeagueComponent implements OnInit {
         this.leaguePageData.push({
           username: player.display_name,
           points: roster.settings.fpts,
-          max_points: roster.settings.ppts,
-          points_against: roster.settings.fpts_against,
+          maxPoints: roster.settings.ppts,
+          pointsAgainst: roster.settings.fpts_against,
           wins: roster.settings.wins,
           losses: roster.settings.losses,
         });
       }
     });
-
-    if (this.leaguePageData.length === this.rosters.length) {
-      //sorts standings by wins then points
-      this.leaguePageData.sort((a, b) =>
-        a.wins < b.wins
-          ? 1
-          : a.wins == b.wins
-          ? a.points < b.points
-            ? 1
-            : -1
-          : -1
-      );
-      this.isLoading = false;
-      //sets table and graph visibility
-    }
+    this.isLoading = false;
   }
 }

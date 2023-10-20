@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Chart, ChartConfiguration, ChartData, ChartType, LegendItem } from 'chart.js';
+import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import * as ChartAnnotation from 'chartjs-plugin-annotation';
-import { LeaguePageData } from '../league/league.component';
+import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 
 Chart.register(ChartAnnotation);
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss']
+  styleUrls: ['./graph.component.scss'],
 })
 export class GraphComponent implements OnInit {
   @Input() leaguePageData: any;
@@ -25,8 +25,8 @@ export class GraphComponent implements OnInit {
           label: (item: any): string => {
             let team = this.chartLabels[item.dataIndex];
             return `${team.name} || ${team.record} || ${team.points} || ${team.maxPoints}`;
-          }
-        }
+          },
+        },
       },
       annotation: {
         annotations: {
@@ -46,24 +46,24 @@ export class GraphComponent implements OnInit {
             borderColor: 'black',
             borderWidth: 2,
             //label: 'Median Max Points'
-          }
-        }
-      }
+          },
+        },
+      },
     },
     scales: {
       x: {
         title: {
           display: true,
-          text: 'Max Points'
-        }
+          text: 'Max Points',
+        },
       },
       y: {
         title: {
           display: true,
           text: 'Wins',
-        }
-      }
-    }
+        },
+      },
+    },
   };
   bubbleChartData: ChartData<'bubble'> = {
     labels: this.chartLabels,
@@ -87,7 +87,7 @@ export class GraphComponent implements OnInit {
           'indigo',
           'lime',
           'olive',
-          'teal'
+          'teal',
         ],
         hoverBackgroundColor: 'black',
         hoverBorderColor: 'black',
@@ -102,27 +102,25 @@ export class GraphComponent implements OnInit {
 
   #setLabels(): void {
     this.leaguePageData.forEach((team: LeaguePageData) => {
-      this.chartLabels.push(
-        {
-          name: team.username,
-          record: `Record: ${team.wins}-${team.losses}`,
-          points: `Points Scored: ${team.points}`,
-          maxPoints: `Max Points: ${team.max_points}`
-        }
-      );
-    })
+      this.chartLabels.push({
+        name: team.username,
+        record: `Record: ${team.wins}-${team.losses}`,
+        points: `Points Scored: ${team.points}`,
+        maxPoints: `Max Points: ${team.maxPoints}`,
+      });
+    });
   }
 
   #updateChartData(): void {
     this.leaguePageData.forEach((element: LeaguePageData) => {
-      this.bubbleChartData.datasets[0].data.push(
-        {
-          x: element.max_points,
-          y: element.wins,
-          r: (element.points / element.max_points != 1) ?
-            90 * (1 / (100 - ((element.points / element.max_points) * 100))) : 10,
-        }
-      );
+      this.bubbleChartData.datasets[0].data.push({
+        x: element.maxPoints,
+        y: element.wins,
+        r:
+          element.points / element.maxPoints != 1
+            ? 90 * (1 / (100 - (element.points / element.maxPoints) * 100))
+            : 10,
+      });
     });
   }
 
