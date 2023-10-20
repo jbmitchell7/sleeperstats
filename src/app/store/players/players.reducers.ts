@@ -1,4 +1,4 @@
-import { LeagueUser } from 'src/app/interfaces/leagueuser';
+import { LeagueUser } from '../../interfaces/leagueuser';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
 import { createReducer, on } from '@ngrx/store';
 import {

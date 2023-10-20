@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions, ColDef } from 'ag-grid-community';
-import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { LeaguePageData } from '../../interfaces/leaguePageData';
 
 const SMALL_COL_WIDTH = 100;
 const MED_COL_WIDTH = 150;

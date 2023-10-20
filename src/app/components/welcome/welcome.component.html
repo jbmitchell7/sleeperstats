@@ -34,36 +34,24 @@
       </span>
     </div>
   </div>
-  <mat-card ngClass="welcome-form">
-    <mat-card-header>
-      <mat-card-title>Enter Your League ID Here</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+  <div ngClass="welcome-form">
+    <div>
       <form ngClass="league-id-input">
-        <mat-form-field style="width: 100%">
-          <input
-            matInput
-            placeholder="League ID"
-            type="text"
-            [(ngModel)]="leagueIdInput"
-            name="ID"
-          />
-        </mat-form-field>
+        <input
+          matInput
+          placeholder="League ID"
+          type="text"
+          [(ngModel)]="leagueIdInput"
+          name="ID"
+        />
       </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <div ngClass="btn-container">
-        <button
-          mat-raised-button
-          (click)="setLeagueId()"
-          ngClass="view-league-btn"
-          color="primary"
-        >
-          View My League
-        </button>
-      </div>
-    </mat-card-actions>
-  </mat-card>
+    </div>
+    <div ngClass="btn-container">
+      <button (click)="setLeagueId()" ngClass="view-league-btn" color="primary">
+        View My League
+      </button>
+    </div>
+  </div>
 </div>
 <footer ngClass="bottom-note">
   *note: SFF works for all Sleeper fantasy leagues, but it does not work for

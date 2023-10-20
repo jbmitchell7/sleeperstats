@@ -1,4 +1,4 @@
-import { Roster } from 'src/app/interfaces/roster';
+import { Roster } from '../../interfaces/roster';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
 import {
   clearRosterData,

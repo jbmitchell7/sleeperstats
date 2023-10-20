@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { LeagueUser } from 'src/app/interfaces/leagueuser';
+import { LeagueUser } from '../../interfaces/leagueuser';
 
 export const getPlayersSuccess = createAction(
   '[Players] getPlayersSuccess',

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { leagueEntryRequest } from 'src/app/store/global.actions';
-import { FetchApiDataService } from 'src/app/api/fetch-api-data.service';
-import { League } from 'src/app/interfaces/league';
+import { leagueEntryRequest } from '../../store/global.actions';
+import { FetchApiDataService } from '../../api/fetch-api-data.service';
+import { League } from '../../interfaces/league';
 
 @Component({
   selector: 'app-welcome',

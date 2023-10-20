@@ -2,11 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Roster } from '../../interfaces/roster';
 import { Store } from '@ngrx/store';
 import { filter, take, tap } from 'rxjs';
-import { selectApp } from 'src/app/store/selectors';
+import { selectApp } from '../../store/selectors';
 import { SubSink } from 'subsink';
-import { LeagueUser } from 'src/app/interfaces/leagueuser';
-import { League } from 'src/app/interfaces/league';
-import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { LeagueUser } from '../../interfaces/leagueuser';
+import { League } from '../../interfaces/league';
+import { LeaguePageData } from '../../interfaces/leaguePageData';
 
 @Component({
   selector: 'app-league',

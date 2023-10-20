@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { AgChartOptions } from 'ag-charts-community';
 
 const SUBTITLE_TEXT =

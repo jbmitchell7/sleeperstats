@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { FetchApiDataService } from 'src/app/api/fetch-api-data.service';
+import { FetchApiDataService } from '../api/fetch-api-data.service';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Roster } from 'src/app/interfaces/roster';
+import { Roster } from '../interfaces/roster';
 import { getLeagueSuccess, getLeagueFailure } from './league/league.actions';
 import {
   getRostersSuccess,
