@@ -20,17 +20,17 @@
 .instructions-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 .computer-instructions,
 .app-instructions {
-  margin: 20px;
+  padding: 20px;
 }
 
 .instructions-header {
-  margin-top: 80px;
-  margin-left: 20px;
+  padding-top: 80px;
+  padding-left: 20px;
 }
 
 .sleeper-link {
@@ -51,7 +51,7 @@
   bottom: 0;
   padding-left: 20px;
   padding-right: 20px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 800px) {
@@ -59,13 +59,13 @@
     flex-direction: column;
   }
   .welcome-container {
-    margin: 10px;
+    padding: 10px;
   }
   .bottom-note {
-    margin-top: 40px;
+    padding-top: 40px;
     position: relative;
   }
   .instructions-header {
-    margin-top: 30px;
+    padding-top: 30px;
   }
 }

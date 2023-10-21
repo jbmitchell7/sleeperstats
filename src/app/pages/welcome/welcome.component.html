@@ -1,5 +1,7 @@
 <div class="welcome-container">
-  <h1>Begin by finding the ID to your Sleeper Fantasy League*</h1>
+  <h1 class="text-3xl">
+    Begin by finding the ID to your Sleeper Fantasy League*
+  </h1>
   <div>
     <h2 class="instructions-header">To find you league ID either:</h2>
     <div class="instructions-container">
@@ -36,7 +38,6 @@
     <div>
       <form class="league-id-input">
         <input
-          matInput
           placeholder="League ID"
           type="text"
           [(ngModel)]="leagueIdInput"
@@ -45,7 +46,7 @@
       </form>
     </div>
     <div class="btn-container">
-      <button (click)="setLeagueId()" class="view-league-btn" color="primary">
+      <button (click)="setLeagueId()" class="view-league-btn">
         View My League
       </button>
     </div>
