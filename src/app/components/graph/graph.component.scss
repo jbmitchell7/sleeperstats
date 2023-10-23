@@ -1,12 +1,1 @@
-.graph-container {
-  height: 50vh;
-  width: 50vw;
-  padding-top: 40px;
-  padding-bottom: 30px;
-}
-
-@media (max-width: 850px) {
-  .graph-container {
-    width: 90vw;
-  }
-}
+@import "../../app.component.scss";

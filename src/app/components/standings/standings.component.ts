@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GridOptions, ColDef } from 'ag-grid-community';
+import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 
 const SMALL_COL_WIDTH = 100;
@@ -15,6 +15,7 @@ export class StandingsComponent implements OnInit {
   @Input() leaguePageData!: LeaguePageData[];
   @Input() leagueYear!: string;
   @Input() leagueName!: string;
+  api!: GridApi;
   dataLoaded: boolean = false;
   gridOptions!: GridOptions;
   gridWidth = SMALL_COL_WIDTH * 4 + MED_COL_WIDTH + LARGE_COL_WIDTH + 5;
@@ -26,10 +27,14 @@ export class StandingsComponent implements OnInit {
 
   #initGrid(): void {
     this.gridOptions = {
+      onGridReady: (event) => {
+        event.api.sizeColumnsToFit();
+      },
       defaultColDef: {
         width: SMALL_COL_WIDTH,
         sortable: true,
         sortingOrder: ['desc', 'asc'],
+        suppressMovable: true,
       },
       columnDefs: this.#getColDefs(),
       rowData: this.leaguePageData,
@@ -49,8 +54,8 @@ export class StandingsComponent implements OnInit {
       },
       { field: 'wins', sort: 'desc' },
       { field: 'losses' },
-      { field: 'points', headerName: 'PF' },
       { field: 'maxPoints', headerName: 'Max Points', width: MED_COL_WIDTH },
+      { field: 'points', headerName: 'PF' },
       { field: 'pointsAgainst', headerName: 'PA' },
     ];
   }

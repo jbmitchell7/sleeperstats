@@ -1,8 +1,8 @@
 <ng-container *ngIf="dataLoaded">
-  <h1>{{ leagueName }} Standings {{ leagueYear }}</h1>
+  <h1 class="text-3xl pb-4">{{ leagueName }} Standings {{ leagueYear }}</h1>
   <ag-grid-angular
     [ngStyle]="{ width: gridWidth + 'px', height: gridHeight + 'px' }"
-    class="standings-container ag-theme-alpine"
+    class="ag-theme-alpine"
     [gridOptions]="gridOptions"
   >
   </ag-grid-angular>

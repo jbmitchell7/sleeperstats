@@ -1,59 +1,62 @@
-<div class="welcome-container">
-  <h1 class="text-3xl">
-    Begin by finding the ID to your Sleeper Fantasy League*
-  </h1>
-  <div>
-    <h2 class="instructions-header">To find you league ID either:</h2>
-    <div class="instructions-container">
-      <span class="computer-instructions">
-        <span style="font-weight: bold">On a Computer:</span>
-        <ol>
-          <li>
-            Go to
-            <span>
-              <a href="https://sleeper.app" class="sleeper-link">sleeper.app</a>
-            </span>
-            and find the league you want.
-          </li>
-          <li>
-            Copy the number in the URL that comes after<br />
-            https://sleeper.app/leagues/
-          </li>
-          <li>Paste it below</li>
-        </ol>
-      </span>
-      <span class="app-instructions">
-        <span style="font-weight: bold">On the Sleeper App:</span>
-        <ol>
-          <li>Go to your League page</li>
-          <li>Tap the settings gear by League Settings</li>
-          <li>Tap on General</li>
-          <li>Scroll to the bottom and tap Copy League ID</li>
-          <li>Paste the league id into the form below</li>
-        </ol>
-      </span>
-    </div>
-  </div>
-  <div class="welcome-form">
+<div class="flex flex-col h-full p-5">
+  <div class="flex grow flex-col justify-center items-center">
+    <h1 class="text-3xl">
+      Begin by finding the ID to your Sleeper Fantasy League*
+    </h1>
     <div>
-      <form class="league-id-input">
-        <input
-          placeholder="League ID"
-          type="text"
-          [(ngModel)]="leagueIdInput"
-          name="ID"
-        />
-      </form>
+      <h2 class="pt-5 pb-2">To find you league ID either:</h2>
+      <div class="flex flex-col sm:flex-row pb-3">
+        <span class="p-4">
+          <span style="font-weight: bold">On a Computer:</span>
+          <ol>
+            <li>
+              Go to
+              <span>
+                <a href="https://sleeper.app" class="sleeper-link"
+                  >sleeper.app</a
+                >
+              </span>
+              and find the league you want.
+            </li>
+            <li>
+              Copy the number in the URL that comes after<br />
+              https://sleeper.app/leagues/
+            </li>
+            <li>Paste it below</li>
+          </ol>
+        </span>
+        <span class="p-4">
+          <span style="font-weight: bold">On the Sleeper App:</span>
+          <ol>
+            <li>Go to your League page</li>
+            <li>Tap the settings gear by League Settings</li>
+            <li>Tap on General</li>
+            <li>Scroll to the bottom and tap Copy League ID</li>
+            <li>Paste the league id into the form below</li>
+          </ol>
+        </span>
+      </div>
     </div>
-    <div class="btn-container">
-      <button (click)="setLeagueId()" class="view-league-btn">
-        View My League
-      </button>
+    <div class="flex flex-col shrink-0">
+      <div>
+        <form class="league-id-input">
+          <input
+            class="input-box"
+            placeholder="League ID"
+            type="text"
+            [(ngModel)]="leagueIdInput"
+            name="ID"
+          />
+        </form>
+      </div>
+      <div class="flex justify-center pt-5">
+        <button (click)="setLeagueId()" class="sff-btn">View My League</button>
+      </div>
     </div>
   </div>
+  <footer class="justify-self-end pt-5">
+    *note: SFF works for all Sleeper fantasy leagues, but it does not work for
+    March Madness, Squads, or any other event that doesn't involve a draft or
+    rosters.
+  </footer>
 </div>
-<footer class="bottom-note">
-  *note: SFF works for all Sleeper fantasy leagues, but it does not work for
-  March Madness, Squads, or any other event that doesn't involve a draft or
-  rosters.
-</footer>

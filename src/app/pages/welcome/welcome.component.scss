@@ -1,36 +1,13 @@
 @import "../../app.component.scss";
 
-.welcome-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 50px;
-}
-
-.welcome-form {
-  width: fit-content;
-}
-
 .league-id-input {
   color: $black;
   background-color: white;
 }
 
-.instructions-container {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 30px;
-}
-
-.computer-instructions,
-.app-instructions {
-  padding: 20px;
-}
-
-.instructions-header {
-  padding-top: 80px;
-  padding-left: 20px;
+.input-box {
+  padding: 10px;
+  border: 2px solid $orange;
 }
 
 .sleeper-link {
@@ -39,33 +16,4 @@
 
 .sleeper-link:visited {
   color: $pink;
-}
-
-.btn-container {
-  display: flex;
-  justify-content: center;
-}
-
-.bottom-note {
-  position: absolute;
-  bottom: 0;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
-
-@media (max-width: 800px) {
-  .instructions-container {
-    flex-direction: column;
-  }
-  .welcome-container {
-    padding: 10px;
-  }
-  .bottom-note {
-    padding-top: 40px;
-    position: relative;
-  }
-  .instructions-header {
-    padding-top: 30px;
-  }
 }
