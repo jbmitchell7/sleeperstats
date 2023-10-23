@@ -1,9 +1,11 @@
-<h1 *ngIf="isLoading">LOADING...</h1>
-<div class="flex justify-end p-2">
-  <button (click)="resetLeague()" class="sff-btn">Switch Leagues</button>
-</div>
-
-<div class="flex flex-col justify-center items-center pt-5" *ngIf="!isLoading">
+<div
+  class="flex flex-col h-full justify-around items-center p-5"
+  *ngIf="!isLoading"
+>
+  <h1 *ngIf="isLoading">LOADING...</h1>
+  <div class="self-end">
+    <button (click)="resetLeague()" class="sff-btn">Switch Leagues</button>
+  </div>
   <app-standings
     [leaguePageData]="leaguePageData"
     [leagueName]="league.name"
