@@ -28,7 +28,7 @@ export class WelcomeComponent {
           id = res.previous_league_id;
         }
         this.#store.dispatch(leagueEntryRequest({ leagueId: id }));
-        this.#router.navigate(['league-dashboard']);
+        this.#router.navigate(['league']);
         localStorage.setItem('LEAGUE_ID', id);
       },
       error: () => {

@@ -19,7 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { rostersReducer } from './store/rosters/rosters.reducers';
 import { GlobalEffects } from './store/global.effects';
 import { playersReducer } from './store/players/players.reducers';
-
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +27,7 @@ import { playersReducer } from './store/players/players.reducers';
     GraphComponent,
     WelcomeComponent,
     StandingsComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

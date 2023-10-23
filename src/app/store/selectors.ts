@@ -1,3 +1,5 @@
+import { LeaguePageData } from '../interfaces/leaguePageData';
+import { Roster } from '../interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { PlayerState } from './players/players.reducers';
 import { RosterState } from './rosters/rosters.reducers';
@@ -25,3 +27,23 @@ export const selectApp = (state: AppState) => state;
 export const selectLeague = (state: AppState) => state.leagueData.league;
 
 export const selectRosters = (state: AppState) => state.rosterData.rosters;
+
+export const selectLeaguePageData = (state: AppState) => {
+  const data: LeaguePageData[] = [];
+  state.rosterData.rosters.forEach((roster: Roster) => {
+    const player = state.playersData.players.find(
+      (p) => p.user_id === roster.owner_id
+    );
+    if (!!player) {
+      data.push({
+        username: player.display_name,
+        points: roster.settings.fpts,
+        maxPoints: roster.settings.ppts,
+        pointsAgainst: roster.settings.fpts_against,
+        wins: roster.settings.wins,
+        losses: roster.settings.losses,
+      });
+    }
+  });
+  return data;
+};

@@ -1,6 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { AgChartOptions } from 'ag-charts-community';
+import { Store } from '@ngrx/store';
+import { SubSink } from 'subsink';
+import { selectLeaguePageData } from 'src/app/store/selectors';
+import { tap } from 'rxjs';
 
 const SUBTITLE_TEXT =
   'Better teams are further right and more successful teams are further up \n Better managers have larger dots - dot size is proportional to the percentage of max points the team has scored';
@@ -11,11 +15,22 @@ const SUBTITLE_TEXT =
   styleUrls: ['./graph.component.scss'],
 })
 export class GraphComponent implements OnInit {
-  @Input() leaguePageData!: LeaguePageData[];
+  readonly #store = inject(Store);
+  readonly #subs = new SubSink();
+  leaguePageData!: LeaguePageData[];
   chartOptions!: AgChartOptions;
 
   ngOnInit(): void {
-    this.#initChart();
+    const sub = this.#store
+      .select(selectLeaguePageData)
+      .pipe(
+        tap((lp) => {
+          this.leaguePageData = lp;
+          this.#initChart();
+        })
+      )
+      .subscribe();
+    this.#subs.add(sub);
   }
 
   #initChart(): void {

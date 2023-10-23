@@ -16,7 +16,9 @@ export class AppComponent {
     const id = localStorage.getItem('LEAGUE_ID');
     if (!!id) {
       this.#store.dispatch(leagueEntryRequest({ leagueId: id }));
-      this.#router.navigate(['league-dashboard']);
+      this.#router.navigate(['league']);
+    } else {
+      this.#router.navigate(['welcome']);
     }
   }
 }

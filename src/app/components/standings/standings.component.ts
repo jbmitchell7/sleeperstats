@@ -1,6 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
+import { Store } from '@ngrx/store';
+import { combineLatest, filter, tap } from 'rxjs';
+import { selectLeague, selectLeaguePageData } from 'src/app/store/selectors';
+import { SubSink } from 'subsink';
 
 const SMALL_COL_WIDTH = 100;
 const MED_COL_WIDTH = 150;
@@ -12,9 +16,11 @@ const LARGE_COL_WIDTH = 250;
   styleUrls: ['./standings.component.scss'],
 })
 export class StandingsComponent implements OnInit {
-  @Input() leaguePageData!: LeaguePageData[];
-  @Input() leagueYear!: string;
-  @Input() leagueName!: string;
+  readonly #store = inject(Store);
+  readonly #subs = new SubSink();
+  leaguePageData!: LeaguePageData[];
+  leagueYear!: string;
+  leagueName!: string;
   api!: GridApi;
   dataLoaded: boolean = false;
   gridOptions!: GridOptions;
@@ -22,7 +28,23 @@ export class StandingsComponent implements OnInit {
   gridHeight!: number;
 
   ngOnInit(): void {
-    this.#initGrid();
+    const sub = combineLatest([
+      this.#store.select(selectLeaguePageData),
+      this.#store.select(selectLeague),
+    ])
+      .pipe(
+        filter(([lp, l]) => !!lp.length && !!l.name),
+        tap(([lp, l]) => {
+          console.log(lp, l);
+          this.leaguePageData = lp;
+          this.leagueName = l.name;
+          this.leagueYear = l.season;
+          this.#initGrid();
+        })
+      )
+      .subscribe();
+
+    this.#subs.add(sub);
   }
 
   #initGrid(): void {
