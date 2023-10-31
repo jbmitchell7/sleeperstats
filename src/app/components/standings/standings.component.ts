@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
@@ -15,7 +15,7 @@ const LARGE_COL_WIDTH = 250;
   templateUrl: './standings.component.html',
   styleUrls: ['./standings.component.scss'],
 })
-export class StandingsComponent implements OnInit {
+export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   readonly #subs = new SubSink();
   leaguePageData!: LeaguePageData[];
@@ -35,7 +35,6 @@ export class StandingsComponent implements OnInit {
       .pipe(
         filter(([lp, l]) => !!lp.length && !!l.name),
         tap(([lp, l]) => {
-          console.log(lp, l);
           this.leaguePageData = lp;
           this.leagueName = l.name;
           this.leagueYear = l.season;
@@ -45,6 +44,10 @@ export class StandingsComponent implements OnInit {
       .subscribe();
 
     this.#subs.add(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.#subs.unsubscribe();
   }
 
   #initGrid(): void {

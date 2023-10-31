@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ const SUBTITLE_TEXT =
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss'],
 })
-export class GraphComponent implements OnInit {
+export class GraphComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   readonly #subs = new SubSink();
   leaguePageData!: LeaguePageData[];
@@ -31,6 +31,10 @@ export class GraphComponent implements OnInit {
       )
       .subscribe();
     this.#subs.add(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.#subs.unsubscribe();
   }
 
   #initChart(): void {

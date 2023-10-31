@@ -1,19 +1,37 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { tap } from 'rxjs';
+import { toggleSidebarExpanded } from 'src/app/store/global.actions';
 import { clearLeagueData } from 'src/app/store/league/league.actions';
 import { clearPlayersData } from 'src/app/store/players/players.actions';
 import { clearRosterData } from 'src/app/store/rosters/rosters.actions';
+import { selectSharedData } from 'src/app/store/selectors';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnDestroy {
   readonly #store = inject(Store);
   readonly #router = inject(Router);
+  readonly #subs = new SubSink();
   expanded = false;
+
+  constructor() {
+    const sub = this.#store
+      .select(selectSharedData)
+      .pipe(tap((state) => (this.expanded = state.sidebarExpanded)))
+      .subscribe();
+
+    this.#subs.add(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.#subs.unsubscribe();
+  }
 
   resetLeague(): void {
     this.#store.dispatch(clearLeagueData());
@@ -24,6 +42,6 @@ export class SidebarComponent {
   }
 
   toggleExpanded(): void {
-    this.expanded = !this.expanded;
+    this.#store.dispatch(toggleSidebarExpanded());
   }
 }

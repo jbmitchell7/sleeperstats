@@ -20,6 +20,7 @@ import { rostersReducer } from './store/rosters/rosters.reducers';
 import { GlobalEffects } from './store/global.effects';
 import { playersReducer } from './store/players/players.reducers';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { sharedDataReducer } from './store/global.reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AgGridModule,
     AgChartsAngularModule,
     StoreModule.forRoot({
+      sharedData: sharedDataReducer,
       leagueData: leagueReducer,
       rosterData: rostersReducer,
       playersData: playersReducer,

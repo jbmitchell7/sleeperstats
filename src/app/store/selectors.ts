@@ -1,5 +1,6 @@
 import { LeaguePageData } from '../interfaces/leaguePageData';
 import { Roster } from '../interfaces/roster';
+import { SharedState } from './global.reducers';
 import { LeagueState } from './league/league.reducer';
 import { PlayerState } from './players/players.reducers';
 import { RosterState } from './rosters/rosters.reducers';
@@ -17,12 +18,15 @@ export const initialDataInterfaceState: DataInterface = {
 };
 
 export interface AppState {
+  sharedData: SharedState;
   leagueData: LeagueState;
   rosterData: RosterState;
   playersData: PlayerState;
 }
 
 export const selectApp = (state: AppState) => state;
+
+export const selectSharedData = (state: AppState) => state.sharedData;
 
 export const selectLeague = (state: AppState) => state.leagueData.league;
 
