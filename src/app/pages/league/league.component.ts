@@ -1,7 +1,7 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
-import { selectSharedData } from 'src/app/store/selectors';
+import { selectSharedData } from '../../store/selectors';
 import { SubSink } from 'subsink';
 
 @Component({

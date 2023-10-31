@@ -3,7 +3,7 @@ import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
-import { selectLeaguePageData } from 'src/app/store/selectors';
+import { selectLeaguePageData } from '../../store/selectors';
 import { tap } from 'rxjs';
 
 const SUBTITLE_TEXT =

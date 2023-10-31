@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LeagueComponent } from './league.component';
-import { StandingsComponent } from 'src/app/components/standings/standings.component';
-import { GraphComponent } from 'src/app/components/graph/graph.component';
+import { StandingsComponent } from '../../components/standings/standings.component';
+import { GraphComponent } from '../../components/graph/graph.component';
 
 const routes: Routes = [
   {

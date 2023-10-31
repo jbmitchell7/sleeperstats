@@ -2,11 +2,11 @@ import { Component, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
-import { toggleSidebarExpanded } from 'src/app/store/global.actions';
-import { clearLeagueData } from 'src/app/store/league/league.actions';
-import { clearPlayersData } from 'src/app/store/players/players.actions';
-import { clearRosterData } from 'src/app/store/rosters/rosters.actions';
-import { selectSharedData } from 'src/app/store/selectors';
+import { toggleSidebarExpanded } from '../../store/global.actions';
+import { clearLeagueData } from '../../store/league/league.actions';
+import { clearPlayersData } from '../../store/players/players.actions';
+import { clearRosterData } from '../../store/rosters/rosters.actions';
+import { selectSharedData } from '../../store/selectors';
 import { SubSink } from 'subsink';
 
 @Component({

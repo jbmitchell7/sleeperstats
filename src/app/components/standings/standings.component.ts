@@ -3,7 +3,7 @@ import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
 import { combineLatest, filter, tap } from 'rxjs';
-import { selectLeague, selectLeaguePageData } from 'src/app/store/selectors';
+import { selectLeague, selectLeaguePageData } from '../../store/selectors';
 import { SubSink } from 'subsink';
 
 const SMALL_COL_WIDTH = 100;
