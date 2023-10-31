@@ -13,6 +13,7 @@ import { clearRosterData } from 'src/app/store/rosters/rosters.actions';
 export class SidebarComponent {
   readonly #store = inject(Store);
   readonly #router = inject(Router);
+  expanded = false;
 
   resetLeague(): void {
     this.#store.dispatch(clearLeagueData());
@@ -20,5 +21,9 @@ export class SidebarComponent {
     this.#store.dispatch(clearPlayersData());
     localStorage.setItem('LEAGUE_ID', '');
     this.#router.navigate(['welcome']);
+  }
+
+  toggleExpanded(): void {
+    this.expanded = !this.expanded;
   }
 }

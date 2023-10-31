@@ -1,7 +1,43 @@
-<div class="h-full flex flex-row sm:flex-col">
-  <div>
-    <button (click)="resetLeague()" class="sff-btn">Switch Leagues</button>
+<div
+  class="h-full flex flex-row sm:flex-col sidebar-container"
+  [ngClass]="{ 'sidebar-container-expanded': expanded }"
+>
+  <div class="icon" (click)="toggleExpanded()">
+    <img
+      src="/assets/icons/chevron.svg"
+      alt="expand button"
+      [ngClass]="{ 'close-chevron': expanded }"
+    />
   </div>
-  <a routerLink="standings">Standings</a>
-  <a routerLink="visuals">Visuals</a>
+  <button
+    (click)="resetLeague()"
+    class="reset-button mt-2 p-1"
+    [ngClass]="{ flex: expanded }"
+  >
+    <img
+      src="/assets/icons/refresh.svg"
+      class="icon"
+      alt="switch leagues button"
+      [ngClass]="{ 'mr-2': expanded }"
+    />
+    <span *ngIf="expanded">Switch Leagues</span>
+  </button>
+  <a routerLink="standings" class="sidebar-link">
+    <img
+      src="/assets/icons/numbered-list.svg"
+      class="icon"
+      alt="standings-icon"
+      [ngClass]="{ 'mr-2': expanded }"
+    />
+    <span *ngIf="expanded">Standings</span>
+  </a>
+  <a routerLink="visuals" class="sidebar-link">
+    <img
+      src="/assets/icons/visuals.svg"
+      class="icon"
+      alt="visuals-icon"
+      [ngClass]="{ 'mr-2': expanded }"
+    />
+    <span *ngIf="expanded">Standings</span>
+  </a>
 </div>

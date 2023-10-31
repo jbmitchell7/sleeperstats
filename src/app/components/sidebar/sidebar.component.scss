@@ -1,1 +1,37 @@
 @import "../../app.component.scss";
+
+.sidebar {
+  &-container {
+    padding: 10px;
+    background-color: $orange;
+    width: 50px;
+    align-items: center;
+
+    &-expanded {
+      width: fit-content;
+      align-items: start;
+    }
+  }
+
+  &-link {
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
+.icon {
+  width: 25px;
+  cursor: pointer;
+}
+
+.close-chevron {
+  transform: rotate(180deg);
+}
+
+.reset-button {
+  border-radius: 10px;
+  margin-bottom: 40px;
+  background-color: $blue;
+}
