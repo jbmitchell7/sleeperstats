@@ -1,9 +1,7 @@
-@import "../../app.component.scss";
-
 .sidebar {
   &-container {
     padding: 10px;
-    background-color: $orange;
+    background-color: var(--orange);
     width: 50px;
     align-items: center;
 
@@ -36,9 +34,9 @@
 
 .reset-btn {
   border-radius: 10px;
-  border: 2px solid $black;
+  border: 2px solid var(--black);
   margin-bottom: 40px;
-  background-color: $blue;
+  background-color: var(--blue);
   padding: 5px;
 
   &-expanded {

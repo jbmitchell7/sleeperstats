@@ -1,19 +1,17 @@
-@import "../../app.component.scss";
-
 .league-id-input {
-  color: $black;
+  color: var(--black);
   background-color: white;
 }
 
 .input-box {
   padding: 10px;
-  border: 2px solid $orange;
+  border: 2px solid var(--orange);
 }
 
 .sleeper-link {
-  color: $blue;
+  color: var(--blue);
 }
 
 .sleeper-link:visited {
-  color: $pink;
+  color: var(--pink);
 }

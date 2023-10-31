@@ -14,3 +14,16 @@ body {
   background-color: #191e1f;
   color: white;
 }
+
+:root {
+  --orange: #f57e00;
+  --blue: #3a86ff;
+  --black: #191e1f;
+  --pink: #ff69eb;
+
+  .sff-btn {
+    padding: 10px;
+    background-color: var(--orange);
+    border-radius: 90px;
+  }
+}
