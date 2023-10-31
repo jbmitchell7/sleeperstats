@@ -8,7 +8,7 @@
     align-items: center;
 
     &-expanded {
-      width: fit-content;
+      width: max-content;
       align-items: start;
     }
   }
@@ -24,6 +24,10 @@
 .icon {
   width: 25px;
   cursor: pointer;
+
+  &-sm {
+    width: 15px;
+  }
 }
 
 .close-chevron {
@@ -35,6 +39,7 @@
   border: 2px solid $black;
   margin-bottom: 40px;
   background-color: $blue;
+  padding: 5px;
 
   &-expanded {
     display: flex;

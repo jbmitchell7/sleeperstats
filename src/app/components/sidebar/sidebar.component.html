@@ -11,16 +11,17 @@
   </div>
   <button
     (click)="resetLeague()"
-    class="reset-btn mt-2 p-1"
+    class="reset-btn"
     [ngClass]="{ 'reset-btn-expanded': expanded }"
   >
     <img
       src="/assets/icons/refresh.svg"
-      class="icon"
+      class="icon-sm"
       alt="switch leagues button"
-      [ngClass]="{ 'mr-2': expanded }"
     />
-    <span *ngIf="expanded">Switch Leagues</span>
+    <span *ngIf="expanded" class="text-sm" [ngClass]="{ 'ml-2': expanded }">
+      Switch Leagues
+    </span>
   </button>
   <a routerLink="standings" class="sidebar-link">
     <img
@@ -29,7 +30,7 @@
       alt="standings-icon"
       [ngClass]="{ 'mr-2': expanded }"
     />
-    <span *ngIf="expanded">Standings</span>
+    <span *ngIf="expanded" class="text-sm">Standings</span>
   </a>
   <a routerLink="visuals" class="sidebar-link">
     <img
@@ -38,6 +39,6 @@
       alt="visuals-icon"
       [ngClass]="{ 'mr-2': expanded }"
     />
-    <span *ngIf="expanded">Visuals</span>
+    <span *ngIf="expanded" class="text-sm">Visuals</span>
   </a>
 </div>
