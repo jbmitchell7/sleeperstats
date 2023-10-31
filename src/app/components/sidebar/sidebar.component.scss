@@ -30,8 +30,13 @@
   transform: rotate(180deg);
 }
 
-.reset-button {
+.reset-btn {
   border-radius: 10px;
+  border: 2px solid $black;
   margin-bottom: 40px;
   background-color: $blue;
+
+  &-expanded {
+    display: flex;
+  }
 }

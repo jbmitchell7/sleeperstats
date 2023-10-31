@@ -11,8 +11,8 @@
   </div>
   <button
     (click)="resetLeague()"
-    class="reset-button mt-2 p-1"
-    [ngClass]="{ flex: expanded }"
+    class="reset-btn mt-2 p-1"
+    [ngClass]="{ 'reset-btn-expanded': expanded }"
   >
     <img
       src="/assets/icons/refresh.svg"
@@ -38,6 +38,6 @@
       alt="visuals-icon"
       [ngClass]="{ 'mr-2': expanded }"
     />
-    <span *ngIf="expanded">Standings</span>
+    <span *ngIf="expanded">Visuals</span>
   </a>
 </div>
