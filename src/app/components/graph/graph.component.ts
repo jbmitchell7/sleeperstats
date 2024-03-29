@@ -2,9 +2,8 @@ import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
-import { SubSink } from 'subsink';
 import { selectLeaguePageData } from '../../store/selectors';
-import { tap } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 
 const SUBTITLE_TEXT =
   'Better teams are further right and more successful teams are further up \n Better managers have larger dots - dot size is proportional to the percentage of max points the team has scored';
@@ -16,12 +15,12 @@ const SUBTITLE_TEXT =
 })
 export class GraphComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
-  readonly #subs = new SubSink();
+  #sub!: Subscription;
   leaguePageData!: LeaguePageData[];
   chartOptions!: AgChartOptions;
 
   ngOnInit(): void {
-    const sub = this.#store
+    this.#sub = this.#store
       .select(selectLeaguePageData)
       .pipe(
         tap((lp) => {
@@ -30,11 +29,10 @@ export class GraphComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
-    this.#subs.add(sub);
   }
 
   ngOnDestroy(): void {
-    this.#subs.unsubscribe();
+    this.#sub.unsubscribe();
   }
 
   #initChart(): void {
@@ -67,7 +65,7 @@ export class GraphComponent implements OnInit, OnDestroy {
               };
             },
           },
-          type: 'scatter',
+          type: 'bubble',
           data: this.leaguePageData,
           xKey: 'maxPoints',
           xName: 'Max Points',

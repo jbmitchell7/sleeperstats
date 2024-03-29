@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
-import { combineLatest, filter, tap } from 'rxjs';
+import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectLeaguePageData } from '../../store/selectors';
-import { SubSink } from 'subsink';
 
 const SMALL_COL_WIDTH = 100;
 const MED_COL_WIDTH = 150;
@@ -17,7 +16,7 @@ const LARGE_COL_WIDTH = 250;
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
-  readonly #subs = new SubSink();
+  #sub!: Subscription;
   leaguePageData!: LeaguePageData[];
   leagueYear!: string;
   leagueName!: string;
@@ -28,7 +27,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
   gridHeight!: number;
 
   ngOnInit(): void {
-    const sub = combineLatest([
+    this.#sub = combineLatest([
       this.#store.select(selectLeaguePageData),
       this.#store.select(selectLeague),
     ])
@@ -42,12 +41,10 @@ export class StandingsComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
-
-    this.#subs.add(sub);
   }
 
   ngOnDestroy(): void {
-    this.#subs.unsubscribe();
+    this.#sub.unsubscribe();
   }
 
   #initGrid(): void {
