@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1711745217666,
+  "timestamp": 1711745803258,
   "index": "/sleeperfantasyfocus/index.html",
   "assetGroups": [
     {
@@ -11,14 +11,14 @@
         "ignoreVary": true
       },
       "urls": [
-        "/sleeperfantasyfocus/105.de71b848be78a67d.js",
+        "/sleeperfantasyfocus/105.691558fecc518306.js",
         "/sleeperfantasyfocus/favicon.ico",
         "/sleeperfantasyfocus/index.html",
         "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js",
         "/sleeperfantasyfocus/manifest.webmanifest",
         "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js",
-        "/sleeperfantasyfocus/runtime.c8dc226994721719.js",
-        "/sleeperfantasyfocus/styles.e9b376d705de2cc6.css"
+        "/sleeperfantasyfocus/runtime.dc25b4a40dae64a8.js",
+        "/sleeperfantasyfocus/styles.5d06f64fb6255a3c.css"
       ],
       "patterns": []
     },
@@ -48,7 +48,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/sleeperfantasyfocus/105.de71b848be78a67d.js": "3de7bdfc6b95c8c1ac65ed5957f0aa82ccab1aa8",
+    "/sleeperfantasyfocus/105.691558fecc518306.js": "b7a8257ee8f4638e02bf82c19c48161287182e3d",
     "/sleeperfantasyfocus/assets/icons/chevron.svg": "40fd314b55cea25edf32825fa0d47b350412c80d",
     "/sleeperfantasyfocus/assets/icons/icon-128x128.png": "e07cc92d042363def123602c026a17249636f180",
     "/sleeperfantasyfocus/assets/icons/icon-144x144.png": "32295bd25acb07a0247b5f5d22ec04b00f5e96a0",
@@ -62,12 +62,12 @@
     "/sleeperfantasyfocus/assets/icons/refresh.svg": "e338bc8d0761536e28905c28e3efd957e962b56d",
     "/sleeperfantasyfocus/assets/icons/visuals.svg": "a87b477a57a01c974fdee77dc7da18566b8356af",
     "/sleeperfantasyfocus/favicon.ico": "270b54e44801638c5f448a5f25c012607a6dd5a6",
-    "/sleeperfantasyfocus/index.html": "e1c45c13fbb178a282877cdcaabefe5654c79d0a",
+    "/sleeperfantasyfocus/index.html": "60c0238b533127f38baf32eb799257202bfd1137",
     "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js": "a134a33d7a2601b6d93de9f25246e4436dad0c01",
     "/sleeperfantasyfocus/manifest.webmanifest": "4716d5fa4aa1cbff1ed06b7b4014e0a5e68e3382",
     "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js": "9a705549c736c68412faf5106ae7739b79064468",
-    "/sleeperfantasyfocus/runtime.c8dc226994721719.js": "3e30d6dd4366d868f69bff5770932a34f99ca040",
-    "/sleeperfantasyfocus/styles.e9b376d705de2cc6.css": "813d4f73a99357ef69552a3e0259657d07157d30"
+    "/sleeperfantasyfocus/runtime.dc25b4a40dae64a8.js": "a79443cfcb6035e821f239befa21f9b767499710",
+    "/sleeperfantasyfocus/styles.5d06f64fb6255a3c.css": "3ba78cdb117227aa3e6db36f176a2f444b756aa4"
   },
   "navigationUrls": [
     {
