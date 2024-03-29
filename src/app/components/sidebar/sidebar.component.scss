@@ -2,17 +2,9 @@
   &-container {
     padding: 10px;
     background-color: var(--orange);
-    width: 50px;
-    align-items: center;
-
-    &-expanded {
-      width: max-content;
-      align-items: start;
-    }
   }
 
   &-link {
-    padding-top: 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -35,7 +27,6 @@
 .reset-btn {
   border-radius: 10px;
   border: 2px solid var(--black);
-  margin-bottom: 40px;
   background-color: var(--blue);
   padding: 5px;
 
