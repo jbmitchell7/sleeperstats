@@ -30,7 +30,7 @@ import { sharedDataReducer } from './store/global.reducers';
       playersData: playersReducer,
     }),
     EffectsModule.forRoot([GlobalEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true}),
   ],
   providers: [],
   bootstrap: [AppComponent],
