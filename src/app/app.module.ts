@@ -15,6 +15,7 @@ import { rostersReducer } from './store/rosters/rosters.reducers';
 import { GlobalEffects } from './store/global.effects';
 import { playersReducer } from './store/players/players.reducers';
 import { sharedDataReducer } from './store/global.reducers';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [AppComponent, WelcomeComponent],
   imports: [
@@ -31,6 +32,12 @@ import { sharedDataReducer } from './store/global.reducers';
     }),
     EffectsModule.forRoot([GlobalEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true}),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
