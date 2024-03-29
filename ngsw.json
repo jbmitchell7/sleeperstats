@@ -1,0 +1,91 @@
+{
+  "configVersion": 1,
+  "timestamp": 1711743649301,
+  "index": "/sleeperfantasyfocus/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/sleeperfantasyfocus/105.0b99414d5f8c37ab.js",
+        "/sleeperfantasyfocus/favicon.ico",
+        "/sleeperfantasyfocus/index.html",
+        "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js",
+        "/sleeperfantasyfocus/manifest.webmanifest",
+        "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js",
+        "/sleeperfantasyfocus/runtime.d3ce8b0d859891e7.js",
+        "/sleeperfantasyfocus/styles.b77be17ac4536a0c.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/sleeperfantasyfocus/assets/icons/chevron.svg",
+        "/sleeperfantasyfocus/assets/icons/icon-128x128.png",
+        "/sleeperfantasyfocus/assets/icons/icon-144x144.png",
+        "/sleeperfantasyfocus/assets/icons/icon-152x152.png",
+        "/sleeperfantasyfocus/assets/icons/icon-192x192.png",
+        "/sleeperfantasyfocus/assets/icons/icon-384x384.png",
+        "/sleeperfantasyfocus/assets/icons/icon-512x512.png",
+        "/sleeperfantasyfocus/assets/icons/icon-72x72.png",
+        "/sleeperfantasyfocus/assets/icons/icon-96x96.png",
+        "/sleeperfantasyfocus/assets/icons/numbered-list.svg",
+        "/sleeperfantasyfocus/assets/icons/refresh.svg",
+        "/sleeperfantasyfocus/assets/icons/visuals.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/sleeperfantasyfocus/105.0b99414d5f8c37ab.js": "114f3a27ddc964fd5da19e6357217d735b021963",
+    "/sleeperfantasyfocus/assets/icons/chevron.svg": "40fd314b55cea25edf32825fa0d47b350412c80d",
+    "/sleeperfantasyfocus/assets/icons/icon-128x128.png": "e07cc92d042363def123602c026a17249636f180",
+    "/sleeperfantasyfocus/assets/icons/icon-144x144.png": "32295bd25acb07a0247b5f5d22ec04b00f5e96a0",
+    "/sleeperfantasyfocus/assets/icons/icon-152x152.png": "e645e2021e2e35beec025c8a05f9554274631954",
+    "/sleeperfantasyfocus/assets/icons/icon-192x192.png": "895a63c4f5cf353c8fab69879d1f563f141d1015",
+    "/sleeperfantasyfocus/assets/icons/icon-384x384.png": "675c68e026886af2c62ef5434ce6af15a1006dd3",
+    "/sleeperfantasyfocus/assets/icons/icon-512x512.png": "a5401dd7ef71a7ea9938aaa2ad5ca1a9cb626191",
+    "/sleeperfantasyfocus/assets/icons/icon-72x72.png": "8cb8ebb1179ea90c732c3d979c14e38ef09081c8",
+    "/sleeperfantasyfocus/assets/icons/icon-96x96.png": "09906012d0e621b08598b6b53f2bfcaaaee08c30",
+    "/sleeperfantasyfocus/assets/icons/numbered-list.svg": "fe84c244f75bc8c8feeee1a3274581ea9d0d7a74",
+    "/sleeperfantasyfocus/assets/icons/refresh.svg": "e338bc8d0761536e28905c28e3efd957e962b56d",
+    "/sleeperfantasyfocus/assets/icons/visuals.svg": "a87b477a57a01c974fdee77dc7da18566b8356af",
+    "/sleeperfantasyfocus/favicon.ico": "270b54e44801638c5f448a5f25c012607a6dd5a6",
+    "/sleeperfantasyfocus/index.html": "bf30c93b7d53de0c9137ba8570ea016a003b5a69",
+    "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js": "a134a33d7a2601b6d93de9f25246e4436dad0c01",
+    "/sleeperfantasyfocus/manifest.webmanifest": "4716d5fa4aa1cbff1ed06b7b4014e0a5e68e3382",
+    "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js": "9a705549c736c68412faf5106ae7739b79064468",
+    "/sleeperfantasyfocus/runtime.d3ce8b0d859891e7.js": "b7888185a5f61348433a0e13eee5caf2dcb8c498",
+    "/sleeperfantasyfocus/styles.b77be17ac4536a0c.css": "796ac77cd8829610ac3f8c04119fd94f753b5639"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
