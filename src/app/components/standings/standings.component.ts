@@ -1,13 +1,9 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectLeaguePageData } from '../../store/selectors';
-
-const SMALL_COL_WIDTH = 100;
-const MED_COL_WIDTH = 150;
-const LARGE_COL_WIDTH = 250;
 
 @Component({
   selector: 'app-standings',
@@ -23,8 +19,12 @@ export class StandingsComponent implements OnInit, OnDestroy {
   api!: GridApi;
   dataLoaded: boolean = false;
   gridOptions!: GridOptions;
-  gridWidth = SMALL_COL_WIDTH * 4 + MED_COL_WIDTH + LARGE_COL_WIDTH + 5;
-  gridHeight!: number;
+  maxGridWidth = 690
+
+  @HostListener('window:resize')
+  resizeGrid(): void {
+    this.api.sizeColumnsToFit();
+  }
 
   ngOnInit(): void {
     this.#sub = combineLatest([
@@ -53,16 +53,19 @@ export class StandingsComponent implements OnInit, OnDestroy {
         event.api.sizeColumnsToFit();
       },
       defaultColDef: {
-        width: SMALL_COL_WIDTH,
         sortable: true,
+        resizable: false,
         sortingOrder: ['desc', 'asc'],
         suppressMovable: true,
       },
+      domLayout: 'autoHeight',
       columnDefs: this.#getColDefs(),
       rowData: this.leaguePageData,
       animateRows: true,
+      autoSizeStrategy: {
+        type: 'fitCellContents'
+      }
     };
-    this.gridHeight = this.leaguePageData.length * 50 - 10;
     this.dataLoaded = true;
   }
 
@@ -71,14 +74,28 @@ export class StandingsComponent implements OnInit, OnDestroy {
       {
         field: 'username',
         headerName: 'Manager',
-        width: LARGE_COL_WIDTH,
-        sortable: false,
+        pinned: 'left',
+        resizable: true
       },
-      { field: 'wins', sort: 'desc' },
-      { field: 'losses' },
-      { field: 'maxPoints', headerName: 'Max Points', width: MED_COL_WIDTH },
-      { field: 'points', headerName: 'PF' },
-      { field: 'pointsAgainst', headerName: 'PA' },
+      {
+        field: 'wins',
+        sort: 'desc'
+      },
+      {
+        field: 'losses'
+      },
+      {
+        field: 'maxPoints',
+        headerName: 'Max Points'
+      },
+      {
+        field: 'points',
+        headerName: 'PF'
+      },
+      {
+        field: 'pointsAgainst',
+        headerName: 'PA'
+      },
     ];
   }
 }

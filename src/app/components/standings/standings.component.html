@@ -1,9 +1,10 @@
-<ng-container *ngIf="dataLoaded">
+<div *ngIf="dataLoaded" class="h-full w-full flex flex-col">
   <h1 class="text-3xl pb-4">{{ leagueName }} Standings {{ leagueYear }}</h1>
-  <ag-grid-angular
-    [ngStyle]="{ width: gridWidth + 'px', height: gridHeight + 'px' }"
-    class="ag-theme-alpine"
-    [gridOptions]="gridOptions"
-  >
-  </ag-grid-angular>
-</ng-container>
+  <div class="flex-1 w-full">
+    <ag-grid-angular
+      [ngStyle]="{maxWidth: maxGridWidth + 'px'}"
+      class="ag-theme-alpine h-full"
+      [gridOptions]="gridOptions">
+    </ag-grid-angular>
+  </div>
+</div>

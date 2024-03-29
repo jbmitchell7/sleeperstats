@@ -38,6 +38,7 @@ export class GraphComponent implements OnInit, OnDestroy {
   #initChart(): void {
     this.chartOptions = {
       autoSize: true,
+      height: 600,
       title: {
         text: 'Max Points vs Wins',
       },
