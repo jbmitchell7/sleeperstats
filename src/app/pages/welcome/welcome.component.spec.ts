@@ -53,7 +53,7 @@ describe('WelcomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('setLeagueId', () => {
+  it('setLeagueId current', () => {
     const mockLeague: League = {
       status: 'in_season',
       previous_league_id: '012',
@@ -65,5 +65,19 @@ describe('WelcomeComponent', () => {
     component.leagueIdInput = '123';
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.league_id);
+  });
+
+  it('setLeagueId past', () => {
+    const mockLeague: League = {
+      status: 'draft',
+      previous_league_id: '012',
+      league_id: '123',
+      name: 'Test League',
+      season: '2024'
+    }
+    spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
+    component.leagueIdInput = '123';
+    component.setLeagueId();
+    expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.previous_league_id);
   });
 });
