@@ -1,22 +1,22 @@
 export interface League {
-    total_rosters: number;
     status: string;
-    sport: string;
-    settings: LeagueSettings
-    season_type: string;
-    season: string;
-    scoring_settings: Scoring;
-    roster_positions: string[];
     previous_league_id: string;
+    league_id: string;
     name: string;
-    metadata: LeagueMetadata;
-    loser_bracket_id: number,
-    league_id: string,
-    group_id: null,
-    draft_id: string,
-    company_id: null,
-    bracket_id: number,
-    avatar: null
+    season: string;
+    total_rosters?: number;
+    sport?: string;
+    settings?: LeagueSettings
+    season_type?: string;
+    scoring_settings?: Scoring;
+    roster_positions?: string[];
+    metadata?: LeagueMetadata;
+    loser_bracket_id?: number;
+    group_id?: null;
+    draft_id?: string;
+    company_id?: null;
+    bracket_id?: number;
+    avatar?: null;
 }
 
 export interface LeagueSettings {

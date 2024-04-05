@@ -40,6 +40,17 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome', 'Firefox'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    customLaunchers: {
+      'FirefoxHeadless': {
+          base: 'Firefox',
+          flags: [
+              '-headless',
+          ],
+          prefs: {
+              'network.proxy.type': 0
+          }
+      }
+  },
   });
 };
