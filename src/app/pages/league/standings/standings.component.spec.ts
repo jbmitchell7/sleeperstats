@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { StandingsComponent } from './standings.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('StandingsComponent', () => {
   let component: StandingsComponent;
@@ -8,7 +9,9 @@ describe('StandingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StandingsComponent ]
+      declarations: [ StandingsComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [provideMockStore()]
     })
     .compileComponents();
   });

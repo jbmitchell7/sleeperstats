@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
 import { LeagueComponent } from './league.component';
 
 describe('LeagueComponent', () => {
@@ -8,7 +8,8 @@ describe('LeagueComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeagueComponent ]
+      declarations: [ LeagueComponent ],
+      providers: [provideMockStore()]
     })
     .compileComponents();
   });
