@@ -24,7 +24,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize')
   resizeGrid(): void {
-    this.api.sizeColumnsToFit();
+    this.api?.sizeColumnsToFit();
   }
 
   ngOnInit(): void {
