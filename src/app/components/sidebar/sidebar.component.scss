@@ -1,36 +1,4 @@
-.sidebar {
-  &-container {
-    padding: 10px;
-    background-color: var(--orange);
-  }
-
-  &-link {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-}
-
-.icon {
-  width: 25px;
-  cursor: pointer;
-
-  &-sm {
-    width: 15px;
-  }
-}
-
-.close-chevron {
-  transform: rotate(180deg);
-}
-
-.reset-btn {
-  border-radius: 10px;
-  border: 2px solid var(--black);
-  background-color: var(--blue);
-  padding: 5px;
-
-  &-expanded {
-    display: flex;
-  }
+.active {
+  border: 2px solid white;
+  border-radius: 5px;
 }

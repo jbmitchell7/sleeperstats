@@ -1,41 +1,42 @@
-<div class="h-full flex flex-row gap-3 content-center lg:flex-col sidebar-container">
-  <div class="icon" (click)="toggleExpanded()">
-    <img
-      src="assets/icons/chevron.svg"
-      alt="expand button"
-      [ngClass]="{ 'close-chevron': expanded }"
-    />
+<div class="h-full p-4 bg-primary-orange flex flex-row lg:flex-col">
+  <div class="flex items-center cursor-pointer pr-8 lg:pb-8 lg:pt-0 lg:px-1">
+    <i (click)="toggleExpanded()"
+      class="fa-solid fa-chevron-right p-1"
+      [ngClass]="{ 'origin-center rotate-180': expanded }">
+    </i>
   </div>
-  <button
-    (click)="resetLeague()"
-    class="reset-btn"
-    [ngClass]="{ 'reset-btn-expanded': expanded }"
-  >
-    <img
-      src="assets/icons/refresh.svg"
-      class="icon-sm"
-      alt="switch leagues button"
-    />
-    <span *ngIf="expanded" class="text-sm" [ngClass]="{ 'ml-2': expanded }">
+  <div class="flex-auto flex flex-row gap-3 lg:flex-col">
+    <a
+      routerLink="standings"
+      class="flex items-center cursor-pointer p-1"
+      [ngClass]="{'justify-center': !expanded}"
+      routerLinkActive="active">
+      <i class="fa-solid fa-list-ol"></i>
+      <span *ngIf="expanded" class="text-sm pl-2">Standings</span>
+    </a>
+    <a
+      routerLink="visuals"
+      class="flex items-center cursor-pointer p-1"
+      [ngClass]="{'justify-center': !expanded}"
+      routerLinkActive="active">
+      <i class="fa-regular fa-image"></i>
+      <span *ngIf="expanded" class="text-sm pl-2">Visuals</span>
+    </a>
+    <a
+      routerLink="teams"
+      class="flex items-center cursor-pointer p-1"
+      [ngClass]="{'justify-center': !expanded}"
+      routerLinkActive="active">
+      <i class="fa-regular fa-user"></i>
+      <span *ngIf="expanded" class="text-sm pl-2">Teams</span>
+    </a>
+  </div>
+  <div 
+    (click)="resetLeague()" 
+    class="flex items-center cursor-pointer p-1 justify-self-end">
+    <i class="fa-solid fa-arrows-rotate"></i>
+    <span *ngIf="expanded" class="text-sm pl-2 overflow-hidden text-nowrap">
       Switch Leagues
     </span>
-  </button>
-  <a routerLink="standings" class="sidebar-link">
-    <img
-      src="assets/icons/numbered-list.svg"
-      class="icon"
-      alt="standings-icon"
-      [ngClass]="{ 'mr-2': expanded }"
-    />
-    <span *ngIf="expanded" class="text-sm">Standings</span>
-  </a>
-  <a routerLink="visuals" class="sidebar-link">
-    <img
-      src="assets/icons/visuals.svg"
-      class="icon"
-      alt="visuals-icon"
-      [ngClass]="{ 'mr-2': expanded }"
-    />
-    <span *ngIf="expanded" class="text-sm">Visuals</span>
-  </a>
+  </div>
 </div>
