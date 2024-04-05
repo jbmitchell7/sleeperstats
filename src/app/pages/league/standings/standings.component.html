@@ -1,5 +1,5 @@
 <div *ngIf="dataLoaded" class="h-full w-full flex flex-col">
-  <h1 class="text-3xl pb-4">{{ leagueName }} Standings {{ leagueYear }}</h1>
+  <ui-league-page-header [title]="pageTitle"></ui-league-page-header>
   <div class="flex-1 w-full">
     <ag-grid-angular
       [ngStyle]="{maxWidth: maxGridWidth + 'px'}"

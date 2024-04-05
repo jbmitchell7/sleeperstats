@@ -1,5 +1,5 @@
 import { Component, OnDestroy, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, tap } from 'rxjs';
 import { toggleSidebarExpanded } from '../../store/global.actions';
@@ -7,9 +7,12 @@ import { clearLeagueData } from '../../store/league/league.actions';
 import { clearPlayersData } from '../../store/players/players.actions';
 import { clearRosterData } from '../../store/rosters/rosters.actions';
 import { selectSharedData } from '../../store/selectors';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-sidebar',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  selector: 'ui-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LeagueComponent } from './league.component';
-import { StandingsComponent } from '../../components/standings/standings.component';
-import { GraphComponent } from '../../components/graph/graph.component';
+import { StandingsComponent } from './standings/standings.component';
+import { GraphComponent } from './graph/graph.component';
+import { TeamsComponent } from './teams/teams.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'standings', pathMatch: 'full' },
       { path: 'standings', component: StandingsComponent },
       { path: 'visuals', component: GraphComponent },
+      { path: 'teams', component: TeamsComponent },
     ],
   },
 ];

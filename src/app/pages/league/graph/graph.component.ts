@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
-import { LeaguePageData } from '../../interfaces/leaguePageData';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
-import { selectLeaguePageData } from '../../store/selectors';
 import { Subscription, tap } from 'rxjs';
+import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { selectLeaguePageData } from 'src/app/store/selectors';
 
 const SUBTITLE_TEXT =
   'Better teams are further right and more successful teams are further up \n Better managers have larger dots - dot size is proportional to the percentage of max points the team has scored';

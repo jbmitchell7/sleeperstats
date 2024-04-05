@@ -1,9 +1,9 @@
 import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
-import { LeaguePageData } from '../../interfaces/leaguePageData';
+import { LeaguePageData } from '../../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
-import { selectLeague, selectLeaguePageData } from '../../store/selectors';
+import { selectLeague, selectLeaguePageData } from '../../../store/selectors';
 
 @Component({
   selector: 'app-standings',
@@ -13,6 +13,7 @@ import { selectLeague, selectLeaguePageData } from '../../store/selectors';
 export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   #sub!: Subscription;
+  pageTitle!: string;
   leaguePageData!: LeaguePageData[];
   leagueYear!: string;
   leagueName!: string;
@@ -37,6 +38,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
           this.leaguePageData = lp;
           this.leagueName = l.name;
           this.leagueYear = l.season;
+          this.pageTitle = `${this.leagueName} Standings ${this.leagueYear}`;
           this.#initGrid();
         })
       )
