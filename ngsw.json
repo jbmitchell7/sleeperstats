@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1711745803258,
+  "timestamp": 1712587187030,
   "index": "/sleeperfantasyfocus/index.html",
   "assetGroups": [
     {
@@ -11,14 +11,14 @@
         "ignoreVary": true
       },
       "urls": [
-        "/sleeperfantasyfocus/105.691558fecc518306.js",
+        "/sleeperfantasyfocus/754.47b829150b001192.js",
         "/sleeperfantasyfocus/favicon.ico",
         "/sleeperfantasyfocus/index.html",
-        "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js",
+        "/sleeperfantasyfocus/main.3a83692fb8ddeae8.js",
         "/sleeperfantasyfocus/manifest.webmanifest",
         "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js",
-        "/sleeperfantasyfocus/runtime.dc25b4a40dae64a8.js",
-        "/sleeperfantasyfocus/styles.5d06f64fb6255a3c.css"
+        "/sleeperfantasyfocus/runtime.5ffa1272b5b47355.js",
+        "/sleeperfantasyfocus/styles.2dff226bf6f1e090.css"
       ],
       "patterns": []
     },
@@ -30,7 +30,6 @@
         "ignoreVary": true
       },
       "urls": [
-        "/sleeperfantasyfocus/assets/icons/chevron.svg",
         "/sleeperfantasyfocus/assets/icons/icon-128x128.png",
         "/sleeperfantasyfocus/assets/icons/icon-144x144.png",
         "/sleeperfantasyfocus/assets/icons/icon-152x152.png",
@@ -38,18 +37,14 @@
         "/sleeperfantasyfocus/assets/icons/icon-384x384.png",
         "/sleeperfantasyfocus/assets/icons/icon-512x512.png",
         "/sleeperfantasyfocus/assets/icons/icon-72x72.png",
-        "/sleeperfantasyfocus/assets/icons/icon-96x96.png",
-        "/sleeperfantasyfocus/assets/icons/numbered-list.svg",
-        "/sleeperfantasyfocus/assets/icons/refresh.svg",
-        "/sleeperfantasyfocus/assets/icons/visuals.svg"
+        "/sleeperfantasyfocus/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/sleeperfantasyfocus/105.691558fecc518306.js": "b7a8257ee8f4638e02bf82c19c48161287182e3d",
-    "/sleeperfantasyfocus/assets/icons/chevron.svg": "40fd314b55cea25edf32825fa0d47b350412c80d",
+    "/sleeperfantasyfocus/754.47b829150b001192.js": "adeae6e33f56da50097de32bf1441b5781246d8c",
     "/sleeperfantasyfocus/assets/icons/icon-128x128.png": "e07cc92d042363def123602c026a17249636f180",
     "/sleeperfantasyfocus/assets/icons/icon-144x144.png": "32295bd25acb07a0247b5f5d22ec04b00f5e96a0",
     "/sleeperfantasyfocus/assets/icons/icon-152x152.png": "e645e2021e2e35beec025c8a05f9554274631954",
@@ -58,16 +53,13 @@
     "/sleeperfantasyfocus/assets/icons/icon-512x512.png": "a5401dd7ef71a7ea9938aaa2ad5ca1a9cb626191",
     "/sleeperfantasyfocus/assets/icons/icon-72x72.png": "8cb8ebb1179ea90c732c3d979c14e38ef09081c8",
     "/sleeperfantasyfocus/assets/icons/icon-96x96.png": "09906012d0e621b08598b6b53f2bfcaaaee08c30",
-    "/sleeperfantasyfocus/assets/icons/numbered-list.svg": "fe84c244f75bc8c8feeee1a3274581ea9d0d7a74",
-    "/sleeperfantasyfocus/assets/icons/refresh.svg": "e338bc8d0761536e28905c28e3efd957e962b56d",
-    "/sleeperfantasyfocus/assets/icons/visuals.svg": "a87b477a57a01c974fdee77dc7da18566b8356af",
     "/sleeperfantasyfocus/favicon.ico": "270b54e44801638c5f448a5f25c012607a6dd5a6",
-    "/sleeperfantasyfocus/index.html": "60c0238b533127f38baf32eb799257202bfd1137",
-    "/sleeperfantasyfocus/main.a4e84b2dd4f78628.js": "a134a33d7a2601b6d93de9f25246e4436dad0c01",
+    "/sleeperfantasyfocus/index.html": "32f8867716128a158ab2d23553481511b5e15fef",
+    "/sleeperfantasyfocus/main.3a83692fb8ddeae8.js": "b65336f912ba91ef6c59376cc882d73220a84987",
     "/sleeperfantasyfocus/manifest.webmanifest": "4716d5fa4aa1cbff1ed06b7b4014e0a5e68e3382",
     "/sleeperfantasyfocus/polyfills.e196cd64d0ef2fc1.js": "9a705549c736c68412faf5106ae7739b79064468",
-    "/sleeperfantasyfocus/runtime.dc25b4a40dae64a8.js": "a79443cfcb6035e821f239befa21f9b767499710",
-    "/sleeperfantasyfocus/styles.5d06f64fb6255a3c.css": "3ba78cdb117227aa3e6db36f176a2f444b756aa4"
+    "/sleeperfantasyfocus/runtime.5ffa1272b5b47355.js": "4e29d3ba49c2b72f90d32743a1cebd3a873e3e4d",
+    "/sleeperfantasyfocus/styles.2dff226bf6f1e090.css": "d386038186bec2540919e8996faf5a2ef0ef8154"
   },
   "navigationUrls": [
     {
