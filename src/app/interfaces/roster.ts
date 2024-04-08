@@ -7,7 +7,8 @@ export interface Roster {
     players: string[];
     player_map: string;
     owner_id: string;
-    league_id: string
+    league_id: string;
+    playerData?: any[];
 }
 
 export interface Settings {

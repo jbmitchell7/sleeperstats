@@ -2,7 +2,7 @@ import { LeaguePageData } from '../interfaces/leaguePageData';
 import { Roster } from '../interfaces/roster';
 import { SharedState } from './global.reducers';
 import { LeagueState } from './league/league.reducer';
-import { PlayerState } from './players/players.reducers';
+import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
 
 export interface DataInterface {
@@ -21,7 +21,7 @@ export interface AppState {
   sharedData: SharedState;
   leagueData: LeagueState;
   rosterData: RosterState;
-  playersData: PlayerState;
+  managersData: ManagerState;
 }
 
 export const selectApp = (state: AppState) => state;
@@ -35,12 +35,12 @@ export const selectRosters = (state: AppState) => state.rosterData.rosters;
 export const selectLeaguePageData = (state: AppState) => {
   const data: LeaguePageData[] = [];
   state.rosterData.rosters.forEach((roster: Roster) => {
-    const player = state.playersData.players.find(
+    const manager = state.managersData.managers.find(
       (p) => p.user_id === roster.owner_id
     );
-    if (!!player) {
+    if (!!manager) {
       data.push({
-        username: player.display_name,
+        username: manager.display_name,
         points: roster.settings.fpts,
         maxPoints: roster.settings.ppts,
         pointsAgainst: roster.settings.fpts_against,

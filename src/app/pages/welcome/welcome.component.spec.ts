@@ -3,14 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WelcomeComponent } from './welcome.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FetchApiDataService } from 'src/app/api/fetch-api-data.service';
 import { of } from 'rxjs';
 import { League } from 'src/app/interfaces/league';
+import { SleeperApiService } from 'src/app/api/sleeper-api.service';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
   let fixture: ComponentFixture<WelcomeComponent>;
-  let service: FetchApiDataService;
+  let service: SleeperApiService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -48,7 +48,7 @@ describe('WelcomeComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WelcomeComponent);
-    service = TestBed.inject(FetchApiDataService);
+    service = TestBed.inject(SleeperApiService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -59,7 +59,8 @@ describe('WelcomeComponent', () => {
       previous_league_id: '012',
       league_id: '123',
       name: 'Test League',
-      season: '2024'
+      season: '2024',
+      sport: 'nfl'
     }
     spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
     component.leagueIdInput = '123';
@@ -73,7 +74,8 @@ describe('WelcomeComponent', () => {
       previous_league_id: '012',
       league_id: '123',
       name: 'Test League',
-      season: '2024'
+      season: '2024',
+      sport: 'nfl'
     }
     spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
     component.leagueIdInput = '123';

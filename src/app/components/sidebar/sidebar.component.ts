@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription, tap } from 'rxjs';
 import { toggleSidebarExpanded } from '../../store/global.actions';
 import { clearLeagueData } from '../../store/league/league.actions';
-import { clearPlayersData } from '../../store/players/players.actions';
+import { clearManagersData } from '../../store/managers/managers.actions';
 import { clearRosterData } from '../../store/rosters/rosters.actions';
 import { selectSharedData } from '../../store/selectors';
 import { CommonModule } from '@angular/common';
@@ -53,7 +53,7 @@ export class SidebarComponent implements OnDestroy {
   resetLeague(): void {
     this.#store.dispatch(clearLeagueData());
     this.#store.dispatch(clearRosterData());
-    this.#store.dispatch(clearPlayersData());
+    this.#store.dispatch(clearManagersData());
     localStorage.setItem('LEAGUE_ID', '');
     this.#router.navigate(['welcome']);
   }

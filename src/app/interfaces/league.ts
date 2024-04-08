@@ -5,7 +5,7 @@ export interface League {
     name: string;
     season: string;
     total_rosters?: number;
-    sport?: string;
+    sport: string;
     settings?: LeagueSettings
     season_type?: string;
     scoring_settings?: Scoring;

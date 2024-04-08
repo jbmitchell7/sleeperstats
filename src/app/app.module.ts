@@ -13,7 +13,7 @@ import { leagueReducer } from './store/league/league.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { rostersReducer } from './store/rosters/rosters.reducers';
 import { GlobalEffects } from './store/global.effects';
-import { playersReducer } from './store/players/players.reducers';
+import { managersReducer } from './store/managers/managers.reducers';
 import { sharedDataReducer } from './store/global.reducers';
 import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
@@ -28,7 +28,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       sharedData: sharedDataReducer,
       leagueData: leagueReducer,
       rosterData: rostersReducer,
-      playersData: playersReducer,
+      managersData: managersReducer,
     }),
     EffectsModule.forRoot([GlobalEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true}),

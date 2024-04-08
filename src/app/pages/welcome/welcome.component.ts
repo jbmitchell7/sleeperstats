@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { leagueEntryRequest } from '../../store/global.actions';
-import { FetchApiDataService } from '../../api/fetch-api-data.service';
+import { SleeperApiService } from '../../api/sleeper-api.service';
 import { League } from '../../interfaces/league';
 
 @Component({
@@ -14,7 +14,7 @@ export class WelcomeComponent {
   leagueIdInput = '';
   readonly #router = inject(Router);
   readonly #store = inject(Store);
-  readonly #fetchApiDataService = inject(FetchApiDataService);
+  readonly #fetchApiDataService = inject(SleeperApiService);
 
   setLeagueId(): void {
     let id = this.leagueIdInput;

@@ -16,7 +16,7 @@ export class LeagueComponent implements OnDestroy {
   constructor() {
     this.#sub = this.#store
       .select(selectSharedData)
-      .pipe(tap((s) => (this.sidebarExpanded = s.sidebarExpanded)))
+      .pipe(tap(s => this.sidebarExpanded = s.sidebarExpanded))
       .subscribe();
   }
   ngOnDestroy(): void {

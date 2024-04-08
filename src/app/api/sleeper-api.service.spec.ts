@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FetchApiDataService } from './fetch-api-data.service';
+import { SleeperApiService } from './sleeper-api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('FetchApiDataService', () => {
-  let service: FetchApiDataService;
+describe('SleeperApiService', () => {
+  let service: SleeperApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.inject(FetchApiDataService);
+    service = TestBed.inject(SleeperApiService);
   });
 
   it('should be created', () => {

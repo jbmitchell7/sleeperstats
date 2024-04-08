@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TeamsComponent } from './teams.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
-describe('GraphComponent', () => {
+describe('Teams', () => {
   let component: TeamsComponent;
   let fixture: ComponentFixture<TeamsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamsComponent ]
+      declarations: [ TeamsComponent ],
+      providers: [provideMockStore()]
     })
     .compileComponents();
   });

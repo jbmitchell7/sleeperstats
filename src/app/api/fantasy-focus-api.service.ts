@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, catchError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const apiUrl = 'https://api.sleeper.app/v1';
+const apiUrl = 'https://sleeperfantasyfocus-be.onrender.com/api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FetchApiDataService {
-
-  constructor(private readonly http: HttpClient) {}
+export class FantasyFocusApiService {
+  readonly http = inject(HttpClient);
 
   #handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
@@ -29,8 +28,11 @@ export class FetchApiDataService {
     return body || {};
   }
 
-  sleeperGet(url: String): Observable<any> {
-    return this.http.get(`${apiUrl}/${url}`)
-      .pipe(map(this.#extractResponseData), catchError(this.#handleError))
+  fantasyFocusGet(url: String, ids: string[]): Observable<any> {
+    return this.http.post(`${apiUrl}/${url}`, {players: ids})
+      .pipe(
+        map(this.#extractResponseData),
+        catchError(this.#handleError)
+      )
   }
 }
