@@ -1,42 +1,72 @@
-<div class="h-full p-4 bg-primary-orange flex flex-row lg:flex-col">
-  <div class="flex items-center cursor-pointer pr-4 lg:pb-8 lg:pt-0 lg:px-1">
-    <i (click)="toggleExpanded()"
-      class="fa-solid fa-chevron-right p-1"
-      [ngClass]="{ 'origin-center rotate-180': expanded }">
-    </i>
+<ng-container *ngIf="!mobile else mobileNav">
+  <div class="h-full p-4 bg-primary-orange flex flex-row lg:flex-col">
+    <div class="flex items-center cursor-pointer pr-4 lg:pb-8 lg:pt-0 lg:px-1">
+      <i (click)="toggleExpanded()"
+        class="fa-solid fa-chevron-right p-1"
+        [ngClass]="{ 'origin-center rotate-180': expanded }">
+      </i>
+    </div>
+    <div class="flex-auto flex flex-row gap-3 lg:flex-col">
+      <a
+        routerLink="standings"
+        class="flex items-center cursor-pointer p-1"
+        [ngClass]="{'justify-center': !expanded}"
+        routerLinkActive="active">
+        <i class="fa-solid fa-list-ol"></i>
+        <span *ngIf="expanded" class="text-sm pl-2">Standings</span>
+      </a>
+      <a
+        routerLink="visuals"
+        class="flex items-center cursor-pointer p-1"
+        [ngClass]="{'justify-center': !expanded}"
+        routerLinkActive="active">
+        <i class="fa-regular fa-image"></i>
+        <span *ngIf="expanded" class="text-sm pl-2">Visuals</span>
+      </a>
+      <a
+        routerLink="teams"
+        class="flex items-center cursor-pointer p-1"
+        [ngClass]="{'justify-center': !expanded}"
+        routerLinkActive="active">
+        <i class="fa-regular fa-user"></i>
+        <span *ngIf="expanded" class="text-sm pl-2">Teams</span>
+      </a>
+    </div>
+    <div 
+      (click)="resetLeague()" 
+      class="flex items-center cursor-pointer p-1 justify-self-end">
+      <i class="fa-solid fa-arrows-rotate"></i>
+      <span *ngIf="expanded" class="text-sm pl-2 overflow-hidden text-nowrap">
+        Switch Leagues
+      </span>
+    </div>
   </div>
-  <div class="flex-auto flex flex-row gap-3 lg:flex-col">
-    <a
-      routerLink="standings"
-      class="flex items-center cursor-pointer p-1"
-      [ngClass]="{'justify-center': !expanded}"
-      routerLinkActive="active">
-      <i class="fa-solid fa-list-ol"></i>
-      <span *ngIf="expanded" class="text-sm pl-2">Standings</span>
-    </a>
-    <a
-      routerLink="visuals"
-      class="flex items-center cursor-pointer p-1"
-      [ngClass]="{'justify-center': !expanded}"
-      routerLinkActive="active">
-      <i class="fa-regular fa-image"></i>
-      <span *ngIf="expanded" class="text-sm pl-2">Visuals</span>
-    </a>
-    <a
-      routerLink="teams"
-      class="flex items-center cursor-pointer p-1"
-      [ngClass]="{'justify-center': !expanded}"
-      routerLinkActive="active">
-      <i class="fa-regular fa-user"></i>
-      <span *ngIf="expanded" class="text-sm pl-2">Teams</span>
-    </a>
+</ng-container>
+<ng-template #mobileNav>
+  <div class="p-4 bg-primary-orange flex justify-between items-center">
+    <i class="fa-solid fa-bars cursor-pointer" (click)="toggleDropdown()"></i>
+    <i class="fa-solid fa-arrows-rotate cursor-pointer" (click)="resetLeague()"></i>
   </div>
-  <div 
-    (click)="resetLeague()" 
-    class="flex items-center cursor-pointer p-1 justify-self-end">
-    <i class="fa-solid fa-arrows-rotate"></i>
-    <span *ngIf="expanded" class="text-sm pl-2 overflow-hidden text-nowrap">
-      Switch Leagues
-    </span>
-  </div>
-</div>
+  <ng-container *ngIf="dropdownActive">
+    <div class="flex flex-col">
+      <a
+        (click)="toggleDropdown()"
+        routerLink="standings"
+        class="hamburger-nav-item p-2 text-sm">
+        <span class="text-sm">Standings</span>
+      </a>
+      <a
+        (click)="toggleDropdown()"
+        routerLink="visuals"
+        class="hamburger-nav-item p-2 text-sm">
+        <span class="text-sm">Visuals</span>
+      </a>
+      <a
+        (click)="toggleDropdown()"
+        routerLink="teams"
+        class="hamburger-nav-item p-2 text-sm">
+        <span class="text-sm">Teams</span>
+      </a>
+    </div>
+  </ng-container>
+</ng-template>
