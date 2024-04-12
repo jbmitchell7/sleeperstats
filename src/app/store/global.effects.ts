@@ -73,8 +73,7 @@ export class GlobalEffects {
     this.#actions$.pipe(
       ofType(getPlayersRequest),
       switchMap((props) =>
-        this.#fantasyFocusApi
-          .fantasyFocusGet(`players/${props.sport}`, props.ids)
+        this.#fantasyFocusApi.fantasyFocusGet(`players/${props.sport}`, props.ids)
           .pipe(
             map((res: any) => getPlayersSuccess({ id: props.managerId, players: res })),
             catchError(() =>

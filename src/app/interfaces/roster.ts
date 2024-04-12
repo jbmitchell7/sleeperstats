@@ -8,7 +8,7 @@ export interface Roster {
     player_map: string;
     owner_id: string;
     league_id: string;
-    playerData?: any[];
+    playerData?: Player[];
 }
 
 export interface Settings {
@@ -29,4 +29,17 @@ export interface Settings {
 export interface Metadata {
     streak: string;
     record: string;
+}
+
+export interface Player {
+  injury_status: string;
+  team: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+  fantasy_positions: string[];
+  player_id: string;
+  sport: string;
+  position: string;
+  active: boolean;
 }

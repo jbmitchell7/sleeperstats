@@ -40,12 +40,15 @@ export const selectLeaguePageData = (state: AppState) => {
     );
     if (!!manager) {
       data.push({
+        owner_id: roster.owner_id,
+        playerIds: roster.players,
         username: manager.display_name,
         points: roster.settings.fpts,
         maxPoints: roster.settings.ppts,
         pointsAgainst: roster.settings.fpts_against,
         wins: roster.settings.wins,
         losses: roster.settings.losses,
+        players: roster.playerData
       });
     }
   });

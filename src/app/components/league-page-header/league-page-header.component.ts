@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
   standalone: true,
   imports: [CommonModule],
   selector: 'ui-league-page-header',
-  template: `<h1 class="text-3xl pb-4">{{title}}</h1>`
+  template: `<h1 class="text-3xl">{{title}}</h1>`
 })
 export class LeaguePageHeaderComponent {
   @Input() title = ''
