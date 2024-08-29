@@ -2,6 +2,8 @@ import { Roster } from '../../interfaces/roster';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
 import {
   clearRosterData,
+  getPlayersFailure,
+  getPlayersRequest,
   getPlayersSuccess,
   getRostersFailure,
   getRostersSuccess,
@@ -34,6 +36,11 @@ export const rostersReducer = createReducer(
   on(clearRosterData, () => ({
     ...initialRosterState,
   })),
+  on(getPlayersRequest, (state) => ({
+    ...state,
+    isLoading: true,
+    isLoaded: false
+  })),
   on(getPlayersSuccess, (state, action) => {
     const team = state.rosters.find(r => r.owner_id === action.id);
     if (!team || team.playerData?.length) {
@@ -42,6 +49,8 @@ export const rostersReducer = createReducer(
     const unchanged = state.rosters.filter(r => r.owner_id !== action.id);
     return {
       ...state,
+      isLoaded: true,
+      isLoading: false,
       rosters: [
         ...unchanged,
         {
@@ -50,5 +59,9 @@ export const rostersReducer = createReducer(
         }
       ]
     }
-  })
+  }),
+  on(getPlayersFailure, (state) => ({
+    ...state,
+    isLoading: false
+  }))
 );

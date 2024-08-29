@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, take, tap } from 'rxjs';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 import { getPlayersRequest } from 'src/app/store/rosters/rosters.actions';
-import { selectLeague, selectLeaguePageData } from 'src/app/store/selectors';
+import { selectLeague, selectLeaguePageData, selectRosters } from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-teams',
@@ -24,11 +24,12 @@ export class TeamsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.#sub = combineLatest([
       this.#store.select(selectLeaguePageData),
-      this.#store.select(selectLeague)
+      this.#store.select(selectLeague),
+      this.#store.select(selectRosters)
     ])
       .pipe(
         filter(([lp,l]) => !!lp.length && !!l.sport),
-        tap(([lp,l]) => {
+        tap(([lp,l, ros]) => {
           this.allTeams = lp.sort((a,b) => (
             a.username.toLowerCase() > b.username.toLowerCase() ? 1 : -1
           ));
@@ -37,7 +38,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
             const team = lp.find(team => team.username === this.selectedManager);
             this.selectedTeam = team;
           }
-          this.isLoading = false;
+          this.isLoading = ros.isLoading;
         })
       )
       .subscribe();

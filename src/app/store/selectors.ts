@@ -30,7 +30,7 @@ export const selectSharedData = (state: AppState) => state.sharedData;
 
 export const selectLeague = (state: AppState) => state.leagueData.league;
 
-export const selectRosters = (state: AppState) => state.rosterData.rosters;
+export const selectRosters = (state: AppState) => state.rosterData;
 
 export const selectLeaguePageData = (state: AppState) => {
   const data: LeaguePageData[] = [];
