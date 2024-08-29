@@ -16,10 +16,12 @@ import { getManagersSuccess } from './managers/managers.actions';
 import { LeagueUser } from '../interfaces/leagueuser';
 import { League } from '../interfaces/league';
 import { FantasyFocusApiService } from '../api/fantasy-focus-api.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GlobalEffects {
   readonly #actions$ = inject(Actions);
+  readonly #router = inject(Router);
   readonly #sleeperApi = inject(SleeperApiService);
   readonly #fantasyFocusApi = inject(FantasyFocusApiService);
 
@@ -28,7 +30,14 @@ export class GlobalEffects {
       ofType(leagueEntryRequest),
       switchMap((props) =>
         this.#sleeperApi.sleeperGet(`league/${props.leagueId}`).pipe(
-          map((res: League) => getLeagueSuccess({ league: res })),
+          map((res: League) => {
+            const currentYear: string = new Date().getFullYear().toString();
+            if (res.season !== currentYear && res.status === 'complete') {
+              this.#router.navigate(['welcome']);
+              return getLeagueFailure({ error: 'new league season may be available' });
+            }
+            return getLeagueSuccess({ league: res })
+          }),
           catchError(() =>
             of(getLeagueFailure({ error: 'error getting league data' }))
           )
