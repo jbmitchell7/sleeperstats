@@ -4,7 +4,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
-import { sharedDataReducer } from './app/store/global.reducers';
 import { leagueReducer } from './app/store/league/league.reducer';
 import { rostersReducer } from './app/store/rosters/rosters.reducers';
 import { managersReducer } from './app/store/managers/managers.reducers';
@@ -43,7 +42,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideStore({
-      sharedData: sharedDataReducer,
       leagueData: leagueReducer,
       rosterData: rostersReducer,
       managersData: managersReducer,
