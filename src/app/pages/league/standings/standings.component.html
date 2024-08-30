@@ -1,8 +1,10 @@
 <div class="h-full w-full flex flex-col">
-  <p-table 
-  [columns]="columnDefs"
-  [value]="leaguePageData"
-  sortMode="multiple">
+  <h1 class="text-2xl text-center pb-10">{{pageTitle}}</h1>
+  <p-table
+    *ngIf="seasonStarted else preseasonMessage"
+    [columns]="columnDefs"
+    [value]="leaguePageData"
+    sortMode="multiple">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th [pSortableColumn]="col.field" *ngFor="let col of columns">
@@ -18,4 +20,7 @@
       </tr>
     </ng-template>
   </p-table>
+  <ng-template #preseasonMessage>
+    <h3 class="text-xl text-center">Season begins soon!</h3>
+  </ng-template>
 </div>

@@ -41,7 +41,6 @@ const STANDINGS_COLUMNS: Column[] = [
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
-    styleUrls: ['./standings.component.scss'],
     standalone: true,
     imports: [CommonModule, TableModule],
 })
@@ -54,7 +53,8 @@ export class StandingsComponent implements OnInit, OnDestroy {
   leagueYear!: string;
   leagueName!: string;
   dataLoaded: boolean = false;
-  maxGridWidth = 690
+  maxGridWidth = 690;
+  seasonStarted = false;
 
   ngOnInit(): void {
     this.#sub = combineLatest([
@@ -65,6 +65,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
         filter(([lp, l]) => !!lp.length && !!l.name),
         tap(([lp, l]) => {
           this.leaguePageData = lp;
+          this.seasonStarted = lp[0].wins !== 0 || lp[0].losses !== 0;
           this.leagueName = l.name;
           this.leagueYear = l.season;
           this.pageTitle = `${this.leagueName} Standings ${this.leagueYear}`;

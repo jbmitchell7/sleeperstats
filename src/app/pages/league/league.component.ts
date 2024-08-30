@@ -6,7 +6,6 @@ import { RouterOutlet } from '@angular/router';
 @Component({
     selector: 'app-league',
     templateUrl: './league.component.html',
-    styleUrls: ['./league.component.scss'],
     standalone: true,
     imports: [NavbarComponent, CommonModule, RouterOutlet],
 })
