@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { AgChartOptions } from 'ag-charts-community';
 import { Store } from '@ngrx/store';
 import { Subscription, tap } from 'rxjs';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
@@ -17,7 +16,6 @@ export class GraphComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   #sub!: Subscription;
   leaguePageData!: LeaguePageData[];
-  chartOptions!: AgChartOptions;
 
   ngOnInit(): void {
     this.#sub = this.#store
@@ -25,7 +23,6 @@ export class GraphComponent implements OnInit, OnDestroy {
       .pipe(
         tap((lp) => {
           this.leaguePageData = lp;
-          this.#initChart();
         })
       )
       .subscribe();
@@ -33,59 +30,5 @@ export class GraphComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.#sub.unsubscribe();
-  }
-
-  #initChart(): void {
-    this.chartOptions = {
-      autoSize: true,
-      height: 600,
-      title: {
-        text: 'Max Points vs Wins',
-      },
-      subtitle: {
-        text: SUBTITLE_TEXT,
-        spacing: 40,
-      },
-      axes: [
-        {
-          type: 'number',
-          position: 'bottom',
-        },
-        {
-          type: 'number',
-          max: this.#getYMax(),
-          position: 'left',
-        },
-      ],
-      series: [
-        {
-          tooltip: {
-            renderer: (params: any) => {
-              return {
-                title: params.datum.username,
-              };
-            },
-          },
-          type: 'bubble',
-          data: this.leaguePageData,
-          xKey: 'maxPoints',
-          xName: 'Max Points',
-          yKey: 'wins',
-          yName: 'Wins',
-          sizeKey: 'points',
-          sizeName: 'Points',
-          marker: {
-            size: 6,
-            maxSize: 30,
-            fill: '#3f51b5',
-            stroke: '#000',
-          },
-        },
-      ],
-    };
-  }
-
-  #getYMax(): number {
-    return Math.max(...this.leaguePageData.map((team) => team.wins)) + 1;
   }
 }

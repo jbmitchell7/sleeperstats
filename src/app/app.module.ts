@@ -1,7 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { GlobalEffects } from './store/global.effects';
 import { managersReducer } from './store/managers/managers.reducers';
 import { sharedDataReducer } from './store/global.reducers';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 @NgModule({
   declarations: [AppComponent, WelcomeComponent],
   imports: [
@@ -23,7 +25,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
     StoreModule.forRoot({
       sharedData: sharedDataReducer,
       leagueData: leagueReducer,

@@ -63,7 +63,7 @@ describe('WelcomeComponent', () => {
       sport: 'nfl'
     }
     spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
-    component.leagueIdInput = '123';
+    component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.league_id);
   });
@@ -78,7 +78,7 @@ describe('WelcomeComponent', () => {
       sport: 'nfl'
     }
     spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
-    component.leagueIdInput = '123';
+    component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.previous_league_id);
   });

@@ -1,5 +1,4 @@
 import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
-import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
 import { LeaguePageData } from '../../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
@@ -17,15 +16,8 @@ export class StandingsComponent implements OnInit, OnDestroy {
   leaguePageData!: LeaguePageData[];
   leagueYear!: string;
   leagueName!: string;
-  api!: GridApi;
   dataLoaded: boolean = false;
-  gridOptions!: GridOptions;
   maxGridWidth = 690
-
-  @HostListener('window:resize')
-  resizeGrid(): void {
-    this.api?.sizeColumnsToFit();
-  }
 
   ngOnInit(): void {
     this.#sub = combineLatest([
@@ -39,7 +31,6 @@ export class StandingsComponent implements OnInit, OnDestroy {
           this.leagueName = l.name;
           this.leagueYear = l.season;
           this.pageTitle = `${this.leagueName} Standings ${this.leagueYear}`;
-          this.#initGrid();
         })
       )
       .subscribe();
@@ -47,57 +38,5 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.#sub.unsubscribe();
-  }
-
-  #initGrid(): void {
-    this.gridOptions = {
-      onGridReady: (event) => {
-        event.api.sizeColumnsToFit();
-      },
-      defaultColDef: {
-        sortable: true,
-        resizable: false,
-        sortingOrder: ['desc', 'asc'],
-        suppressMovable: true,
-      },
-      domLayout: 'autoHeight',
-      columnDefs: this.#getColDefs(),
-      rowData: this.leaguePageData,
-      animateRows: true,
-      autoSizeStrategy: {
-        type: 'fitCellContents'
-      }
-    };
-    this.dataLoaded = true;
-  }
-
-  #getColDefs(): ColDef[] {
-    return [
-      {
-        field: 'username',
-        headerName: 'Manager',
-        pinned: 'left',
-        resizable: true
-      },
-      {
-        field: 'wins',
-        sort: 'desc'
-      },
-      {
-        field: 'losses'
-      },
-      {
-        field: 'maxPoints',
-        headerName: 'Max Points'
-      },
-      {
-        field: 'points',
-        headerName: 'PF'
-      },
-      {
-        field: 'pointsAgainst',
-        headerName: 'PA'
-      },
-    ];
   }
 }

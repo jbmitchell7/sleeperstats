@@ -4,11 +4,10 @@ import { LeagueComponent } from './league.component';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 import { StandingsComponent } from './standings/standings.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { AgChartsAngularModule } from 'ag-charts-angular';
 import { GraphComponent } from './graph/graph.component';
 import { TeamsComponent } from './teams/teams.component';
 import { LeaguePageHeaderComponent } from 'src/app/components/league-page-header/league-page-header.component';
+import { NavbarComponent } from "../../components/navbar/navbar.component";
 @NgModule({
   declarations: [
     LeagueComponent,
@@ -19,11 +18,10 @@ import { LeaguePageHeaderComponent } from 'src/app/components/league-page-header
   imports: [
     CommonModule,
     LeagueRoutingModule,
-    AgGridModule,
-    AgChartsAngularModule,
     SidebarComponent,
-    LeaguePageHeaderComponent
-  ],
+    NavbarComponent,
+    LeaguePageHeaderComponent,
+],
   providers: [],
 })
 export class LeagueModule {}

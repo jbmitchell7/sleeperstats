@@ -6,8 +6,8 @@
     <div>
       <h2 class="pt-5 pb-2">To find you league ID either:</h2>
       <div class="flex flex-col sm:flex-row pb-3">
-        <span class="p-4">
-          <span style="font-weight: bold">On a Computer:</span>
+        <div class="p-4">
+          <p class="font-bold">On a Computer:</p>
           <ol>
             <li>
               Go to
@@ -24,9 +24,9 @@
             </li>
             <li>Paste it below</li>
           </ol>
-        </span>
-        <span class="p-4">
-          <span style="font-weight: bold">On the Sleeper App:</span>
+        </div>
+        <div class="p-4">
+          <p class="font-bold">On the Sleeper App:</p>
           <ol>
             <li>Go to your League page</li>
             <li>Tap the settings gear by League Settings</li>
@@ -34,25 +34,22 @@
             <li>Scroll to the bottom and tap Copy League ID</li>
             <li>Paste the league id into the form below</li>
           </ol>
-        </span>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col shrink-0">
-      <div>
-        <form class="league-id-input">
-          <input
-            class="input-box"
-            placeholder="League ID"
-            type="text"
-            [(ngModel)]="leagueIdInput"
-            name="ID"
-          />
-        </form>
-      </div>
-      <div class="flex justify-center pt-5">
-        <button (click)="setLeagueId()" class="sff-btn">View My League</button>
-      </div>
-    </div>
+    <form class="flex flex-col shrink-0" (ngSubmit)="setLeagueId()">
+      <input
+        type="text"
+        [formControl]="leagueInputForm"
+        pInputText
+        placeholder="League ID"
+      />
+      <p-button
+        type="submit"
+        [disabled]="leagueInputForm.invalid"
+        label="View My League">
+      </p-button>
+    </form>
   </div>
   <footer class="flex flex-col justify-self-end pt-5">
     <span>
