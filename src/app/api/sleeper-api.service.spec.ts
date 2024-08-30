@@ -1,15 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SleeperApiService } from './sleeper-api.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('SleeperApiService', () => {
   let service: SleeperApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
+    imports: [],
+    providers: [provideHttpClient(), provideHttpClientTesting()]
+});
     service = TestBed.inject(SleeperApiService);
   });
 
