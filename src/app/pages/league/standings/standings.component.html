@@ -1,6 +1,21 @@
-<div *ngIf="dataLoaded" class="h-full w-full flex flex-col">
-  <ui-league-page-header [title]="pageTitle"></ui-league-page-header>
-  <div class="flex-1 w-full">
-    grid goes here
-  </div>
+<div class="h-full w-full flex flex-col">
+  <p-table 
+  [columns]="columnDefs"
+  [value]="leaguePageData"
+  sortMode="multiple">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th [pSortableColumn]="col.field" *ngFor="let col of columns">
+            {{ col.header }} <p-sortIcon [field]="col.field" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

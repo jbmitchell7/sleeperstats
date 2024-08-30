@@ -4,20 +4,53 @@ import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectLeaguePageData } from '../../../store/selectors';
 import { CommonModule } from '@angular/common';
-import { LeaguePageHeaderComponent } from '../../../components/league-page-header/league-page-header.component';
+import { TableModule } from 'primeng/table';
+
+interface Column {
+  field: string;
+  header: string;
+}
+
+const STANDINGS_COLUMNS: Column[] = [
+  {
+    field: 'username',
+    header: 'Manager'
+  },
+  {
+    field: 'wins',
+    header: 'Wins'
+  },
+  {
+    field: 'losses',
+    header: 'Losses'
+  },
+  {
+    field: 'maxPoints',
+    header: 'Max Points'
+  },
+  {
+    field: 'points',
+    header: 'PF'
+  },
+  {
+    field: 'pointsAgainst',
+    header: 'PA'
+  }
+];
 
 @Component({
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     styleUrls: ['./standings.component.scss'],
     standalone: true,
-    imports: [CommonModule, LeaguePageHeaderComponent],
+    imports: [CommonModule, TableModule],
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   #sub!: Subscription;
   pageTitle!: string;
   leaguePageData!: LeaguePageData[];
+  columnDefs = STANDINGS_COLUMNS;
   leagueYear!: string;
   leagueName!: string;
   dataLoaded: boolean = false;

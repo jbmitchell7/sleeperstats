@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Subscription, tap } from 'rxjs';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 import { selectLeaguePageData } from 'src/app/store/selectors';
-import { LeaguePageHeaderComponent } from '../../../components/league-page-header/league-page-header.component';
 import { CommonModule } from '@angular/common';
 
 const SUBTITLE_TEXT =
@@ -14,7 +13,7 @@ const SUBTITLE_TEXT =
     templateUrl: './graph.component.html',
     styleUrls: ['./graph.component.scss'],
     standalone: true,
-    imports: [CommonModule, LeaguePageHeaderComponent],
+    imports: [CommonModule],
 })
 export class GraphComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);

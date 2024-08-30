@@ -4,7 +4,6 @@ import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 import { getPlayersRequest } from 'src/app/store/rosters/rosters.actions';
 import { selectLeague, selectLeaguePageData, selectRosters } from 'src/app/store/selectors';
-import { LeaguePageHeaderComponent } from '../../../components/league-page-header/league-page-header.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,10 +11,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './teams.component.html',
     styleUrls: ['./teams.component.scss'],
     standalone: true,
-    imports: [
-        LeaguePageHeaderComponent,
-        CommonModule
-    ],
+    imports: [CommonModule],
 })
 export class TeamsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
