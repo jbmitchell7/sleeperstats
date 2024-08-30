@@ -16,6 +16,6 @@ export class SleeperApiService {
   }
 
   getLeague(id: string): Observable<League> {
-    return this.#http.get<League>(`/league/${id}`);
+    return this.#http.get<League>(`${apiUrl}/league/${id}`);
   }
 }

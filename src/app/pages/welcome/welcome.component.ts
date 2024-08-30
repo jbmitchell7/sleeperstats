@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { leagueEntryRequest } from '../../store/global.actions';
 import { SleeperApiService } from '../../api/sleeper-api.service';
 import { League } from '../../interfaces/league';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { catchError, of, take, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     InputTextModule,
     ReactiveFormsModule,
-    MessagesModule
+    MessagesModule, 
+    FormsModule
   ],
   providers: [MessageService],
   selector: 'app-welcome',

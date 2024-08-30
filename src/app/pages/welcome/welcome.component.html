@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <form class="flex flex-col shrink-0 gap-2">
+    <form class="flex flex-col shrink-0 gap-2" (ngSubmit)="setLeagueId()">
       <input
         type="text"
         [formControl]="leagueInputForm"
@@ -46,7 +46,7 @@
         placeholder="League ID"
       />
       <p-button
-        (click)="setLeagueId()"
+        type="submit"
         [disabled]="leagueInputForm.invalid"
         label="View My League">
       </p-button>
