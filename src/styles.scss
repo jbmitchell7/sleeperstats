@@ -1,6 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer tailwind-base, primeng, tailwind-utilities;
+@layer tailwind-base {
+  @tailwind base;
+}
+@layer primeng;
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 html,
 body {
@@ -17,4 +23,8 @@ body {
   .attribution {
     font-size: 10px;
   }
+}
+
+p-messages {
+  position: absolute;
 }

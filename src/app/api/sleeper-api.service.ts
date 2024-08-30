@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, catchError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { League } from '../interfaces/league';
 
 const apiUrl = 'https://api.sleeper.app/v1';
 
@@ -9,28 +9,13 @@ const apiUrl = 'https://api.sleeper.app/v1';
   providedIn: 'root'
 })
 export class SleeperApiService {
-
-  constructor(private readonly http: HttpClient) {}
-
-  #handleError(error: HttpErrorResponse): any {
-    if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
-
-  #extractResponseData(res: any): any {
-    const body = res;
-    return body || {};
-  }
+  readonly #http = inject(HttpClient);
 
   sleeperGet(url: String): Observable<any> {
-    return this.http.get(`${apiUrl}/${url}`)
-      .pipe(map(this.#extractResponseData), catchError(this.#handleError))
+    return this.#http.get(`${apiUrl}/${url}`);
+  }
+
+  getLeague(id: string): Observable<League> {
+    return this.#http.get<League>(`/league/${id}`);
   }
 }

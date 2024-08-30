@@ -62,7 +62,7 @@ describe('WelcomeComponent', () => {
       season: '2024',
       sport: 'nfl'
     }
-    spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
+    spyOn(service, 'getLeague').and.returnValue(of(mockLeague));
     component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.league_id);
@@ -77,7 +77,7 @@ describe('WelcomeComponent', () => {
       season: '2024',
       sport: 'nfl'
     }
-    spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
+    spyOn(service, 'getLeague').and.returnValue(of(mockLeague));
     component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.previous_league_id);

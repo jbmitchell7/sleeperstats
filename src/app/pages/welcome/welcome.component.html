@@ -1,4 +1,5 @@
 <div class="flex flex-col h-full p-5">
+  <p-messages class="self-center"></p-messages>
   <div class="flex grow flex-col justify-center items-center">
     <h1 class="text-3xl">
       Begin by finding the ID to your Sleeper Fantasy League*
@@ -37,7 +38,7 @@
         </div>
       </div>
     </div>
-    <form class="flex flex-col shrink-0" (ngSubmit)="setLeagueId()">
+    <form class="flex flex-col shrink-0 gap-2">
       <input
         type="text"
         [formControl]="leagueInputForm"
@@ -45,7 +46,7 @@
         placeholder="League ID"
       />
       <p-button
-        type="submit"
+        (click)="setLeagueId()"
         [disabled]="leagueInputForm.invalid"
         label="View My League">
       </p-button>
