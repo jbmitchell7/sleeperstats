@@ -8,9 +8,9 @@ describe('LeagueComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeagueComponent ],
-      providers: [provideMockStore()]
-    })
+    imports: [LeagueComponent],
+    providers: [provideMockStore()]
+})
     .compileComponents();
   });
 

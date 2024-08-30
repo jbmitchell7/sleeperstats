@@ -1,13 +1,17 @@
-import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { LeaguePageData } from '../../../interfaces/leaguePageData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectLeaguePageData } from '../../../store/selectors';
+import { CommonModule } from '@angular/common';
+import { LeaguePageHeaderComponent } from '../../../components/league-page-header/league-page-header.component';
 
 @Component({
-  selector: 'app-standings',
-  templateUrl: './standings.component.html',
-  styleUrls: ['./standings.component.scss'],
+    selector: 'app-standings',
+    templateUrl: './standings.component.html',
+    styleUrls: ['./standings.component.scss'],
+    standalone: true,
+    imports: [CommonModule, LeaguePageHeaderComponent],
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);

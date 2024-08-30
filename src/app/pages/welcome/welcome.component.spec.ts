@@ -15,8 +15,7 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [WelcomeComponent],
-    imports: [],
+    imports: [WelcomeComponent],
     providers: [provideMockStore(), provideHttpClient(), provideHttpClientTesting()]
 })
     .compileComponents();

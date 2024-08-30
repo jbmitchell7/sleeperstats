@@ -5,10 +5,9 @@ import { provideMockStore } from '@ngrx/store/testing';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [],
-      declarations: [AppComponent],
-      providers: [provideMockStore()]
-    }).compileComponents();
+    imports: [AppComponent],
+    providers: [provideMockStore()]
+}).compileComponents();
   });
 
   it('should create the app', () => {

@@ -1,14 +1,21 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription, combineLatest, filter, take, tap } from 'rxjs';
+import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
 import { getPlayersRequest } from 'src/app/store/rosters/rosters.actions';
 import { selectLeague, selectLeaguePageData, selectRosters } from 'src/app/store/selectors';
+import { LeaguePageHeaderComponent } from '../../../components/league-page-header/league-page-header.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-teams',
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.scss'],
+    selector: 'app-teams',
+    templateUrl: './teams.component.html',
+    styleUrls: ['./teams.component.scss'],
+    standalone: true,
+    imports: [
+        LeaguePageHeaderComponent,
+        CommonModule
+    ],
 })
 export class TeamsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);

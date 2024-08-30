@@ -10,8 +10,7 @@ describe('StandingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [StandingsComponent],
-    imports: [],
+    imports: [StandingsComponent],
     providers: [provideMockStore(), provideHttpClient(), provideHttpClientTesting()]
 })
     .compileComponents();
