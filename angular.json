@@ -79,7 +79,8 @@
               "buildTarget": "sleeperstats:build:production"
             },
             "development": {
-              "buildTarget": "sleeperstats:build:development"
+              "buildTarget": "sleeperstats:build:development",
+              "host": "0.0.0.0"
             }
           },
           "defaultConfiguration": "development"
