@@ -10,4 +10,6 @@ export interface LeaguePageData {
   owner_id: string;
   playerIds: string[];
   players?: Player[];
+  streak: string;
+  avatarUrl: string;
 }

@@ -9,6 +9,7 @@ export interface Roster {
     owner_id: string;
     league_id: string;
     playerData?: Player[];
+    metadata: Metadata;
 }
 
 export interface Settings {

@@ -44,7 +44,9 @@ export const selectLeaguePageData = (state: AppState) => {
         pointsAgainst: roster.settings.fpts_against,
         wins: roster.settings.wins,
         losses: roster.settings.losses,
-        players: roster.playerData
+        players: roster.playerData,
+        streak: roster.metadata.streak,
+        avatarUrl: manager.avatarUrl ?? ''
       });
     }
   });

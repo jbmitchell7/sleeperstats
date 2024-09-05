@@ -7,6 +7,7 @@ export interface LeagueUser {
     is_bot: boolean;
     display_name: string;
     avatar: string
+    avatarUrl?: string;
 }
 
 export interface LeagueUserMetadata {

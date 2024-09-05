@@ -5,6 +5,7 @@ import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectLeaguePageData } from '../../../store/selectors';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 
 interface Column {
   field: string;
@@ -25,6 +26,10 @@ const STANDINGS_COLUMNS: Column[] = [
     header: 'Losses'
   },
   {
+    field: 'streak',
+    header: 'Streak'
+  },
+  {
     field: 'maxPoints',
     header: 'Max Points'
   },
@@ -42,7 +47,7 @@ const STANDINGS_COLUMNS: Column[] = [
     selector: 'app-standings',
     templateUrl: './standings.component.html',
     standalone: true,
-    imports: [CommonModule, TableModule],
+    imports: [CommonModule, TableModule, TagModule],
 })
 export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
@@ -76,5 +81,14 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.#sub.unsubscribe();
+  }
+
+  getSeverity(streak: string): 'success' | 'info' | 'warning' | 'danger' {
+    const type = streak.slice(-1);
+    const streakNumber = +streak.slice(0, -1);
+    if (type.toLowerCase() === 'w') {
+      return streakNumber > 2 ? 'success' : 'info';
+    }
+    return streakNumber > 2 ? 'danger' : 'warning';
   }
 }
