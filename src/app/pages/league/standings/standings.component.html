@@ -6,12 +6,11 @@
     [styleClass]="gridStyle"
     [columns]="columnDefs"
     [value]="standingsData"
-    [scrollable]="true"
     sortField="wins"
     [sortOrder]="-1">
     <ng-template pTemplate="header">
       <tr>
-        <th pFrozenColumn>Manager</th>
+        <th>Manager</th>
         <th pSortableColumn="wins">
           Wins <p-sortIcon field="wins" />
         </th>
@@ -34,7 +33,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-team>
       <tr>
-        <td pFrozenColumn>
+        <td>
           <div class="flex items-center">
             <img [src]="team.avatarUrl" alt="avatar" width="30" class="rounded-md" />
             <span class="pl-2">{{ team.username }}</span>
