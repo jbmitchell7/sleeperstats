@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1725658820511,
+  "timestamp": 1725658989037,
   "index": "/sleeperfantasyfocus/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/sleeperfantasyfocus/favicon.ico",
         "/sleeperfantasyfocus/index.html",
-        "/sleeperfantasyfocus/main-AVM5C5AI.js",
+        "/sleeperfantasyfocus/main-4UZODXVG.js",
         "/sleeperfantasyfocus/manifest.webmanifest",
         "/sleeperfantasyfocus/polyfills-MH5IBZ74.js",
         "/sleeperfantasyfocus/styles-ZGAYLSFX.css"
@@ -51,8 +51,8 @@
     "/sleeperfantasyfocus/assets/icons/icon-72x72.png": "8cb8ebb1179ea90c732c3d979c14e38ef09081c8",
     "/sleeperfantasyfocus/assets/icons/icon-96x96.png": "09906012d0e621b08598b6b53f2bfcaaaee08c30",
     "/sleeperfantasyfocus/favicon.ico": "270b54e44801638c5f448a5f25c012607a6dd5a6",
-    "/sleeperfantasyfocus/index.html": "633307f14784dce923d68ffd554d91bbaa6f3454",
-    "/sleeperfantasyfocus/main-AVM5C5AI.js": "88c95df609643c67731cebe0aa918ee88b0dc665",
+    "/sleeperfantasyfocus/index.html": "defb73670b62884f843bcc099f66027bf12a3a78",
+    "/sleeperfantasyfocus/main-4UZODXVG.js": "1da6afe17b538f1af26423738fcd7b97d5757408",
     "/sleeperfantasyfocus/manifest.webmanifest": "4716d5fa4aa1cbff1ed06b7b4014e0a5e68e3382",
     "/sleeperfantasyfocus/polyfills-MH5IBZ74.js": "c7fdbc7259367a3112d05e61e33c04c4b2efa9b4",
     "/sleeperfantasyfocus/styles-ZGAYLSFX.css": "00e4306e637e491003ae55edf04fc6f9f325921a"
