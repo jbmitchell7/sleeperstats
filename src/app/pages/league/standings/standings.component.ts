@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { LeaguePageData } from '../../../interfaces/leaguePageData';
+import { StandingsData } from '../../../interfaces/standingsData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
-import { selectLeague, selectLeaguePageData } from '../../../store/selectors';
+import { selectLeague, selectStandingsData } from '../../../store/selectors';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -53,7 +53,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   #sub!: Subscription;
   pageTitle!: string;
-  leaguePageData!: LeaguePageData[];
+  standingsData!: StandingsData[];
   columnDefs = STANDINGS_COLUMNS;
   leagueYear!: string;
   leagueName!: string;
@@ -63,14 +63,14 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.#sub = combineLatest([
-      this.#store.select(selectLeaguePageData),
+      this.#store.select(selectStandingsData),
       this.#store.select(selectLeague),
     ])
       .pipe(
-        filter(([lp, l]) => !!lp.length && !!l.name),
-        tap(([lp, l]) => {
-          this.leaguePageData = lp;
-          this.seasonStarted = lp[0].wins !== 0 || lp[0].losses !== 0;
+        filter(([sd, l]) => !!sd.length && !!l.name),
+        tap(([sd, l]) => {
+          this.standingsData = sd;
+          this.seasonStarted = sd[0].wins !== 0 || sd[0].losses !== 0;
           this.leagueName = l.name;
           this.leagueYear = l.season;
           this.pageTitle = `${this.leagueName} Standings ${this.leagueYear}`;
@@ -81,14 +81,5 @@ export class StandingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.#sub.unsubscribe();
-  }
-
-  getSeverity(streak: string): 'success' | 'info' | 'warning' | 'danger' {
-    const type = streak.slice(-1);
-    const streakNumber = +streak.slice(0, -1);
-    if (type.toLowerCase() === 'w') {
-      return streakNumber > 2 ? 'success' : 'info';
-    }
-    return streakNumber > 2 ? 'danger' : 'warning';
   }
 }

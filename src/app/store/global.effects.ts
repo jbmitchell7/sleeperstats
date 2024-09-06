@@ -31,11 +31,11 @@ export class GlobalEffects {
       switchMap((props) =>
         this.#sleeperApi.sleeperGet(`league/${props.leagueId}`).pipe(
           map((res: League) => {
-            const currentYear: string = new Date().getFullYear().toString();
-            if (res.season !== currentYear && res.status === 'complete') {
-              this.#router.navigate(['welcome']);
-              return getLeagueFailure({ error: 'new league season may be available' });
-            }
+            // const currentYear: string = new Date().getFullYear().toString();
+            // if (res.season !== currentYear && res.status === 'complete') {
+            //   this.#router.navigate(['welcome']);
+            //   return getLeagueFailure({ error: 'new league season may be available' });
+            // }
             return getLeagueSuccess({ league: res })
           }),
           catchError(() =>

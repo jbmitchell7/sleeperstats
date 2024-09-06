@@ -1,4 +1,4 @@
-import { LeaguePageData } from '../interfaces/leaguePageData';
+import { StandingsData } from '../interfaces/standingsData';
 import { Roster } from '../interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
@@ -28,8 +28,8 @@ export const selectLeague = (state: AppState) => state.leagueData.league;
 
 export const selectRosters = (state: AppState) => state.rosterData;
 
-export const selectLeaguePageData = (state: AppState) => {
-  const data: LeaguePageData[] = [];
+export const selectStandingsData = (state: AppState) => {
+  const data: StandingsData[] = [];
   state.rosterData.rosters.forEach((roster: Roster) => {
     const manager = state.managersData.managers.find(
       (p) => p.user_id === roster.owner_id
@@ -46,9 +46,32 @@ export const selectLeaguePageData = (state: AppState) => {
         losses: roster.settings.losses,
         players: roster.playerData,
         streak: roster.metadata.streak,
-        avatarUrl: manager.avatarUrl ?? ''
+        avatarUrl: manager.avatarUrl ?? '',
+        streakColor: getSeverity(roster.metadata.streak),
+        streakIcon: getStreakIcon(roster.metadata.streak)
       });
     }
   });
   return data;
+};
+
+const getSeverity = (streak: string): 'success' | 'info' | 'warning' | 'danger' => {
+  const type = streak.slice(-1);
+  const streakNumber = +streak.slice(0, -1);
+  if (type.toLowerCase() === 'l') {
+    return streakNumber > 2 ? 'info' : 'warning';
+  }
+  return streakNumber > 2 ? 'danger' : 'success';
+};
+
+const getStreakIcon = (streak: string): string | undefined => {
+  const type = streak.slice(-1);
+  const streakNumber = +streak.slice(0, -1);
+  if (streakNumber > 2) {
+    if (type.toLowerCase() === 'w') {
+      return 'fa-solid fa-fire';
+    }
+    return 'fa-regular fa-snowflake';
+  }
+  return undefined;
 };

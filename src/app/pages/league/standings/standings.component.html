@@ -5,7 +5,7 @@
     [tableStyle]="{'min-width': '50rem'}"
     styleClass="p-datatable-striped"
     [columns]="columnDefs"
-    [value]="leaguePageData"
+    [value]="standingsData"
     sortField="wins"
     [sortOrder]="-1">
     <ng-template pTemplate="header">
@@ -42,7 +42,7 @@
         <td>{{team.wins}}</td>
         <td>{{team.losses}}</td>
         <td>
-          <p-tag [value]="team.streak" [severity]="getSeverity(team.streak)" />
+          <p-tag [value]="team.streak" [icon]="team.streakIcon" [severity]="team.streakColor" />
         </td>
         <td>{{team.maxPoints}}</td>
         <td>{{team.points}}</td>

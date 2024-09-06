@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
-import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
+import { StandingsData } from 'src/app/interfaces/standingsData';
 import { getPlayersRequest } from 'src/app/store/rosters/rosters.actions';
-import { selectLeague, selectLeaguePageData, selectRosters } from 'src/app/store/selectors';
+import { selectLeague, selectStandingsData, selectRosters } from 'src/app/store/selectors';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,15 +18,15 @@ export class TeamsComponent implements OnInit, OnDestroy {
   #sub!: Subscription;
 
   selectedManager!: string | undefined;
-  selectedTeam!: LeaguePageData | undefined;
-  allTeams!: LeaguePageData[];
+  selectedTeam!: StandingsData | undefined;
+  allTeams!: StandingsData[];
   dropdownOpen = false;
   sport!: string;
   isLoading = false;
 
   ngOnInit(): void {
     this.#sub = combineLatest([
-      this.#store.select(selectLeaguePageData),
+      this.#store.select(selectStandingsData),
       this.#store.select(selectLeague),
       this.#store.select(selectRosters)
     ])

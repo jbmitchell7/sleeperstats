@@ -1,6 +1,6 @@
 import { Player } from "./roster";
 
-export interface LeaguePageData {
+export interface StandingsData {
   username: string;
   points: number;
   maxPoints: number;
@@ -12,4 +12,6 @@ export interface LeaguePageData {
   players?: Player[];
   streak: string;
   avatarUrl: string;
+  streakColor?: 'success' | 'info' | 'warning' | 'danger';
+  streakIcon?: string;
 }

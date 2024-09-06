@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription, tap } from 'rxjs';
-import { LeaguePageData } from 'src/app/interfaces/leaguePageData';
-import { selectLeaguePageData } from 'src/app/store/selectors';
+import { StandingsData } from 'src/app/interfaces/standingsData';
+import { selectStandingsData } from 'src/app/store/selectors';
 import { CommonModule } from '@angular/common';
 
 const SUBTITLE_TEXT =
@@ -18,14 +18,14 @@ const SUBTITLE_TEXT =
 export class GraphComponent implements OnInit, OnDestroy {
   readonly #store = inject(Store);
   #sub!: Subscription;
-  leaguePageData!: LeaguePageData[];
+  standingsData!: StandingsData[];
 
   ngOnInit(): void {
     this.#sub = this.#store
-      .select(selectLeaguePageData)
+      .select(selectStandingsData)
       .pipe(
         tap((lp) => {
-          this.leaguePageData = lp;
+          this.standingsData = lp;
         })
       )
       .subscribe();
