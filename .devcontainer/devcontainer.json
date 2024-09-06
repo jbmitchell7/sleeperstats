@@ -1,5 +1,5 @@
 {
-	"name": "Node.js & TypeScript",
+	"name": "SFF",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"build": {
 		"dockerfile": "Dockerfile"

@@ -18,12 +18,22 @@ export const initialRosterState: ManagerState = {
 
 export const managersReducer = createReducer(
   initialRosterState,
-  on(getManagersSuccess, (state, result) => ({
-    managers: result.players,
-    isLoading: false,
-    isLoaded: true,
-    errorMessage: '',
-  })),
+  on(getManagersSuccess, (state, result) => {
+    const avatarUrl = 'https://sleepercdn.com/avatars/thumbs';
+    const defaultAvatar ='4f4090e5e9c3941414db40a871e3e909';
+    const managers = result.players.map(p => {
+      return {
+        ...p,
+        avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`
+      };
+    });
+    return {
+      managers,
+      isLoading: false,
+      isLoaded: true,
+      errorMessage: '',
+    }
+  }),
   on(getManagersFailure, (state, result) => ({
     managers: [],
     isLoading: false,

@@ -9,9 +9,9 @@ describe('GraphComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GraphComponent ],
-      providers: [provideMockStore()]
-    })
+    imports: [GraphComponent],
+    providers: [provideMockStore()]
+})
     .compileComponents();
   });
 

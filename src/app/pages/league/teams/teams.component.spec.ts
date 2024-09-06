@@ -8,9 +8,9 @@ describe('Teams', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamsComponent ],
-      providers: [provideMockStore()]
-    })
+    imports: [TeamsComponent],
+    providers: [provideMockStore()]
+})
     .compileComponents();
   });
 

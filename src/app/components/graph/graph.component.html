@@ -1,0 +1,8 @@
+<div *ngIf="!isLoading else spinner" [ngClass]="mobileBrowser ? '' : 'graph-wrapper'">
+  <p-chart type="bubble" [data]="chartData" [options]="chartOptions"/>
+</div>
+<ng-template #spinner>
+  <div class="w-1/2 h-1/2 flex items-center justify-center">
+    <p-progressSpinner />
+  </div>
+</ng-template>

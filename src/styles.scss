@@ -1,8 +1,12 @@
-@import "ag-grid-community/styles/ag-grid.css";
-@import "ag-grid-community/styles/ag-theme-alpine.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer tailwind-base, primeng, tailwind-utilities;
+@layer tailwind-base {
+  @tailwind base;
+}
+@layer primeng;
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 html,
 body {
@@ -11,23 +15,16 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #191e1f;
-  color: white;
+  background-color: var(--surface-0);
+  color: var(--primary-text-color);
 }
 
 :root {
-  --orange: #f57e00;
-  --blue: #3a86ff;
-  --black: #191e1f;
-  --pink: #ff69eb;
-
-  .sff-btn {
-    padding: 10px;
-    background-color: var(--orange);
-    border-radius: 90px;
-  }
-
   .attribution {
     font-size: 10px;
   }
+}
+
+p-messages {
+  position: absolute;
 }

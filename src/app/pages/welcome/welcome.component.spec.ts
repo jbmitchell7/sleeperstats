@@ -2,10 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WelcomeComponent } from './welcome.component';
 import { provideMockStore } from '@ngrx/store/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { League } from 'src/app/interfaces/league';
 import { SleeperApiService } from 'src/app/api/sleeper-api.service';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
@@ -14,10 +15,9 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WelcomeComponent ],
-      imports: [HttpClientTestingModule],
-      providers: [provideMockStore()]
-    })
+    imports: [WelcomeComponent],
+    providers: [provideMockStore(), provideHttpClient(), provideHttpClientTesting()]
+})
     .compileComponents();
   });
 
@@ -62,8 +62,8 @@ describe('WelcomeComponent', () => {
       season: '2024',
       sport: 'nfl'
     }
-    spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
-    component.leagueIdInput = '123';
+    spyOn(service, 'getLeague').and.returnValue(of(mockLeague));
+    component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.league_id);
   });
@@ -77,8 +77,8 @@ describe('WelcomeComponent', () => {
       season: '2024',
       sport: 'nfl'
     }
-    spyOn(service, 'sleeperGet').and.returnValue(of(mockLeague));
-    component.leagueIdInput = '123';
+    spyOn(service, 'getLeague').and.returnValue(of(mockLeague));
+    component.leagueInputForm.setValue('123');
     component.setLeagueId();
     expect(localStorage.getItem('LEAGUE_ID')).toEqual(mockLeague.previous_league_id);
   });
