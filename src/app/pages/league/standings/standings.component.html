@@ -3,7 +3,7 @@
   <p-table
     *ngIf="seasonStarted else preseasonMessage"
     [tableStyle]="{'min-width': '50rem'}"
-    styleClass="p-datatable-striped"
+    [styleClass]="gridStyle"
     [columns]="columnDefs"
     [value]="standingsData"
     sortField="wins"

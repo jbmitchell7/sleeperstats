@@ -64,14 +64,11 @@ const getSeverity = (streak: string): 'success' | 'info' | 'warning' | 'danger' 
   return streakNumber > 2 ? 'danger' : 'success';
 };
 
-const getStreakIcon = (streak: string): string | undefined => {
+const getStreakIcon = (streak: string): string => {
   const type = streak.slice(-1);
   const streakNumber = +streak.slice(0, -1);
-  if (streakNumber > 2) {
-    if (type.toLowerCase() === 'w') {
-      return 'fa-solid fa-fire';
-    }
-    return 'fa-regular fa-snowflake';
+  if (type.toLowerCase() === 'l') {
+    return streakNumber > 2 ? 'fa-regular fa-snowflake' : 'fa-regular fa-face-frown';
   }
-  return undefined;
+  return streakNumber > 2 ? 'fa-solid fa-fire' : 'fa-regular fa-face-smile';
 };

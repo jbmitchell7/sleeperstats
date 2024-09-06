@@ -22,16 +22,12 @@ export class NavbarComponent {
 
   menuItems: MenuItem[] = [
     {
+      label: 'Home',
+      routerLink: ['home']
+    },
+    {
       label: 'Standings',
       routerLink: ['standings']
-    },
-    {
-      label: 'Visuals',
-      routerLink: ['visuals']
-    },
-    {
-      label: 'Rosters',
-      routerLink: ['teams']
     },
   ]
 

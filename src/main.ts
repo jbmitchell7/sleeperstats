@@ -14,10 +14,9 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { AppComponent } from './app/app.component';
 import { provideRouter, Routes } from '@angular/router';
 import { WelcomeComponent } from './app/pages/welcome/welcome.component';
-import { GraphComponent } from './app/pages/league/graph/graph.component';
 import { LeagueComponent } from './app/pages/league/league.component';
 import { StandingsComponent } from './app/pages/league/standings/standings.component';
-import { TeamsComponent } from './app/pages/league/teams/teams.component';
+import { HomeComponent } from './app/pages/league/home/home.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -25,10 +24,9 @@ const routes: Routes = [
     path: 'league',
     component: LeagueComponent,
     children: [
-      { path: '', redirectTo: 'standings', pathMatch: 'full' },
-      { path: 'standings', component: StandingsComponent },
-      { path: 'visuals', component: GraphComponent },
-      { path: 'teams', component: TeamsComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'standings', component: StandingsComponent }
     ],
   },
   { path: '**', redirectTo: 'welcome', pathMatch: 'prefix' },

@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { StandingsComponent } from './standings.component';
+
+import { HomeComponent } from './home.component';
 import { provideMockStore } from '@ngrx/store/testing';
 
-describe('StandingsComponent', () => {
-  let component: StandingsComponent;
-  let fixture: ComponentFixture<StandingsComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [StandingsComponent],
-    providers: [provideMockStore()]
-})
+      imports: [HomeComponent],
+      providers: [provideMockStore()]
+    })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(StandingsComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

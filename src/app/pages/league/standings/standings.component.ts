@@ -60,6 +60,8 @@ export class StandingsComponent implements OnInit, OnDestroy {
   dataLoaded: boolean = false;
   maxGridWidth = 690;
   seasonStarted = false;
+  mobileDevice = JSON.parse(localStorage.getItem('mobile') as string);
+  gridStyle = `p-datatable-striped ${this.mobileDevice ? 'p-datatable-sm' : ''}`
 
   ngOnInit(): void {
     this.#sub = combineLatest([
