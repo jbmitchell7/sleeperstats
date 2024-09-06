@@ -7,10 +7,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 const TITLE_TEXT = 'Team/Manager Trends';
 
 const SUBTITLE_TEXT = [
-  'Better teams are further right and more successful teams are further up',
+  'Better teams are higher right',
+  'More successful teams are higher up',
   'Better managers have larger dots',
-  'Dot size is proportional to the percentage of max points the team has scored'
-
+  'Dot size is % of max points the team scored'
 ];
 
 const colors = [
@@ -110,13 +110,19 @@ export class GraphComponent implements OnChanges {
           text: SUBTITLE_TEXT,
           position: 'bottom',
           padding: 30,
-          color: 'white'
+          color: 'white',
+          font: {
+            size: '14rem'
+          }
         },
         title: {
           display: true,
           text: TITLE_TEXT,
           padding: 30,
-          color: 'white'
+          color: 'white',
+          font: {
+            size: '24rem'
+          }
         },
         tooltip: {
           displayColors: false,

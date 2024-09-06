@@ -6,6 +6,7 @@
     [styleClass]="gridStyle"
     [columns]="columnDefs"
     [value]="standingsData"
+    [scrollable]="true"
     sortField="wins"
     [sortOrder]="-1">
     <ng-template pTemplate="header">
@@ -17,8 +18,8 @@
         <th pSortableColumn="losses">
           Losses <p-sortIcon field="losses" />
         </th>
-        <th pSortableColumn="streak">
-          Streak <p-sortIcon field="streak" />
+        <th>
+          Streak
         </th>
         <th pSortableColumn="maxPoints">
           Max Points <p-sortIcon field="maxPoints" />
