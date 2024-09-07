@@ -1,5 +1,10 @@
 <div *ngIf="!isLoading else spinner" [ngClass]="mobileBrowser ? '' : 'graph-wrapper'">
-  <p-chart type="bubble" [data]="chartData" [options]="chartOptions"/>
+  <ng-container *ngIf="showPreseasonMessage else chart">
+    Trends are available after Week 1
+  </ng-container>
+  <ng-template #chart>
+    <p-chart type="bubble" [data]="chartData" [options]="chartOptions"/>
+  </ng-template>
 </div>
 <ng-template #spinner>
   <div class="w-1/2 h-1/2 flex items-center justify-center">

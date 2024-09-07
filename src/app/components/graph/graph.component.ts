@@ -3,41 +3,7 @@ import { StandingsData } from 'src/app/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
-const TITLE_TEXT = 'Team/Manager Trends';
-
-const SUBTITLE_TEXT = [
-  'Better teams are higher right',
-  'More successful teams are higher up',
-  'Better managers have larger dots',
-  'Dot size is % of max points the team scored'
-];
-
-const colors = [
-  '#e6194b',
-  '#3cb44b',
-  '#ffe119',
-  '#4363d8',
-  '#f58231',
-  '#911eb4',
-  '#46f0f0',
-  '#f032e6',
-  '#bcf60c',
-  '#fabebe',
-  '#008080',
-  '#e6beff',
-  '#9a6324',
-  '#fffac8',
-  '#800000',
-  '#aaffc3',
-  '#808000',
-  '#ffd8b1',
-  '#000075',
-  '#808080',
-  '#ffffff',
-  '#000000'
-];
-
+import { GRAPH_COLORS, SUBTITLE_TEXT, TITLE_TEXT } from './graph.constants';
 @Component({
     selector: 'ui-graph',
     templateUrl: './graph.component.html',
@@ -52,22 +18,27 @@ export class GraphComponent implements OnChanges {
   chartOptions: any;
   isLoading = true;
   mobileBrowser = JSON.parse(localStorage.getItem('mobile') as string);
+  showPreseasonMessage = false;
 
   #minRadiusSize!: number;
   readonly #MIN_OFFSET = this.mobileBrowser ? 3 : 5;
 
   ngOnChanges(): void {
     if (this.standingsData?.length && this.isLoading) {
-      this.#getRadiusRange(this.standingsData);
-      const data = this.standingsData.map(team => ({
-        x: team.maxPoints,
-        y: team.wins,
-        r: this.#getRadiusValue(team.points, team.maxPoints),
-        manager: team.username,
-        points: team.points,
-        losses: team.losses
-      }));
-      this.#setupChart(data);
+      if (this.standingsData[0].wins === 0 && this.standingsData[0].losses === 0) {
+        this.showPreseasonMessage = true;
+      } else {
+        this.#getRadiusRange(this.standingsData);
+        const data = this.standingsData.map(team => ({
+          x: team.maxPoints,
+          y: team.wins,
+          r: this.#getRadiusValue(team.points, team.maxPoints),
+          manager: team.username,
+          points: team.points,
+          losses: team.losses
+        }));
+        this.#setupChart(data);
+      }
       this.isLoading = false;
     }
   }
@@ -78,7 +49,7 @@ export class GraphComponent implements OnChanges {
       datasets: [
         {
           data,
-          backgroundColor: data.map((_, i) => colors[i])
+          backgroundColor: data.map((_, i) => GRAPH_COLORS[i])
         }
       ]
     };

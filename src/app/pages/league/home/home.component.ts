@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { GraphComponent } from '../../../components/graph/graph.component';
 import { Store } from '@ngrx/store';
-import { Subscription, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { selectStandingsData } from 'src/app/store/selectors';
 import { StandingsData } from 'src/app/interfaces/standingsData';
 import { CommonModule } from '@angular/common';

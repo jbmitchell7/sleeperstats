@@ -35,6 +35,7 @@ export const selectStandingsData = (state: AppState) => {
       (p) => p.user_id === roster.owner_id
     );
     if (!!manager) {
+      const streak = roster.metadata?.streak;
       data.push({
         owner_id: roster.owner_id,
         playerIds: roster.players,
@@ -45,10 +46,10 @@ export const selectStandingsData = (state: AppState) => {
         wins: roster.settings.wins,
         losses: roster.settings.losses,
         players: roster.playerData,
-        streak: roster.metadata.streak,
+        streak: streak,
         avatarUrl: manager.avatarUrl ?? '',
-        streakColor: getSeverity(roster.metadata.streak),
-        streakIcon: getStreakIcon(roster.metadata.streak)
+        streakColor: streak ? getSeverity(streak) : undefined,
+        streakIcon: streak ? getStreakIcon(streak) : undefined
       });
     }
   });
