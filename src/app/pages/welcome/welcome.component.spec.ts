@@ -4,7 +4,7 @@ import { WelcomeComponent } from './welcome.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { League } from 'src/app/interfaces/league';
+import { League } from 'src/app/data/interfaces/league';
 import { SleeperApiService } from 'src/app/api/sleeper-api.service';
 import { provideHttpClient } from '@angular/common/http';
 

@@ -1,5 +1,5 @@
-import { StandingsData } from '../interfaces/standingsData';
-import { Roster } from '../interfaces/roster';
+import { StandingsData } from '../data/interfaces/standingsData';
+import { Roster } from '../data/interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';

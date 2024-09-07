@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { StandingsData } from '../../../interfaces/standingsData';
+import { StandingsData } from '../../../data/interfaces/standingsData';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
 import { selectLeague, selectStandingsData } from '../../../store/selectors';

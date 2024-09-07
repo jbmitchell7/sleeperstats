@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { StandingsData } from 'src/app/interfaces/standingsData';
+import { Component, Input, OnChanges } from '@angular/core';
+import { StandingsData } from 'src/app/data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { GRAPH_COLORS, SUBTITLE_TEXT, TITLE_TEXT } from './graph.constants';
+import { GRAPH_COLORS, SUBTITLE_TEXT, TITLE_TEXT } from '../../data/constants/graph.constants';
 @Component({
     selector: 'ui-graph',
     templateUrl: './graph.component.html',

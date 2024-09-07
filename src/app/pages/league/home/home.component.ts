@@ -3,7 +3,7 @@ import { GraphComponent } from '../../../components/graph/graph.component';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { selectStandingsData } from 'src/app/store/selectors';
-import { StandingsData } from 'src/app/interfaces/standingsData';
+import { StandingsData } from 'src/app/data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 
 @Component({

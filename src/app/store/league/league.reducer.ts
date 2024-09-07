@@ -4,7 +4,7 @@ import {
   getLeagueFailure,
   getLeagueSuccess,
 } from './league.actions';
-import { League } from '../../interfaces/league';
+import { League } from '../../data/interfaces/league';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
 
 export interface LeagueState extends DataInterface {

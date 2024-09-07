@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { League } from '../interfaces/league';
+import { League } from '../data/interfaces/league';
 
 const apiUrl = 'https://api.sleeper.app/v1';
 

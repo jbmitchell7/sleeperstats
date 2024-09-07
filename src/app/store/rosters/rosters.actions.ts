@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Roster } from '../../interfaces/roster';
+import { Roster } from '../../data/interfaces/roster';
 
 export const getRostersSuccess = createAction(
   '[Rosters] getRostersSuccess',

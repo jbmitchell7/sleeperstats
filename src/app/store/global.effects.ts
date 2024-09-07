@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SleeperApiService } from '../api/sleeper-api.service';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Roster } from '../interfaces/roster';
+import { Roster } from '../data/interfaces/roster';
 import { getLeagueSuccess, getLeagueFailure } from './league/league.actions';
 import {
   getRostersSuccess,
@@ -13,8 +13,8 @@ import {
 } from './rosters/rosters.actions';
 import { leagueEntryRequest } from './global.actions';
 import { getManagersSuccess } from './managers/managers.actions';
-import { LeagueUser } from '../interfaces/leagueuser';
-import { League } from '../interfaces/league';
+import { LeagueUser } from '../data/interfaces/leagueuser';
+import { League } from '../data/interfaces/league';
 import { FantasyFocusApiService } from '../api/fantasy-focus-api.service';
 import { Router } from '@angular/router';
 

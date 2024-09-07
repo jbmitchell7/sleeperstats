@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GraphComponent } from './graph.component';
+
+import { ResetLeagueBtnComponent } from './reset-league-btn.component';
 import { provideMockStore } from '@ngrx/store/testing';
 
-describe('GraphComponent', () => {
-  let component: GraphComponent;
-  let fixture: ComponentFixture<GraphComponent>;
+describe('ResetLeagueBtnComponent', () => {
+  let component: ResetLeagueBtnComponent;
+  let fixture: ComponentFixture<ResetLeagueBtnComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [GraphComponent],
-    providers: [provideMockStore()]
-})
+      imports: [ResetLeagueBtnComponent],
+      providers: [provideMockStore()]
+    })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GraphComponent);
+    fixture = TestBed.createComponent(ResetLeagueBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
