@@ -29,7 +29,7 @@ export class GlobalEffects {
     this.#actions$.pipe(
       ofType(leagueEntryRequest),
       switchMap((props) =>
-        this.#sleeperApi.sleeperGet(`league/${props.leagueId}`).pipe(
+        this.#sleeperApi.getLeague(props.leagueId).pipe(
           map((res: League) => {
             // const currentYear: string = new Date().getFullYear().toString();
             // if (res.season !== currentYear && res.status === 'complete') {
@@ -51,7 +51,7 @@ export class GlobalEffects {
       ofType(leagueEntryRequest),
       switchMap((props) =>
         this.#sleeperApi
-          .sleeperGet(`/league/${props.leagueId}/rosters`)
+          .getRosters(props.leagueId)
           .pipe(
             map((res: Roster[]) => getRostersSuccess({ rosters: res })),
             catchError(() =>
@@ -67,7 +67,7 @@ export class GlobalEffects {
       ofType(leagueEntryRequest),
       switchMap((props) =>
         this.#sleeperApi
-          .sleeperGet(`/league/${props.leagueId}/users`)
+          .getManagers(props.leagueId)
           .pipe(
             map((res: LeagueUser[]) => getManagersSuccess({ players: res })),
             catchError(() =>

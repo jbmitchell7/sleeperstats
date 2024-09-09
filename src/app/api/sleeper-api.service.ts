@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { League } from '../data/interfaces/league';
+import { Roster } from '../data/interfaces/roster';
+import { LeagueUser } from '../data/interfaces/leagueuser';
 
 const apiUrl = 'https://api.sleeper.app/v1';
 
@@ -11,11 +13,15 @@ const apiUrl = 'https://api.sleeper.app/v1';
 export class SleeperApiService {
   readonly #http = inject(HttpClient);
 
-  sleeperGet(url: String): Observable<any> {
-    return this.#http.get(`${apiUrl}/${url}`);
-  }
-
   getLeague(id: string): Observable<League> {
     return this.#http.get<League>(`${apiUrl}/league/${id}`);
+  }
+
+  getRosters(leagueId: string): Observable<Roster[]> {
+    return this.#http.get<Roster[]>(`${apiUrl}/league/${leagueId}/rosters`);
+  }
+
+  getManagers(leagueId: string): Observable<LeagueUser[]> {
+    return this.#http.get<LeagueUser[]>(`${apiUrl}/league/${leagueId}/users`);
   }
 }
