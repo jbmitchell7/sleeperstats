@@ -29,4 +29,8 @@ export class SleeperApiService {
   getSportState(sport: string): Observable<SportState> {
     return this.#http.get<SportState>(`${apiUrl}/state/${sport}`);
   }
+
+  getTransactions(leagueId: string, week: string | number): Observable<any[]> {
+    return this.#http.get<any[]>(`${apiUrl}/league/${leagueId}/transactions/${week}`);
+  }
 }

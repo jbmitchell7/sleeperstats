@@ -23,11 +23,13 @@ export class GraphComponent implements OnChanges {
   #minRadiusSize!: number;
   readonly #MIN_OFFSET = this.mobileBrowser ? 3 : 5;
 
-  ngOnChanges(): void {
-    if (this.standingsData?.length && this.isLoading) {
+  ngOnChanges(changes: any): void {
+    this.isLoading = true;
+    if (changes.standingsData && changes.standingsData.currentValue?.length) {
       if (this.standingsData[0].wins === 0 && this.standingsData[0].losses === 0) {
         this.showPreseasonMessage = true;
       } else {
+        this.showPreseasonMessage = false;
         this.#getRadiusRange(this.standingsData);
         const data = this.standingsData.map(team => ({
           x: team.maxPoints,
