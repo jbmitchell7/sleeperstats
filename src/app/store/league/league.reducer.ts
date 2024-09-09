@@ -6,6 +6,7 @@ import {
 } from './league.actions';
 import { League } from '../../data/interfaces/league';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
+import { getSportStateSuccess, leagueEntryRequest } from '../global.actions';
 
 export interface LeagueState extends DataInterface {
   league: League;
@@ -18,19 +19,31 @@ export const initialLeagueState: LeagueState = {
 
 export const leagueReducer = createReducer(
   initialLeagueState,
+  on(leagueEntryRequest, (state) => ({
+    ...state,
+    isLoaded: false,
+    isLoading: true
+  })),
   on(getLeagueSuccess, (state, result) => ({
+    ...state,
     league: result.league,
-    isLoading: false,
-    isLoaded: true,
     errorMessage: '',
   })),
   on(getLeagueFailure, (state, result) => ({
+    ...state,
     league: {} as League,
-    isLoading: false,
-    isLoaded: true,
     errorMessage: result.error,
   })),
   on(clearLeagueData, () => ({
     ...initialLeagueState,
+  })),
+  on(getSportStateSuccess, (state, action) => ({
+    ...state,
+    isLoaded: true,
+    isLoading: false,
+    league: {
+      ...state.league,
+      sportState: action.sport
+    }
   }))
 );

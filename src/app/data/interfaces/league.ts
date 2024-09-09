@@ -1,3 +1,5 @@
+import { SportState } from "./sportstate";
+
 export interface League {
     status: string;
     previous_league_id: string;
@@ -12,11 +14,9 @@ export interface League {
     roster_positions?: string[];
     metadata?: LeagueMetadata;
     loser_bracket_id?: number;
-    group_id?: null;
     draft_id?: string;
-    company_id?: null;
-    bracket_id?: number;
     avatar?: null;
+    sportState?: SportState;
 }
 
 export interface LeagueSettings {

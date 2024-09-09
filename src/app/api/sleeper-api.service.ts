@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { League } from '../data/interfaces/league';
 import { Roster } from '../data/interfaces/roster';
 import { LeagueUser } from '../data/interfaces/leagueuser';
+import { SportState } from '../data/interfaces/sportstate';
 
 const apiUrl = 'https://api.sleeper.app/v1';
 
@@ -23,5 +24,9 @@ export class SleeperApiService {
 
   getManagers(leagueId: string): Observable<LeagueUser[]> {
     return this.#http.get<LeagueUser[]>(`${apiUrl}/league/${leagueId}/users`);
+  }
+
+  getSportState(sport: string): Observable<SportState> {
+    return this.#http.get<SportState>(`${apiUrl}/state/${sport}`);
   }
 }

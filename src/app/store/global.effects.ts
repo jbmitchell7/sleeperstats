@@ -11,18 +11,19 @@ import {
   getPlayersSuccess,
   getPlayersFailure,
 } from './rosters/rosters.actions';
-import { leagueEntryRequest } from './global.actions';
+import { getSportStateFailure, getSportStateSuccess, leagueEntryRequest } from './global.actions';
 import { getManagersSuccess } from './managers/managers.actions';
 import { LeagueUser } from '../data/interfaces/leagueuser';
 import { League } from '../data/interfaces/league';
 import { FantasyFocusApiService } from '../api/fantasy-focus-api.service';
+import { SportState } from '../data/interfaces/sportstate';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class GlobalEffects {
   readonly #actions$ = inject(Actions);
-  readonly #router = inject(Router);
   readonly #sleeperApi = inject(SleeperApiService);
+  readonly #router = inject(Router);
   readonly #fantasyFocusApi = inject(FantasyFocusApiService);
 
   getLeague$ = createEffect(() =>
@@ -30,17 +31,25 @@ export class GlobalEffects {
       ofType(leagueEntryRequest),
       switchMap((props) =>
         this.#sleeperApi.getLeague(props.leagueId).pipe(
-          map((res: League) => {
-            // const currentYear: string = new Date().getFullYear().toString();
-            // if (res.season !== currentYear && res.status === 'complete') {
-            //   this.#router.navigate(['welcome']);
-            //   return getLeagueFailure({ error: 'new league season may be available' });
-            // }
-            return getLeagueSuccess({ league: res })
-          }),
+          map((res: League) => getLeagueSuccess({ league: res })),
           catchError(() =>
             of(getLeagueFailure({ error: 'error getting league data' }))
           )
+        )
+      )
+    )
+  );
+
+  getSportState$ = createEffect(() =>
+    this.#actions$.pipe(
+      ofType(getLeagueSuccess),
+      switchMap(props =>
+        this.#sleeperApi.getSportState(props.league.sport).pipe(
+          map((sport: SportState) => {
+            this.#router.navigate(['league'])
+            return getSportStateSuccess({sport})
+          }),
+          catchError((error) => of(getSportStateFailure({error})))
         )
       )
     )
