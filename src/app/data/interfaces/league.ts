@@ -16,7 +16,7 @@ export interface League {
     loser_bracket_id?: number;
     draft_id?: string;
     avatar?: null;
-    sportState?: SportState;
+    sportState: SportState;
 }
 
 export interface LeagueSettings {

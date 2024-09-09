@@ -46,8 +46,9 @@ export class GlobalEffects {
       switchMap(props =>
         this.#sleeperApi.getSportState(props.league.sport).pipe(
           map((sport: SportState) => {
-            this.#router.navigate(['league'])
-            return getSportStateSuccess({sport})
+            this.#router.navigate(['league']);
+            localStorage.setItem('LEAGUE_ID', props.league.league_id);
+            return getSportStateSuccess({sport});
           }),
           catchError((error) => of(getSportStateFailure({error})))
         )

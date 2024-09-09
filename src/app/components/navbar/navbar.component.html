@@ -1,8 +1,6 @@
-<div class="flex flex-col w-full h-24 gap-3 my-4 px-5 justify-center">
-  <ui-reset-league-btn class="self-end" />
-  <div class="flex self-center">
-    <p-tabMenu [model]="menuItems" />
-  </div>
+<div [ngClass]="mobile ? '' : 'flex justify-center p-2'">
+  <p-menubar [model]="menuItems" />
+</div>
   <!-- <a>Home</a>
   <a>matchups</a>
   <a>transactions</a>
@@ -11,4 +9,3 @@
   <a>history</a>
   <a>records</a>
   <a>sleeper link</a> -->
-</div>

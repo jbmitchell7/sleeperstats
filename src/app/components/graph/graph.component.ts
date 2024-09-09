@@ -17,7 +17,7 @@ export class GraphComponent implements OnChanges {
   chartData: any;
   chartOptions: any;
   isLoading = true;
-  mobileBrowser = JSON.parse(localStorage.getItem('mobile') as string);
+  mobileBrowser = JSON.parse(localStorage.getItem('MOBILE') as string);
   showPreseasonMessage = false;
 
   #minRadiusSize!: number;
