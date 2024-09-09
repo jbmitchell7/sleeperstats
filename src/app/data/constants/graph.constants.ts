@@ -1,7 +1,7 @@
 export const TITLE_TEXT = 'Team/Manager Trends';
 
 export const SUBTITLE_TEXT = [
-  'Better teams are higher right',
+  'Better teams are further right',
   'More successful teams are higher up',
   'Better managers have larger dots',
   'Dot size is % of max points the team scored'

@@ -75,7 +75,7 @@ export class StandingsComponent implements OnInit, OnDestroy {
           this.seasonStarted = sd[0].wins !== 0 || sd[0].losses !== 0;
           this.leagueName = l.name;
           this.leagueYear = l.season;
-          this.pageTitle = `${this.leagueName} Standings ${this.leagueYear}`;
+          this.pageTitle = ` ${this.leagueYear} Standings`;
         })
       )
       .subscribe();

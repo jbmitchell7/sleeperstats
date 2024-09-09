@@ -11,4 +11,10 @@ export const MENU_ROUTES: MenuItem[] = [
     routerLink: ['standings'],
     icon: 'fa-solid fa-list-ol'
   },
+  // matchups
+  // transactions
+  // rivalry
+  // drafts
+  // history
+  // records
 ];

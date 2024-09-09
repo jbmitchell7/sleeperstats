@@ -92,7 +92,7 @@ export class GraphComponent implements OnChanges {
           padding: 30,
           color: 'white',
           font: {
-            size: '24rem'
+            size: '18rem'
           }
         },
         tooltip: {

@@ -31,6 +31,7 @@ export class NavbarComponent {
   
   menuItems!: MenuItem[];
   mobile = JSON.parse(localStorage.getItem('MOBILE') as string);
+  leagueName!: string;
 
   constructor() {
     this.#sub = this.#store
@@ -38,10 +39,17 @@ export class NavbarComponent {
       .pipe(
         filter(l => !!l.sportState?.season),
         tap(l => {
+          this.leagueName = l.name;
           this.menuItems = [
             ...MENU_ROUTES,
             {
+              label: 'Sleeper Link',
+              icon: 'fa-solid fa-arrow-up-right-from-square',
+              url: `https://sleeper.com/leagues/${l.league_id}/league`
+            },
+            {
               label: 'Change League/Season',
+              icon: 'fa-solid fa-shuffle',
               items: [
                 {
                   label: 'Change League',
