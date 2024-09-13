@@ -1,5 +1,5 @@
 import { StandingsData } from '../data/interfaces/standingsData';
-import { Roster } from '../data/interfaces/roster';
+import { Player, Roster } from '../data/interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
@@ -35,12 +35,7 @@ export const selectRosters = (state: AppState) => state.rosterData;
 
 export const selectTransactions = (state: AppState) => state.transactionsData.transactions;
 
-export const selectPlayers = (state: AppState) => state.playerData.entities;
-
-export const selectIndividualPlayer = (id: string) => createSelector(
-  selectPlayers,
-  (players) => players[id]
-);
+export const selectAllPlayers = (state: AppState) => state.playerData.players;
 
 export const selectStandingsData = (state: AppState) => {
   const data: StandingsData[] = [];

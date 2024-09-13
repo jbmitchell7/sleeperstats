@@ -30,8 +30,9 @@ export class HomeComponent implements OnDestroy {
   league!: League;
   weekTitle!: string;
   weekNumber!: number;
-  transactions!: Transaction[];
+  transactions: Transaction[] = [];
   seasonComplete = false;
+  transactionsLoading = true;
 
   constructor() {
     this.#standingSub = this.#store
@@ -42,21 +43,23 @@ export class HomeComponent implements OnDestroy {
       .select(selectApp)
       .pipe(
         filter(app => !!app.leagueData.league?.sportState?.season),
-        tap(({leagueData, transactionsData}) => {
+        tap(({leagueData}) => {
           this.league = leagueData.league;
           this.sportState = this.league.sportState;
           this.seasonComplete = this.league.status === 'complete';
           this.weekNumber = this.seasonComplete ? 18 : this.league.sportState.week;
           this.weekTitle = `${this.league.sport.toUpperCase()} ${this.league.season} - Week ${this.weekNumber}`;
-          if (!this.seasonComplete) {
-            if (transactionsData.transactions[this.weekNumber]) {
-              this.transactions = transactionsData.transactions[this.weekNumber];
-            } else {
-              this.#store.dispatch(getTransactionsRequest({
-                leagueId: this.league.league_id,
-                week: this.weekNumber
-              }));
-            }
+        }),
+        filter(() => !this.seasonComplete),
+        tap(({transactionsData}) => {
+          if (transactionsData.transactions[this.weekNumber]) {
+            this.transactions = transactionsData.transactions[this.weekNumber];
+            this.transactionsLoading = false;
+          } else {
+            this.#store.dispatch(getTransactionsRequest({
+              leagueId: this.league.league_id,
+              week: this.weekNumber
+            }));
           }
         })
       )
