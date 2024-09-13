@@ -4,6 +4,7 @@ import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
 import { TransactionsState } from './transactions/transactions.reducer';
+import { PlayersState } from './players/players.reducer';
 
 export interface DataInterface {
   isLoading: boolean;
@@ -18,6 +19,7 @@ export const initialDataInterfaceState: DataInterface = {
 };
 
 export interface AppState {
+  playerData: PlayersState;
   leagueData: LeagueState;
   rosterData: RosterState;
   managersData: ManagerState;
@@ -48,7 +50,6 @@ export const selectStandingsData = (state: AppState) => {
         pointsAgainst: roster.settings.fpts_against,
         wins: roster.settings.wins,
         losses: roster.settings.losses,
-        players: roster.playerData,
         streak: streak,
         avatarUrl: manager.avatarUrl ?? '',
         streakColor: streak ? getSeverity(streak) : undefined,

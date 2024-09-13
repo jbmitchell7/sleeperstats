@@ -2,9 +2,6 @@ import { Roster } from '../../data/interfaces/roster';
 import { DataInterface, initialDataInterfaceState } from '../selectors';
 import {
   clearRosterData,
-  getPlayersFailure,
-  getPlayersRequest,
-  getPlayersSuccess,
   getRostersFailure,
   getRostersSuccess,
 } from './rosters.actions';
@@ -40,28 +37,4 @@ export const rostersReducer = createReducer(
   on(clearRosterData, () => ({
     ...initialRosterState,
   })),
-  on(getPlayersRequest, (state) => ({
-    ...state,
-    isLoading: true,
-    isLoaded: false
-  })),
-  on(getPlayersSuccess, (state, action) => {
-    const team = state.rosters[+action.id];
-    return {
-      ...state,
-      isLoaded: true,
-      isLoading: false,
-      rosters: {
-        ...state.rosters,
-        [action.id]: {
-          ...team,
-          playerData: action.players
-        }
-      }
-    }
-  }),
-  on(getPlayersFailure, (state) => ({
-    ...state,
-    isLoading: false
-  }))
 );

@@ -6,10 +6,7 @@ import { Roster } from '../data/interfaces/roster';
 import { getLeagueSuccess, getLeagueFailure } from './league/league.actions';
 import {
   getRostersSuccess,
-  getRostersFailure,
-  getPlayersRequest,
-  getPlayersSuccess,
-  getPlayersFailure,
+  getRostersFailure
 } from './rosters/rosters.actions';
 import { getSportStateFailure, getSportStateSuccess, leagueEntryRequest } from './global.actions';
 import { getManagersSuccess } from './managers/managers.actions';
@@ -19,6 +16,7 @@ import { FantasyFocusApiService } from '../api/fantasy-focus-api.service';
 import { SportState } from '../data/interfaces/sportstate';
 import { Router } from '@angular/router';
 import { getTransactionsFailure, getTransactionsRequest, getTransactionsSuccess } from './transactions/transactions.actions';
+import { getPlayersRequest, getPlayersSuccess, getPlayersFailure } from './players/players.actions';
 
 @Injectable()
 export class GlobalEffects {
@@ -62,12 +60,12 @@ export class GlobalEffects {
 
   getRosters$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(leagueEntryRequest),
+      ofType(getLeagueSuccess),
       switchMap((props) =>
         this.#sleeperApi
-          .getRosters(props.leagueId)
+          .getRosters(props.league.league_id)
           .pipe(
-            map((res: Roster[]) => getRostersSuccess({ rosters: res })),
+            map((res: Roster[]) => getRostersSuccess({ rosters: res, sport: props.league.sport})),
             catchError(() =>
               of(getRostersFailure({ error: 'error getting roster data' }))
             )
@@ -92,13 +90,23 @@ export class GlobalEffects {
     )
   );
 
+  getPlayers$ = createEffect(() =>
+    this.#actions$.pipe(
+      ofType(getRostersSuccess),
+      map(props => {
+        const ids = props.rosters.map(r => r.players).flat();
+        return getPlayersRequest({sport: props.sport, ids});
+      })
+    )
+  );
+
   getPlayersData$ = createEffect(() =>
     this.#actions$.pipe(
       ofType(getPlayersRequest),
       switchMap((props) =>
         this.#fantasyFocusApi.fantasyFocusGet(`players/${props.sport}`, props.ids)
           .pipe(
-            map((res: any) => getPlayersSuccess({ id: props.managerId, players: res })),
+            map((res: any) => getPlayersSuccess({ players: res })),
             catchError(() =>
               of(getPlayersFailure({ error: 'error getting roster data' }))
             )

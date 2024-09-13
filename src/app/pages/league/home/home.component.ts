@@ -1,16 +1,15 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { GraphComponent } from '../../../components/graph/graph.component';
 import { Store } from '@ngrx/store';
-import { filter, Subscription, switchMap, tap } from 'rxjs';
-import { selectApp, selectLeague, selectStandingsData, selectTransactions } from '../../../store/selectors';
+import { filter, Subscription, tap } from 'rxjs';
+import { selectApp, selectStandingsData } from '../../../store/selectors';
 import { StandingsData } from '../../../data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 import { SportState } from '../../../data/interfaces/sportstate';
 import { CardModule } from 'primeng/card';
 import { League } from '../../../data/interfaces/league';
-import { Transaction } from 'src/app/data/interfaces/Transactions';
-import { TransactionsState } from 'src/app/store/transactions/transactions.reducer';
-import { getTransactionsRequest } from 'src/app/store/transactions/transactions.actions';
+import { Transaction } from '../../../data/interfaces/Transactions';
+import { getTransactionsRequest } from '../../../store/transactions/transactions.actions';
 import { TransactionItemComponent } from "../../../components/transaction-item/transaction-item.component";
 
 @Component({

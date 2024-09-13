@@ -8,7 +8,6 @@ export interface Roster {
     player_map: string;
     owner_id: string;
     league_id: string;
-    playerData?: Player[];
     metadata: Metadata;
 }
 

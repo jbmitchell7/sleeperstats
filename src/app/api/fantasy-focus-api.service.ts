@@ -28,8 +28,8 @@ export class FantasyFocusApiService {
     return body || {};
   }
 
-  fantasyFocusGet(url: String, ids: string[]): Observable<any> {
-    return this.http.post(`${apiUrl}/${url}`, {players: ids})
+  fantasyFocusGet(sport: String, ids: string[]): Observable<any> {
+    return this.http.post(`${apiUrl}/${sport}`, {players: ids})
       .pipe(
         map(this.#extractResponseData),
         catchError(this.#handleError)
