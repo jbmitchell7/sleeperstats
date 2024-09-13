@@ -4,9 +4,7 @@
       <h4>{{seasonComplete ? 'Season Champ' : 'Reigning Champ'}}</h4>
     </p-card>
     <p-card *ngIf="!seasonComplete" header="Weekly Transactions">
-      <ng-container *ngFor="let t of transactions">
-        <ui-transaction-item [transaction]="t" />
-      </ng-container>
+      <ui-weekly-transactions [transactions]="transactions" />
     </p-card>
   </div>
   <ui-graph class="xl:col-span-2" [standingsData]="standingsData" />

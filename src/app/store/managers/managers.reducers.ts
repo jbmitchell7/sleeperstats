@@ -6,38 +6,38 @@ import {
   getManagersFailure,
   getManagersSuccess,
 } from './managers.actions';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-export interface ManagerState extends DataInterface {
-  managers: {[key:string]: LeagueUser};
-}
+export interface ManagerState extends DataInterface, EntityState<LeagueUser> {}
 
-export const initialRosterState: ManagerState = {
-  managers: {},
-  ...initialDataInterfaceState,
-};
+export const managerAdapter: EntityAdapter<LeagueUser> = createEntityAdapter<LeagueUser>();
+
+export const initialRosterState: ManagerState = managerAdapter.getInitialState({
+  ...initialDataInterfaceState
+})
 
 export const managersReducer = createReducer(
   initialRosterState,
-  on(getManagersSuccess, (_, result) => {
+  on(getManagersSuccess, (state, action) => {
     const avatarUrl = 'https://sleepercdn.com/avatars/thumbs';
     const defaultAvatar ='4f4090e5e9c3941414db40a871e3e909';
-    const managersWithAvatars = result.players.map(p => {
+    const managersWithAvatars = action.players.map(p => {
       return {
         ...p,
-        avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`
+        avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`,
+        id: p.user_id
       };
     });
-    let managers: {[key:string]: LeagueUser} = {};
-    result.players.forEach((p,i) => managers[p.user_id] = managersWithAvatars[i]);
+    const managersState = managerAdapter.addMany(managersWithAvatars, state);
     return {
-      managers,
+      ...managersState,
       isLoading: false,
       isLoaded: true,
       errorMessage: '',
     }
   }),
   on(getManagersFailure, (state, result) => ({
-    managers: {},
+    ...state,
     isLoading: false,
     isLoaded: true,
     errorMessage: result.error,

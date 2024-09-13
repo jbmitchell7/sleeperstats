@@ -11,11 +11,12 @@ import { League } from '../../../data/interfaces/league';
 import { Transaction } from '../../../data/interfaces/Transactions';
 import { getTransactionsRequest } from '../../../store/transactions/transactions.actions';
 import { TransactionItemComponent } from "../../../components/transaction-item/transaction-item.component";
+import { WeeklyTransactionsComponent } from "../../../components/weekly-transactions/weekly-transactions.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, GraphComponent, CardModule, TransactionItemComponent],
+  imports: [CommonModule, GraphComponent, CardModule, TransactionItemComponent, WeeklyTransactionsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

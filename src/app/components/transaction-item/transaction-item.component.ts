@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Transaction } from '../../data/interfaces/Transactions';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ui-transaction-item',
@@ -9,5 +8,4 @@ import { Transaction } from '../../data/interfaces/Transactions';
   styleUrl: './transaction-item.component.scss'
 })
 export class TransactionItemComponent {
-  @Input({required: true}) transaction!: Transaction;
 }

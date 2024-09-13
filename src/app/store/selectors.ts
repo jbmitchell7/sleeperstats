@@ -5,6 +5,7 @@ import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
 import { TransactionsState } from './transactions/transactions.reducer';
 import { PlayersState } from './players/players.reducer';
+import { createSelector } from '@ngrx/store';
 
 export interface DataInterface {
   isLoading: boolean;
@@ -34,11 +35,18 @@ export const selectRosters = (state: AppState) => state.rosterData;
 
 export const selectTransactions = (state: AppState) => state.transactionsData.transactions;
 
+export const selectPlayers = (state: AppState) => state.playerData.entities;
+
+export const selectIndividualPlayer = (id: string) => createSelector(
+  selectPlayers,
+  (players) => players[id]
+);
+
 export const selectStandingsData = (state: AppState) => {
   const data: StandingsData[] = [];
-  Object.keys(state.rosterData.rosters).forEach(key => {
-    const manager = state.managersData.managers[key];
-    const roster = state.rosterData.rosters[key];
+  Object.keys(state.rosterData.entities).forEach(key => {
+    const manager = state.managersData.entities[key];
+    const roster = state.rosterData.entities[key];
     if (!!manager && !!roster)  {
       const streak = roster.metadata?.streak;
       data.push({

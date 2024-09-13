@@ -15,7 +15,6 @@ describe('TransactionItemComponent', () => {
 
     fixture = TestBed.createComponent(TransactionItemComponent);
     component = fixture.componentInstance;
-    component.transaction = {} as Transaction;
     fixture.detectChanges();
   });
 
