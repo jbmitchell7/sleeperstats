@@ -1,19 +1,15 @@
 export interface Transaction {
   status:         string;
-  type:           string;
-  metadata:       null;
-  created:        number;
-  settings:       null;
-  leg:            number;
+  type:           TransactionType;
+  settings:       {waiver_bid: number} | null;
+  leg:            number; // week number
   draft_picks:    DraftPick[];
   creator:        string;
   transaction_id: string;
-  adds:           { [key: string]: number } | null;
+  adds:           { [key: string]: number } | null; // key is player id, value is roster id
   drops:          { [key: string]: number } | null;
-  consenter_ids:  number[];
   roster_ids:     number[];
-  status_updated: number;
-  waiver_budget:  any[];
+  waiver_budget:  WaiverBudget[]; //used for trade involving faab
 }
   
 export interface DraftPick {
@@ -23,4 +19,16 @@ export interface DraftPick {
   roster_id:         number;
   owner_id:          number;
   previous_owner_id: number;
+}
+
+interface WaiverBudget {
+  sender: number,
+  receiver: number,
+  amount: number
+}
+
+export enum TransactionType {
+  FREE_AGENT = 'free_agent',
+  WAIVER = 'waiver',
+  TRADE = 'trade'
 }

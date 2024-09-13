@@ -11,11 +11,12 @@ import { League } from '../../../data/interfaces/league';
 import { Transaction } from 'src/app/data/interfaces/Transactions';
 import { TransactionsState } from 'src/app/store/transactions/transactions.reducer';
 import { getTransactionsRequest } from 'src/app/store/transactions/transactions.actions';
+import { TransactionItemComponent } from "../../../components/transaction-item/transaction-item.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, GraphComponent, CardModule],
+  imports: [CommonModule, GraphComponent, CardModule, TransactionItemComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

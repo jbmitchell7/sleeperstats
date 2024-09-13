@@ -34,11 +34,10 @@ export const selectTransactions = (state: AppState) => state.transactionsData.tr
 
 export const selectStandingsData = (state: AppState) => {
   const data: StandingsData[] = [];
-  state.rosterData.rosters.forEach((roster: Roster) => {
-    const manager = state.managersData.managers.find(
-      (p) => p.user_id === roster.owner_id
-    );
-    if (!!manager) {
+  Object.keys(state.rosterData.rosters).forEach(key => {
+    const manager = state.managersData.managers[key];
+    const roster = state.rosterData.rosters[key];
+    if (!!manager && !!roster)  {
       const streak = roster.metadata?.streak;
       data.push({
         owner_id: roster.owner_id,
@@ -54,7 +53,7 @@ export const selectStandingsData = (state: AppState) => {
         avatarUrl: manager.avatarUrl ?? '',
         streakColor: streak ? getSeverity(streak) : undefined,
         streakIcon: streak ? getStreakIcon(streak) : undefined
-      });
+      }); 
     }
   });
   return data;

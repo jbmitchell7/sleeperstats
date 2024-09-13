@@ -11,24 +11,28 @@ import {
 import { createReducer, on } from '@ngrx/store';
 
 export interface RosterState extends DataInterface {
-  rosters: Roster[];
+  rosters: {[key: string]: Roster};
 }
 
 export const initialRosterState: RosterState = {
-  rosters: [],
+  rosters: {},
   ...initialDataInterfaceState,
 };
 
 export const rostersReducer = createReducer(
   initialRosterState,
-  on(getRostersSuccess, (state, action) => ({
-    rosters: action.rosters,
-    isLoading: false,
-    isLoaded: true,
-    errorMessage: '',
-  })),
-  on(getRostersFailure, (state, action) => ({
-    rosters: [],
+  on(getRostersSuccess, (_, action) => {
+    let rosters: {[key: string]: Roster} = {};
+    action.rosters.forEach((r, i) => rosters[r.owner_id] = action.rosters[i]);
+    return {
+      rosters,
+      isLoading: false,
+      isLoaded: true,
+      errorMessage: '',
+    }
+  }),
+  on(getRostersFailure, (_, action) => ({
+    rosters: {},
     isLoading: false,
     isLoaded: true,
     errorMessage: action.error,
@@ -42,22 +46,18 @@ export const rostersReducer = createReducer(
     isLoaded: false
   })),
   on(getPlayersSuccess, (state, action) => {
-    const team = state.rosters.find(r => r.owner_id === action.id);
-    if (!team || team.playerData?.length) {
-      return state;
-    }
-    const unchanged = state.rosters.filter(r => r.owner_id !== action.id);
+    const team = state.rosters[+action.id];
     return {
       ...state,
       isLoaded: true,
       isLoading: false,
-      rosters: [
-        ...unchanged,
-        {
+      rosters: {
+        ...state.rosters,
+        [action.id]: {
           ...team,
           playerData: action.players
         }
-      ]
+      }
     }
   }),
   on(getPlayersFailure, (state) => ({

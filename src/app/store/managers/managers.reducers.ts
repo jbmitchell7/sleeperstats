@@ -8,25 +8,27 @@ import {
 } from './managers.actions';
 
 export interface ManagerState extends DataInterface {
-  managers: LeagueUser[];
+  managers: {[key:string]: LeagueUser};
 }
 
 export const initialRosterState: ManagerState = {
-  managers: [],
+  managers: {},
   ...initialDataInterfaceState,
 };
 
 export const managersReducer = createReducer(
   initialRosterState,
-  on(getManagersSuccess, (state, result) => {
+  on(getManagersSuccess, (_, result) => {
     const avatarUrl = 'https://sleepercdn.com/avatars/thumbs';
     const defaultAvatar ='4f4090e5e9c3941414db40a871e3e909';
-    const managers = result.players.map(p => {
+    const managersWithAvatars = result.players.map(p => {
       return {
         ...p,
         avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`
       };
     });
+    let managers: {[key:string]: LeagueUser} = {};
+    result.players.forEach((p,i) => managers[p.user_id] = managersWithAvatars[i]);
     return {
       managers,
       isLoading: false,
@@ -35,7 +37,7 @@ export const managersReducer = createReducer(
     }
   }),
   on(getManagersFailure, (state, result) => ({
-    managers: [],
+    managers: {},
     isLoading: false,
     isLoaded: true,
     errorMessage: result.error,
