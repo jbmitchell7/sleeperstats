@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MessagesModule } from 'primeng/messages';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -25,11 +26,13 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class WelcomeComponent {
   readonly #store = inject(Store);
+  readonly #router = inject(Router);
 
   leagueInputForm = new FormControl<string>('', [Validators.required, Validators.minLength(3)]);
 
   setLeagueId(): void {
     const id = this.leagueInputForm.value ?? '';
     this.#store.dispatch(leagueEntryRequest({ leagueId: id }));
+    this.#router.navigate(['league']);
   }
 }

@@ -18,6 +18,7 @@ import { League } from '../data/interfaces/league';
 import { FantasyFocusApiService } from '../api/fantasy-focus-api.service';
 import { SportState } from '../data/interfaces/sportstate';
 import { Router } from '@angular/router';
+import { getTransactionsFailure, getTransactionsRequest, getTransactionsSuccess } from './transactions/transactions.actions';
 
 @Injectable()
 export class GlobalEffects {
@@ -32,9 +33,10 @@ export class GlobalEffects {
       switchMap((props) =>
         this.#sleeperApi.getLeague(props.leagueId).pipe(
           map((res: League) => getLeagueSuccess({ league: res })),
-          catchError(() =>
-            of(getLeagueFailure({ error: 'error getting league data' }))
-          )
+          catchError(() => {
+            this.#router.navigate(['welcome']);
+            return of(getLeagueFailure({ error: 'error getting league data' }))
+          })
         )
       )
     )
@@ -46,11 +48,13 @@ export class GlobalEffects {
       switchMap(props =>
         this.#sleeperApi.getSportState(props.league.sport).pipe(
           map((sport: SportState) => {
-            this.#router.navigate(['league']);
             localStorage.setItem('LEAGUE_ID', props.league.league_id);
             return getSportStateSuccess({sport});
           }),
-          catchError((error) => of(getSportStateFailure({error})))
+          catchError((error) => {
+            this.#router.navigate(['welcome']);
+            return of(getSportStateFailure({error}));
+          })
         )
       )
     )
@@ -97,6 +101,21 @@ export class GlobalEffects {
             map((res: any) => getPlayersSuccess({ id: props.managerId, players: res })),
             catchError(() =>
               of(getPlayersFailure({ error: 'error getting roster data' }))
+            )
+          )
+      )
+    )
+  );
+
+  getTransactions$ = createEffect(() =>
+    this.#actions$.pipe(
+      ofType(getTransactionsRequest),
+      switchMap(({leagueId, week}) =>
+        this.#sleeperApi.getTransactions(leagueId, week)
+          .pipe(
+            map(transactions => getTransactionsSuccess({week, transactions})),
+            catchError(() =>
+              of(getTransactionsFailure({error: 'error getting transactions'}))
             )
           )
       )

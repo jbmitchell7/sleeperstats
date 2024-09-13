@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription, combineLatest, filter, tap } from 'rxjs';
-import { StandingsData } from 'src/app/data/interfaces/standingsData';
-import { getPlayersRequest } from 'src/app/store/rosters/rosters.actions';
-import { selectLeague, selectStandingsData, selectRosters } from 'src/app/store/selectors';
+import { StandingsData } from '../../../data/interfaces/standingsData';
+import { getPlayersRequest } from '../../../store/rosters/rosters.actions';
+import { selectLeague, selectStandingsData, selectRosters } from '../../../store/selectors';
 import { CommonModule } from '@angular/common';
 
 @Component({

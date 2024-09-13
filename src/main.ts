@@ -17,6 +17,7 @@ import { WelcomeComponent } from './app/pages/welcome/welcome.component';
 import { LeagueComponent } from './app/pages/league/league.component';
 import { StandingsComponent } from './app/pages/league/standings/standings.component';
 import { HomeComponent } from './app/pages/league/home/home.component';
+import { transactionsReducer } from './app/store/transactions/transactions.reducer';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -43,6 +44,7 @@ bootstrapApplication(AppComponent, {
       leagueData: leagueReducer,
       rosterData: rostersReducer,
       managersData: managersReducer,
+      transactionsData: transactionsReducer
     }),
     provideEffects([GlobalEffects]),
     provideServiceWorker('ngsw-worker.js', {

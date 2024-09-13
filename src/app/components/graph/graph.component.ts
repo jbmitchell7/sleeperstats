@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { StandingsData } from 'src/app/data/interfaces/standingsData';
+import { StandingsData } from '../../data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';

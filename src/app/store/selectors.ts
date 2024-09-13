@@ -3,6 +3,7 @@ import { Roster } from '../data/interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
+import { TransactionsState } from './transactions/transactions.reducer';
 
 export interface DataInterface {
   isLoading: boolean;
@@ -20,6 +21,7 @@ export interface AppState {
   leagueData: LeagueState;
   rosterData: RosterState;
   managersData: ManagerState;
+  transactionsData: TransactionsState;
 }
 
 export const selectApp = (state: AppState) => state;
@@ -27,6 +29,8 @@ export const selectApp = (state: AppState) => state;
 export const selectLeague = (state: AppState) => state.leagueData.league;
 
 export const selectRosters = (state: AppState) => state.rosterData;
+
+export const selectTransactions = (state: AppState) => state.transactionsData.transactions;
 
 export const selectStandingsData = (state: AppState) => {
   const data: StandingsData[] = [];

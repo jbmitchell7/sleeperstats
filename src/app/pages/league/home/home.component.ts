@@ -1,14 +1,16 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { GraphComponent } from '../../../components/graph/graph.component';
 import { Store } from '@ngrx/store';
-import { filter, map, Subscription, switchMap, tap } from 'rxjs';
-import { selectLeague, selectStandingsData } from 'src/app/store/selectors';
-import { StandingsData } from 'src/app/data/interfaces/standingsData';
+import { filter, Subscription, switchMap, tap } from 'rxjs';
+import { selectApp, selectLeague, selectStandingsData, selectTransactions } from '../../../store/selectors';
+import { StandingsData } from '../../../data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
-import { SportState } from 'src/app/data/interfaces/sportstate';
+import { SportState } from '../../../data/interfaces/sportstate';
 import { CardModule } from 'primeng/card';
-import { League } from 'src/app/data/interfaces/league';
-import { SleeperApiService } from 'src/app/api/sleeper-api.service';
+import { League } from '../../../data/interfaces/league';
+import { Transaction } from 'src/app/data/interfaces/Transactions';
+import { TransactionsState } from 'src/app/store/transactions/transactions.reducer';
+import { getTransactionsRequest } from 'src/app/store/transactions/transactions.actions';
 
 @Component({
   selector: 'app-home',
@@ -21,13 +23,13 @@ export class HomeComponent implements OnDestroy {
   readonly #store = inject(Store);
   #standingSub!: Subscription;
   #leagueSub!: Subscription;
-  #sleeperApi = inject(SleeperApiService);
 
   standingsData!: StandingsData[];
   sportState!: SportState;
   league!: League;
   weekTitle!: string;
-  transactions!: any[];
+  weekNumber!: number;
+  transactions!: Transaction[];
   seasonComplete = false;
 
   constructor() {
@@ -36,29 +38,26 @@ export class HomeComponent implements OnDestroy {
       .subscribe(sd => this.standingsData = sd);
 
     this.#leagueSub = this.#store
-      .select(selectLeague)
+      .select(selectApp)
       .pipe(
-        filter(league => !!league?.sportState?.season),
-        map(l => {
-          this.sportState = l.sportState;
-          this.league = l;
+        filter(app => !!app.leagueData.league?.sportState?.season),
+        tap(({leagueData, transactionsData}) => {
+          this.league = leagueData.league;
+          this.sportState = this.league.sportState;
           this.seasonComplete = this.league.status === 'complete';
-          const weekNumber = this.seasonComplete ? 18 : l.sportState.week;
-          this.weekTitle = `${l.sport.toUpperCase()} ${l.season} - Week ${weekNumber}`;
-          return {
-            weekNumber,
-            leagueId: l.league_id
-          };
-        }),
-        filter(() => !this.seasonComplete),
-        switchMap(result => this.#sleeperApi
-          .getTransactions(result.leagueId, result.weekNumber)
-          .pipe(
-            tap(res => {
-              this.transactions = res;
-            })
-          )
-        )
+          this.weekNumber = this.seasonComplete ? 18 : this.league.sportState.week;
+          this.weekTitle = `${this.league.sport.toUpperCase()} ${this.league.season} - Week ${this.weekNumber}`;
+          if (!this.seasonComplete) {
+            if (transactionsData.transactions[this.weekNumber]) {
+              this.transactions = transactionsData.transactions[this.weekNumber];
+            } else {
+              this.#store.dispatch(getTransactionsRequest({
+                leagueId: this.league.league_id,
+                week: this.weekNumber
+              }));
+            }
+          }
+        })
       )
       .subscribe();
   }
