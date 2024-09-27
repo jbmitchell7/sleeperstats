@@ -1,3 +1,6 @@
+import { LeagueUser } from "./leagueuser";
+import { Player, Roster } from "./roster";
+
 export interface Transaction {
   status:         string;
   type:           TransactionType;
@@ -31,4 +34,11 @@ export enum TransactionType {
   FREE_AGENT = 'free_agent',
   WAIVER = 'waiver',
   TRADE = 'trade'
+}
+
+export interface SFF_Transaction {
+  roster: Roster | undefined,
+  player: Player | Partial<Player>,
+  manager: LeagueUser | undefined,
+  type: string
 }

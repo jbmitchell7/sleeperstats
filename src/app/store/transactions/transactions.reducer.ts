@@ -1,5 +1,5 @@
-import { Transaction } from "src/app/data/interfaces/Transactions";
-import { DataInterface, initialDataInterfaceState } from "../selectors";
+import { Transaction } from "../../data/interfaces/Transactions";
+import { DataInterface, initialDataInterfaceState } from "../global.selectors";
 import { createReducer, on } from "@ngrx/store";
 import { getTransactionsSuccess } from "./transactions.actions";
 

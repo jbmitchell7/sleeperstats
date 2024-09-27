@@ -1,16 +1,16 @@
-import { Player } from "src/app/data/interfaces/roster";
-import { DataInterface, initialDataInterfaceState } from "../selectors";
+import { Player } from "../../data/interfaces/roster";
+import { DataInterface, initialDataInterfaceState } from "../global.selectors";
 import { createReducer, on } from "@ngrx/store";
 import { getPlayersFailure, getPlayersRequest, getPlayersSuccess } from "./players.actions";
+import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 
-export interface PlayersState extends DataInterface {
-  players: Player[]
-}
+export interface PlayersState extends DataInterface, EntityState<Player> {}
 
-export const initialPlayersState: PlayersState = {
-  ...initialDataInterfaceState,
-  players: []
-};
+export const playersAdapter: EntityAdapter<Player> = createEntityAdapter<Player>();
+
+export const initialPlayersState: PlayersState = playersAdapter.getInitialState({
+  ...initialDataInterfaceState
+});
 
 export const playersReducer = createReducer(
   initialPlayersState,
@@ -26,9 +26,13 @@ export const playersReducer = createReducer(
     errorMessage: action.error,
   })),
   on(getPlayersSuccess, (state, action) => {
-    const updatedPlayers = state.players.concat(action.players);
+    const playersToAdd = action.players.map(p => ({
+      ...p,
+      id: p.player_id
+    }));
+    const playersState = playersAdapter.upsertMany(playersToAdd, state);
     return {
-      players: updatedPlayers,
+      ...playersState,
       isLoading: false,
       isLoaded: true,
       errorMessage: ''

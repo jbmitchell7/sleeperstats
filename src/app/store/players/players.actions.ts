@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Player } from "../../data/interfaces/roster";
 
 export const getPlayersRequest = createAction(
   '[Players] getPlayersRequest',
@@ -7,7 +8,7 @@ export const getPlayersRequest = createAction(
 
 export const getPlayersSuccess = createAction(
   '[Players] getPlayersSuccess',
-  props<{players: any[] }>()
+  props<{players: Player[] }>()
 );
 
 export const getPlayersFailure = createAction(

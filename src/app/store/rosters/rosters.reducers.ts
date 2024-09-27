@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Roster } from '../../data/interfaces/roster';
-import { DataInterface, initialDataInterfaceState } from '../selectors';
+import { DataInterface, initialDataInterfaceState } from '../global.selectors';
 import {
   clearRosterData,
   getRostersFailure,

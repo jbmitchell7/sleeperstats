@@ -1,11 +1,10 @@
 import { StandingsData } from '../data/interfaces/standingsData';
-import { Player, Roster } from '../data/interfaces/roster';
 import { LeagueState } from './league/league.reducer';
 import { ManagerState } from './managers/managers.reducers';
 import { RosterState } from './rosters/rosters.reducers';
 import { TransactionsState } from './transactions/transactions.reducer';
 import { PlayersState } from './players/players.reducer';
-import { createSelector } from '@ngrx/store';
+import { SFF_Transaction, TransactionType } from '../data/interfaces/Transactions';
 
 export interface DataInterface {
   isLoading: boolean;
@@ -35,7 +34,7 @@ export const selectRosters = (state: AppState) => state.rosterData;
 
 export const selectTransactions = (state: AppState) => state.transactionsData.transactions;
 
-export const selectAllPlayers = (state: AppState) => state.playerData.players;
+export const selectAllPlayers = (state: AppState) => state.playerData;
 
 export const selectStandingsData = (state: AppState) => {
   const data: StandingsData[] = [];
@@ -79,4 +78,47 @@ const getStreakIcon = (streak: string): string => {
     return streakNumber > 2 ? 'fa-regular fa-snowflake' : 'fa-regular fa-face-frown';
   }
   return streakNumber > 2 ? 'fa-solid fa-fire' : 'fa-regular fa-face-smile';
+};
+
+export const selectCurrentWeekTransactions = (state: AppState) => {
+  const detailedTransactions: SFF_Transaction[] = [];
+  const currentWeek = state.leagueData.league.sportState?.week;
+  const weeklyTransactions = state.transactionsData.transactions[currentWeek];
+  if (weeklyTransactions?.length) {
+    weeklyTransactions.forEach(t => {
+      if (t.type !== TransactionType.TRADE) {
+        if (t.adds) {
+          addToDetailTransactions(state, t.adds, 'ADD', detailedTransactions);
+        }
+        if (t.drops) {
+          addToDetailTransactions(state, t.drops, 'DROP', detailedTransactions);
+        }
+      }
+    });
+  }
+  return detailedTransactions;
+};
+
+const addToDetailTransactions = (
+  state: AppState,
+  transactionObj: {[key: string]: any},
+  type: string,
+  list: SFF_Transaction[]
+) => {
+  Object.entries(transactionObj).forEach((e: any) => {
+    const managerId = getManager(state.rosterData, e[1]);
+    const player = state.playerData.entities[e[0]];
+    list.push({
+      roster: managerId ? state.rosterData.entities[managerId] :  undefined,
+      player: player ?? {player_id: e[0]},
+      manager: managerId ? state.managersData.entities[managerId] : undefined,
+      type
+    })
+  });
+}
+
+const getManager = (rosters: RosterState, rosterId: number): string | undefined => {
+  return Object
+    .keys(rosters.entities)
+    .find(key => rosters.entities[key]?.roster_id === rosterId);
 };

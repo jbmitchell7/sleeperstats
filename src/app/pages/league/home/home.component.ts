@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { GraphComponent } from '../../../components/graph/graph.component';
 import { Store } from '@ngrx/store';
 import { filter, Subscription, tap } from 'rxjs';
-import { selectApp, selectStandingsData } from '../../../store/selectors';
+import { selectApp, selectStandingsData } from '../../../store/global.selectors';
 import { StandingsData } from '../../../data/interfaces/standingsData';
 import { CommonModule } from '@angular/common';
 import { SportState } from '../../../data/interfaces/sportstate';
@@ -12,6 +12,7 @@ import { Transaction } from '../../../data/interfaces/Transactions';
 import { getTransactionsRequest } from '../../../store/transactions/transactions.actions';
 import { TransactionItemComponent } from "../../../components/transaction-item/transaction-item.component";
 import { WeeklyTransactionsComponent } from "../../../components/weekly-transactions/weekly-transactions.component";
+import { RosterState } from '../../../store/rosters/rosters.reducers';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnDestroy {
   standingsData!: StandingsData[];
   sportState!: SportState;
   league!: League;
+  rosters!: RosterState;
   weekTitle!: string;
   weekNumber!: number;
   transactions: Transaction[] = [];
@@ -43,7 +45,8 @@ export class HomeComponent implements OnDestroy {
       .select(selectApp)
       .pipe(
         filter(app => !!app.leagueData.league?.sportState?.season),
-        tap(({leagueData}) => {
+        tap(({leagueData, rosterData}) => {
+          this.rosters = rosterData;
           this.league = leagueData.league;
           this.sportState = this.league.sportState;
           this.seasonComplete = this.league.status === 'complete';
@@ -52,10 +55,7 @@ export class HomeComponent implements OnDestroy {
         }),
         filter(() => !this.seasonComplete),
         tap(({transactionsData}) => {
-          if (transactionsData.transactions[this.weekNumber]) {
-            this.transactions = transactionsData.transactions[this.weekNumber];
-            this.transactionsLoading = false;
-          } else {
+          if (!transactionsData.transactions[this.weekNumber]) {
             this.#store.dispatch(getTransactionsRequest({
               leagueId: this.league.league_id,
               week: this.weekNumber

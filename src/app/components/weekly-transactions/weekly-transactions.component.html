@@ -1,1 +1,20 @@
-<p>Coming Soon!</p>
+<ng-container *ngIf="isLoading else transactionList">
+  <div class="flex items-center justify-center">
+    <p-progressSpinner />
+  </div>
+</ng-container>
+<ng-template #transactionList>
+  <div class="flex flex-col gap-3">
+    <div *ngFor="let t of transactions" class="flex flex-col">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <img *ngIf="t.manager?.avatarUrl" [src]="t.manager?.avatarUrl" alt="avatar" width="30" class="rounded-md" />
+          <span>{{t.manager?.display_name ?? 'manager missing'}}</span>
+        </div>
+        <i [ngClass]="t.type === 'ADD' ? 'fa-solid fa-plus add' : 'fa-solid fa-minus drop'"></i>
+        <span>{{t.player.full_name}}</span>
+      </div>
+      <p-divider />
+    </div>
+  </div>
+</ng-template>

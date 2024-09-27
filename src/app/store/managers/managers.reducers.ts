@@ -1,5 +1,5 @@
 import { LeagueUser } from '../../data/interfaces/leagueuser';
-import { DataInterface, initialDataInterfaceState } from '../selectors';
+import { DataInterface, initialDataInterfaceState } from '../global.selectors';
 import { createReducer, on } from '@ngrx/store';
 import {
   clearManagersData,
@@ -21,13 +21,11 @@ export const managersReducer = createReducer(
   on(getManagersSuccess, (state, action) => {
     const avatarUrl = 'https://sleepercdn.com/avatars/thumbs';
     const defaultAvatar ='4f4090e5e9c3941414db40a871e3e909';
-    const managersWithAvatars = action.players.map(p => {
-      return {
-        ...p,
-        avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`,
-        id: p.user_id
-      };
-    });
+    const managersWithAvatars = action.players.map(p => ({
+      ...p,
+      avatarUrl: `${avatarUrl}/${p.avatar ?? defaultAvatar}`,
+      id: p.user_id
+    }));
     const managersState = managerAdapter.addMany(managersWithAvatars, state);
     return {
       ...managersState,

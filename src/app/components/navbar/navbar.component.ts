@@ -4,14 +4,14 @@ import { Router, RouterModule } from "@angular/router";
 import { MenuItem } from "primeng/api";
 import { Store } from "@ngrx/store";
 import { Subscription, filter, tap } from "rxjs";
-import { League } from "src/app/data/interfaces/league";
-import { leagueEntryRequest } from "src/app/store/global.actions";
-import { clearLeagueData } from "src/app/store/league/league.actions";
-import { clearManagersData } from "src/app/store/managers/managers.actions";
-import { clearRosterData } from "src/app/store/rosters/rosters.actions";
-import { selectLeague } from "src/app/store/selectors";
+import { League } from "../../data/interfaces/league";
+import { leagueEntryRequest } from "../../store/global.actions";
+import { clearLeagueData } from "../../store/league/league.actions";
+import { clearManagersData } from "../../store/managers/managers.actions";
+import { clearRosterData } from "../../store/rosters/rosters.actions";
+import { selectLeague } from "../../store/global.selectors";
 import { MenubarModule } from "primeng/menubar";
-import { MENU_ROUTES } from "src/app/data/constants/navigation.constants";
+import { MENU_ROUTES } from "../../data/constants/navigation.constants";
 
 @Component({
   standalone: true,
