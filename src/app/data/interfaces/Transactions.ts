@@ -9,10 +9,11 @@ export interface Transaction {
   draft_picks:    DraftPick[];
   creator:        string;
   transaction_id: string;
-  adds:           { [key: string]: number } | null; // key is player id, value is roster id
-  drops:          { [key: string]: number } | null;
+  adds:           { [key: number]: number } | null; // key is player id, value is roster id
+  drops:          { [key: number]: number } | null;
   roster_ids:     number[];
   waiver_budget:  WaiverBudget[]; //used for trade involving faab
+  rosterMoves?: RosterMove[];
 }
   
 export interface DraftPick {
@@ -36,9 +37,11 @@ export enum TransactionType {
   TRADE = 'trade'
 }
 
-export interface SFF_Transaction {
-  roster: Roster | undefined,
-  player: Player | Partial<Player>,
-  manager: LeagueUser | undefined,
-  type: string
+export interface RosterMove {
+  adds: Partial<Player>[],
+  drops: Partial<Player>[],
+  manager: LeagueUser  | undefined,
+  type: string,
+  waiverBid?: number
 }
+

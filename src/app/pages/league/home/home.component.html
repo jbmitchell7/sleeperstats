@@ -4,7 +4,7 @@
     <h4>{{seasonComplete ? 'Season Champ' : 'Reigning Champ'}} - Coming Soon!</h4>
   </p-card> -->
   <ui-graph class="xl:col-span-2" [standingsData]="standingsData" />
-  <p-card *ngIf="!seasonComplete" header="Weekly Transactions" subheader="Trades coming soon!">
+  <p-card *ngIf="!seasonComplete" header="Weekly Transactions">
     <ui-weekly-transactions class="pt-3" [league]="league" />
   </p-card>
 </div>
